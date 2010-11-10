@@ -2,5 +2,9 @@
 για να έχουμε κάπου μαζεμένες όλες τις ενέργειες
 (άσχετα από τα revisions που κρατάει το ίδιο το SVN).
 
-9/11/10 10:52 Αποστολή SQL Coding Standard ( Architect - SQL Exp. ) (clients_wiki\SQL Coding Standard)
+<<<<<<< .mine
 9/11/10 11:29 δημιουργία team_log file ( CM )
+=======
+9/11/10 10:52 Αποστολή SQL Coding Standard ( Architect - SQL Exp. ) (clients_wiki\SQL Coding Standard)
+=======
+10/11/10 18:35 δημιούργησα τα Braches (DEV,TEST,MAIN)
