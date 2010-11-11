@@ -8,3 +8,5 @@
 9/11/10 10:52 Αποστολή SQL Coding Standard ( Architect - SQL Exp. ) (clients_wiki\SQL Coding Standard)
 =======
 10/11/10 18:35 δημιούργησα τα Braches (DEV,TEST,MAIN)
+=======
+11/11/10 19:15 Αποστολή αξιολόγησης/επιλογής βάσεων δεδομένων ( Αrchitect - SQL Exp. ) (clients_wiki\WhySQLite)
