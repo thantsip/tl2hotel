@@ -10,3 +10,8 @@
 10/11/10 18:35 δημιούργησα τα Braches (DEV,TEST,MAIN)
 =======
 11/11/10 19:15 Αποστολή αξιολόγησης/επιλογής βάσεων δεδομένων ( Αrchitect - SQL Exp. ) (clients_wiki\WhySQLite)
+
+2010-11-14  Efstathios Xatzikiriakidis  <contact@efxa.org>
+
+    * add tutorial file: black-box-unit-testing.pdf
+      for black-box unit testing with QT framework.
