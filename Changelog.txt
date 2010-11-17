@@ -15,3 +15,9 @@
 
     * add tutorial file: black-box-unit-testing.pdf
       for black-box unit testing with QT framework.
+=======
+17/11/10 02:06 Αποστολή εβδομαδιαίας αναφοράς (week_reports/Nikolaos Delis/1st week)
+
+2010-11-17  Nikos Delis  <delis89@gmail.com>
+
+    * add my week report
