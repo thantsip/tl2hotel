@@ -21,3 +21,7 @@
 2010-11-17  Nikos Delis  <delis89@gmail.com>
 
     * add my week report
+======
+18/11/10 12:33 Ιορδανίδης Αλέξανδρος <alexander.iordanidis@gmail.com>
+
+    * add my week report
