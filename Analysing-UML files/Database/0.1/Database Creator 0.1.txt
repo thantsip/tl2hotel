@@ -1,0 +1,34 @@
+CREATE TABLE Groups
+(
+	prIdGroup INT PRIMARY KEY ,
+	GroupName VARCHAR(25)
+);
+
+CREATE TABLE Customers
+(
+	prIdCustomer INT PRIMARY KEY ,
+	CustomerName VARCHAR(25) ,
+	CustomerSurname VARCHAR(25) ,
+	fkGroupId INT ,
+	FOREIGN KEY (fkGroupId) REFERENCES Groups
+);
+
+CREATE TABLE Rooms
+(
+	prIdRoom INT PRIMARY KEY ,
+	RoomNumber INT ,
+	RoomFloor INT ,
+	Capacity INT ,
+	Extras TEXT
+);
+
+CREATE TABLE RoomsReservation
+(
+	prIdReservation INT PRIMARY KEY ,
+	DateFrom TEXT ,
+	DateTo TEXT ,
+	fkCustomerId INT ,
+	fkRoomId INT ,
+	FOREIGN KEY (fkCustomerId) REFERENCES Customers
+	FOREIGN KEY (fkRoomId) REFERENCES Rooms
+);

@@ -1,0 +1,35 @@
+INSERT INTO Groups (prIdGroup,GroupName) VALUES ('0','No Group') ;
+INSERT INTO Groups (prIdGroup,GroupName) VALUES ('1','2o Dimotiko Sxoleio') ;
+INSERT INTO Groups (prIdGroup,GroupName) VALUES ('2','Kostas Tours') ;
+INSERT INTO Groups (prIdGroup,GroupName) VALUES ('3','Hyper Atlantic Express') ;
+
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('1','John','Georgoudakis','0') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('2','Kostas','Georgomitros','0') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('3','Nikos','Delis','1') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('4','Stelios','Papadopoulos','1') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('5','Maria','Grigoriou','2') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('6','Dimitra','Zaxaria','2') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('7','Despina','Kourtaki','2') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('8','Matina','Malamatina','3') ;
+INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,fkGroupId) VALUES ('9','Georgia','Dimitrake','3') ;
+
+
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('1','102','1','2','Tzakouzi TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('2','232','2','2','Saouna Psigeio') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('3','482','4','1','Psigeio TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('4','572','5','1','AirCondition TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('5','362','3','1','AirCondition TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('6','112','1','2','Tzakouzi TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('7','332','3','1','AirCondition TV') ;
+INSERT INTO Rooms (prIdRoom,RoomNumber,RoomFloor,Capacity,Extras) VALUES ('8','152','1','2','AirCondition TV') ;
+
+
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('1','1/8/2010','3/8/2010','1','5') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('2','5/8/2010','7/8/2010','2','4') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('3','1/9/2010','2/9/2010','3','6') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('4','13/12/2010','15/12/2010','4','7') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('5','21/10/2010','21/11/2010','5','2') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('6','10/2/2010','14/2/2010','6','1') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('7','12/3/2010','4/4/2010','7','3') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('8','9/4/2010','10/4/2010','8','8') ;
+INSERT INTO RoomsReservation (prIdReservation,DateFrom,DateTo,fkCustomerId,fkRoomId) VALUES ('9','9/5/2010','12/5/2010','9','8') ;
