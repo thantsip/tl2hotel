@@ -25,6 +25,12 @@
 18/11/10 12:33 Ιορδανίδης Αλέξανδρος <alexander.iordanidis@gmail.com>
 
     * add my week report
+
 ======
 18/11/10
-	* add Database files 
+	* add Database files >>>>>>> .r90
+
+======
+19/11/10 12:20 Ιορδανίδης Αλέξανδρος  <alexander.iordanidis@gmail.com>
+
+   *add a test project
