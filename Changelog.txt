@@ -1,28 +1,28 @@
-κάθε ενέργεια μετά από κάθε commit θα αναφέρεται εδώ
-για να έχουμε κάπου μαζεμένες όλες τις ενέργειες
-(άσχετα από τα revisions που κρατάει το ίδιο το SVN).
+ΓªΓΓ¨Γ¥ Γ¥Γ­ΓΓ±Γ£Γ¥Γ©Γ΅ Γ¬Γ¥Γ΄Γ Γ΅Γ°ΓΌ ΓªΓΓ¨Γ¥ commit Γ¨Γ΅ Γ΅Γ­Γ΅Γ¶ΓΓ±Γ¥Γ΄Γ΅Γ© Γ¥Γ¤ΓΎ
+Γ£Γ©Γ΅ Γ­Γ΅ ΓΓ·Γ―ΓµΓ¬Γ¥ ΓªΓΓ°Γ―Γµ Γ¬Γ΅Γ¦Γ¥Γ¬ΓΓ­Γ¥Γ² ΓΌΓ«Γ¥Γ² Γ΄Γ©Γ² Γ¥Γ­ΓΓ±Γ£Γ¥Γ©Γ¥Γ²
+(ΓΓ³Γ·Γ¥Γ΄Γ΅ Γ΅Γ°ΓΌ Γ΄Γ΅ revisions Γ°Γ―Γµ ΓªΓ±Γ΅Γ΄ΓΓ¥Γ© Γ΄Γ― ΓΓ¤Γ©Γ― Γ΄Γ― SVN).
 
 <<<<<<< .mine
-9/11/10 11:29 δημιουργία team_log file ( CM )
+9/11/10 11:29 Γ¤Γ§Γ¬Γ©Γ―ΓµΓ±Γ£ΓΓ΅ team_log file ( CM )
 =======
-9/11/10 10:52 Αποστολή SQL Coding Standard ( Architect - SQL Exp. ) (clients_wiki\SQL Coding Standard)
+9/11/10 10:52 ΓΓ°Γ―Γ³Γ΄Γ―Γ«Γ SQL Coding Standard ( Architect - SQL Exp. ) (clients_wiki\SQL Coding Standard)
 =======
-10/11/10 18:35 δημιούργησα τα Braches (DEV,TEST,MAIN)
+10/11/10 18:35 Γ¤Γ§Γ¬Γ©Γ―Γ½Γ±Γ£Γ§Γ³Γ΅ Γ΄Γ΅ Braches (DEV,TEST,MAIN)
 =======
-11/11/10 19:15 Αποστολή αξιολόγησης/επιλογής βάσεων δεδομένων ( Αrchitect - SQL Exp. ) (clients_wiki\WhySQLite)
+11/11/10 19:15 ΓΓ°Γ―Γ³Γ΄Γ―Γ«Γ Γ΅Γ®Γ©Γ―Γ«ΓΌΓ£Γ§Γ³Γ§Γ²/Γ¥Γ°Γ©Γ«Γ―Γ£ΓΓ² ΓΆΓΓ³Γ¥ΓΉΓ­ Γ¤Γ¥Γ¤Γ―Γ¬ΓΓ­ΓΉΓ­ ( Γrchitect - SQL Exp. ) (clients_wiki\WhySQLite)
 
 2010-11-14  Efstathios Xatzikiriakidis  <contact@efxa.org>
 
     * add tutorial file: black-box-unit-testing.pdf
       for black-box unit testing with QT framework.
 =======
-17/11/10 02:06 Αποστολή εβδομαδιαίας αναφοράς (week_reports/Nikolaos Delis/1st week)
+17/11/10 02:06 ΓΓ°Γ―Γ³Γ΄Γ―Γ«Γ Γ¥ΓΆΓ¤Γ―Γ¬Γ΅Γ¤Γ©Γ΅ΓΓ΅Γ² Γ΅Γ­Γ΅Γ¶Γ―Γ±ΓΓ² (week_reports/Nikolaos Delis/1st week)
 
 2010-11-17  Nikos Delis  <delis89@gmail.com>
 
     * add my week report
 ======
-18/11/10 12:33 Ιορδανίδης Αλέξανδρος <alexander.iordanidis@gmail.com>
+18/11/10 12:33 Γ‰Γ―Γ±Γ¤Γ΅Γ­ΓΓ¤Γ§Γ² ΓΓ«ΓΓ®Γ΅Γ­Γ¤Γ±Γ―Γ² <alexander.iordanidis@gmail.com>
 
     * add my week report
 
@@ -31,6 +31,13 @@
 	* add Database files >>>>>>> .r90
 
 ======
-19/11/10 12:20 Ιορδανίδης Αλέξανδρος  <alexander.iordanidis@gmail.com>
+19/11/10 12:20 Γ‰Γ―Γ±Γ¤Γ΅Γ­ΓΓ¤Γ§Γ² ΓΓ«ΓΓ®Γ΅Γ­Γ¤Γ±Γ―Γ²  <alexander.iordanidis@gmail.com>
 
    *add a test project
+
+======
+19/11/10 12:20 Ξ”ΞµΞ»Ξ®Ο‚ ΞΞΉΞΊΟΞ»Ξ±ΞΏΟ‚  <delis89@gmail.com>
+
+	*Ξ­ΟƒΞ²Ξ·ΟƒΞ± ΟƒΟ„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Test Ο€ΞΏΟ… Ξ®Ο„Ξ±Ξ½ ΞΌΞ­ΟƒΞ± ΟƒΟ„ΞΏ DEV, Ξ΄ΞµΞ½ ΞµΞ―Ο‡Ξµ Ο€Ξ»Ξ­ΞΏΞ½ Ξ»ΟΞ³ΞΏ ΟΟ€Ξ±ΟΞΎΞ·Ο‚.
+	*Ξ΄Ξ·ΞΌΞΉΞΏΟΟΞ³Ξ·ΟƒΞ± Ξ±Ο€Ο Ξ­Ξ½Ξ±Ξ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ Ξ³ΞΉΞ± ΞΊΞ¬ΞΈΞµ developer ΞΌΞ­ΟƒΞ± ΟƒΟ„ΞΏ Branch DEV.
+	*Ξ΄Ξ·ΞΌΞΉΞΏΟΟΞ³Ξ·ΟƒΞ± Ο„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ 2nd week ΟƒΞµ ΞΊΞ¬ΞΈΞµ ΞΌΞ­Ξ»ΞΏΟ‚ Ο„Ξ·Ο‚ ΞΏΞΌΞ¬Ξ΄Ξ±Ο‚ ΟƒΟ„ΞΏΞ½ Ο†Ξ¬ΞΊΞµΞ»ΞΏ week reports.
