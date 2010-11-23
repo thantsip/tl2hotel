@@ -1,29 +1,29 @@
 #include <QtCore/QCoreApplication>
 #include “reservationManagement.h”
+#include <QMessageBox>
 
 
 
 
-
-reservationManagement::Reservation()
+ReservationManagement::Reservation()
 {
     reservationId=0;
 }
 
 
-reservationManagement::Reservation(int reservationId1)
+ReservationManagement::Reservation(int reservationId1)
 {
     reservationId=reservationId1;
 }
 
 
-int reservationManagement::getReservationId()
+int ReservationManagement::getReservationId()
 {
     return reservationId;
 }
 
 
-void reservationManagement::setReservationId(int reservationId1 )
+void ReservationManagement::setReservationId(int reservationId1 )
 {
      reservationId=reservationId1;
 }
@@ -33,6 +33,12 @@ roomReservation(void)
 {
     if(true==Room.free)//den ksero an einai sosto na anafertho etsi se antikeimeno tis klasis
     {
-        sqlMechanism.exec("insert into Reservations values(reservationManagement.getReservationId,Room.getId,Costumer.getId");
+        sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId+"','"+Room.getId+"','"+Costumer.getId+"' ");
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("The document has been modified.");
+        msgBox.exec();
     }
 }
