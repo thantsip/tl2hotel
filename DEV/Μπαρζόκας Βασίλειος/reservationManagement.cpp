@@ -31,9 +31,9 @@ void ReservationManagement::setReservationId(int reservationId1 )
 
 roomReservation(void)
 {
-    if(true==free)//den ksero an einai sosto na anafertho etsi se antikeimeno tis klasis
+    if(true==costumer.isFree())//den ksero an einai sosto na anafertho etsi se antikeimeno tis klasis
     {
-        sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId+"','"+Room.getId+"','"+Costumer.getId+"' ");
+        sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId+"','"+room.getId+"','"+costumer.getId+"' ");
     }
     else
     {

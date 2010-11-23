@@ -15,9 +15,9 @@
 class ReservationManagement:public Customer,public Room,public SQLMechanism
 {
 private:
-    Customer::costumer;
-    Room::room;
-    SQLMechanism::sqlMechanism;
+    Customer costumer;
+    Room room;
+    SQLMechanism sqlMechanism;
     int reservationId;
 public:
        /**
