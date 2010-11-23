@@ -33,7 +33,7 @@ roomReservation(void)
 {
     if( true==costumer.isFree() )//den ksero an einai sosto na anafertho etsi se antikeimeno tis klasis
     {
-        sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId+"','"+room.getId+"','"+costumer.getId+"' ");
+        sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId()+"','"+room.getId()+"','"+costumer.getId()+"' ");
     }
     else
     {
