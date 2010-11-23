@@ -4,7 +4,14 @@
 #include “Customer.h”
 #include “Room.h”
 
-
+/**
+       *Reservation Management Class
+	   *Checks if selected room is free and adds reservation to the database,or cancels existing reservation or makes checkout of reservation
+	   @param reservationId is an integer identifier number
+	   @see roomReservation()
+	   @makes the reservation of the selected room
+	   
+*/
 class ReservationManagement:public Customer,public Room,public SQLMechanism
 {
 private:
@@ -18,6 +25,8 @@ public:
        */
        reservation();
        roomReservation();
+	   roomCancelation();
+	   roomCheckout();
 
 
        /** Copy Constructors
