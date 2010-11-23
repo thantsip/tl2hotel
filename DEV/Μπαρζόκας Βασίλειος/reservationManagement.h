@@ -41,7 +41,7 @@ public:
        /**
        * Destructors
        */
-       ~reservation(var1);
+       ~reservation(reservationId1);
 
 
 };
