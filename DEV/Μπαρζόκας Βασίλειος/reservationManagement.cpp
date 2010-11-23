@@ -38,7 +38,7 @@ roomReservation(void)
     else
     {
         QMessageBox msgBox;
-        msgBox.setText("The document has been modified.");
+        msgBox.setText("Reservation not made.Room is not free at the moment.");
         msgBox.exec();
     }
 }
