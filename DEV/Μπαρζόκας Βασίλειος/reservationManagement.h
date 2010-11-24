@@ -49,10 +49,7 @@ public:
        void setDateTo(char *dateTo1);
 
 
-       /**
-       * Destructors
-       */
-       ~reservation(reservationId1);
+     
 
 
 };
