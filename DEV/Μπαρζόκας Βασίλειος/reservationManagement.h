@@ -31,7 +31,7 @@ public:
 	   roomCheckout();
 
 
-       /** Copy Constructors
+       /** Copy,set,get Constructors
        *
        * @param reservationId1 is a copy variable
 	   * @param dateFrom1 is a copy variable
