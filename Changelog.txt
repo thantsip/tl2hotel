@@ -45,4 +45,8 @@
 23/11/10 19:00 Barzokas Vasileios <vbarzokas@gmail.com>
 	
 	*Added code for reservationManagement Class and header file
+======
+24/11/10 15:59 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+
+	*Addes classes FileHandler(.cpp & .h) and SqlConnection( .cpp & .h)
 
