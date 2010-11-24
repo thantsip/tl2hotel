@@ -60,3 +60,6 @@
 	
 	*add class sqlMechanism (.cpp & .h)
 
+=====
+24/11/10 11:00 Arabatzi Xrusa <xrysaram@gmail.com>
+	*added class RoomManagement(.cpp & .h)
