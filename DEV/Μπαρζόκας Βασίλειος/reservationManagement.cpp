@@ -74,7 +74,7 @@ void ReservationManagement::roomReservation(void)
 {
     if( true==room.isFree() )
     {
-        sqlMechanism.execQuery("insert into RoomsReservation values('"+ReservationManagement.getReservationId()+"','"+costumer.getDateFrom()+"','"+costumer.getDateTo()+"','"+room.getId()+"','"+costumer.getId()+"') ");
+        sqlMechanism.execQuery("insert into RoomsReservation values('"+ReservationManagement.getReservationId()+"','"+ReservationManagement.getDateFrom()+"','"+ReservationManagement.getDateTo()+"','"+room.getId()+"','"+costumer.getId()+"') ");
     }
     else
     {
