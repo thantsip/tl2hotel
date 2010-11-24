@@ -19,6 +19,8 @@ private:
     Room room;
     SQLMechanism sqlMechanism;
     int reservationId;
+	char *dateFrom;
+	char *dateTo;
 public:
        /**
        *Default Constructors
@@ -32,10 +34,19 @@ public:
        /** Copy Constructors
        *
        * @param reservationId1 is a copy variable
+	   * @param dateFrom1 is a copy variable
+	   * @param dateTo1 is a copy variable
        */
-       reservation(int reservationId1);
-       int getReservationId();
+       reservation(int reservationId1,char *dateFrom1,char *dateTo1);
+	   
+       int getReservationId(); 
        void setReservationId(int reservationId1);
+	   
+	   char * getDateFrom();   
+       void setDateFrom(char *dateFrom1);
+	   
+	   char * getDateTo();
+       void setDateTo(char *dateTo1);
 
 
        /**
