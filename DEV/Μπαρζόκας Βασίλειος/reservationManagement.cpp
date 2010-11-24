@@ -67,7 +67,7 @@ void ReservationManagement::setDateTo(char *dateTo1 )
 
 /** Room Reservation Function
 	*makes the reservation of the selected room
-	*the room.isFree() function should be implemented at the room class,as the team leader's instructions say about functions that return a bool price.
+	*the room.isFree() function should be implemented at the room class,as the team leader's instructions say about functions that return a bool type price.
 */
 
 void ReservationManagement::roomReservation(void)
