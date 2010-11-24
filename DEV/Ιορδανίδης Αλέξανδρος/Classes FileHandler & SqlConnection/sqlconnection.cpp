@@ -145,3 +145,8 @@ bool SqlConnection::dbCreateInstance()
          */
         return false;
 }
+
+bool SqlConnection::isConnected()
+{
+   return db.isOpen();
+}
