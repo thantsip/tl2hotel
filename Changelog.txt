@@ -50,3 +50,8 @@
 
 	*Addes classes FileHandler(.cpp & .h) and SqlConnection( .cpp & .h)
 
+======
+24/11/10 17:32 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+	
+	*added some changes to SqlConnection.cpp & SqlConnection.h
+

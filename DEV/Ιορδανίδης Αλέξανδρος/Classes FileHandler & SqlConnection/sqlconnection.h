@@ -36,6 +36,7 @@ protected:
 
 public:
     bool dbConnect();
+    bool isConnected();
     bool dbDisconnect();
     bool isDbExist();
     bool dbRemove();
