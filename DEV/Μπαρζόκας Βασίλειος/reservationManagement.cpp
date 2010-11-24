@@ -4,8 +4,7 @@
 
 
 
- /**
-       *Default Constructors
+ /** Default Constructors
 */
 ReservationManagement::Reservation()
 {
