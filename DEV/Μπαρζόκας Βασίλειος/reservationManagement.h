@@ -37,7 +37,7 @@ public:
 	   * @param dateFrom1 is a copy variable
 	   * @param dateTo1 is a copy variable
        */
-      ReservationManagement(int reservationId1,char *dateFrom1,char *dateTo1);
+       ReservationManagement(int reservationId1,char *dateFrom1,char *dateTo1);
 	   
        int getReservationId(); 
        void setReservationId(int reservationId1);
