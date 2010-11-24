@@ -67,6 +67,7 @@ void ReservationManagement::setDateTo(char *dateTo1 )
 
 /** Room Reservation Function
 	*makes the reservation of the selected room
+	*the room.isFree() function should be implemented at the room class.
 */
 
 void ReservationManagement::roomReservation(void)
