@@ -31,7 +31,7 @@ void ReservationManagement::setReservationId(int reservationId1 )
 
 void ReservationManagement::roomReservation(void)
 {
-    if( true==costumer.isFree() )
+    if( true==room.isFree() )
     {
         sqlMechanism.exec("insert into Reservations values('"+ReservationManagement.getReservationId()+"','"+room.getId()+"','"+costumer.getId()+"' ");
     }
