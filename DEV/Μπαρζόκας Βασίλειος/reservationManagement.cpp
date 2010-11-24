@@ -6,7 +6,7 @@
 
  /** Default Constructors
 */
-ReservationManagement::Reservation()
+ReservationManagement::ReservationManagement()
 {
     reservationId=0;
 	strcpy(dateFrom,"");
@@ -18,7 +18,7 @@ ReservationManagement::Reservation()
 /** Copy,set,get Constructors
        
 */
-ReservationManagement::Reservation(int reservationId1,char *dateFrom1,char *dateTo1)
+ReservationManagement::ReservationManagement(int reservationId1,char *dateFrom1,char *dateTo1)
 {
     reservationId=reservationId1;
 	strcpy(dateFrom,dateFrom1);
