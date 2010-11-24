@@ -54,14 +54,14 @@ void ReservationManagement::setReservationId(int reservationId1 )
 }
 
 
-void ReservationManagement::setDateFrom(char * dateFrom1 )
+void ReservationManagement::setDateFrom(char *dateFrom1 )
 {
      strcpy(dateFrom,dateFrom1);
 }
 
-void ReservationManagement::setDateTo(char * dateTo1 )
+void ReservationManagement::setDateTo(char *dateTo1 )
 {
-      strcpy(dateTo,dateTo);
+      strcpy(dateTo,dateTo1);
 }
 
 
