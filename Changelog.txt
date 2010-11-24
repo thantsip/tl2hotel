@@ -54,4 +54,9 @@
 24/11/10 17:32 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
 	
 	*added some changes to SqlConnection.cpp & SqlConnection.h
+	
+======
+24/11/10 17:45 Marias Stergios <plir2011@gmail.com>
+	
+	*add class sqlMechanism (.cpp & .h)
 
