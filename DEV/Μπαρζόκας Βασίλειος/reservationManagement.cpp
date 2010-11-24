@@ -29,7 +29,7 @@ void ReservationManagement::setReservationId(int reservationId1 )
 }
 
 
-roomReservation(void)
+void ReservationManagement::roomReservation(void)
 {
     if( true==costumer.isFree() )
     {
