@@ -22,9 +22,9 @@ private:
 
 public:
     CustomerManagement();
-    newCustomer();
-    deleteCustomer();
-    editCustomer();
+    void newCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname);
+    void deleteCustomer(QString prIdCustomer);
+    void editCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname);
 
 
 /**
