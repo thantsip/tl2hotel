@@ -12,14 +12,15 @@ CustomerManagement::CustomerManagement()
   */
 void CustomerManagement::newCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname)
 {
-  sqlMechanism.exec("insert into Customers values('"+costumer.getprIdCustomer()+"','"+costumer.getCustomerName()+"', '"+costumer.getCustomerSurname()+"') ");
+  sqlMechanism.exec("insert into Customers values('"+costumer.getId()+"','"+costumer.getName()+"', '"+costumer.getSurname()+"') ");
 }
 
 /**
   *Edits the fields from selected Customer in Customer table
   */
-CustomerManagement::editCustomer()
+void CustomerManagement::editCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname)
 {
+ sqlMechanism.exec("update Customers SET prIdCustomer='"+costumer.getId()+"', CustomerName='"+costumer.getName()+"', CustomerSurname='"+costumer.getSurname()+"' ");
 }
 
 /**
