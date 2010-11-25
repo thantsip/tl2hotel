@@ -1,0 +1,13 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\sqlMechanism.o
+./release\roomManagement.o
+./release\room.o
+./release\reservationManagement.o
+./release\filehandler.o
+./release\customerManagement.o
+./release\customer.o
+./release\sqlconnectionsingleton.o
+./release\moc_mainwindow.o
+);
