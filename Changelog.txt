@@ -63,3 +63,7 @@
 =====
 24/11/10 11:00 Arabatzi Xrusa <xrysaram@gmail.com>
 	*added class RoomManagement(.cpp & .h)
+
+=====
+25/11/10 22:25 Sofronas Vangelis <pli2128@gmail.com>
+        *added my week report           
