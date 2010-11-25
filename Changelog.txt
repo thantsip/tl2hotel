@@ -62,8 +62,15 @@
 
 =====
 24/11/10 11:00 Arabatzi Xrusa <xrysaram@gmail.com>
+<<<<<<< .mine
+	*added class RoomManagement(.cpp & .h)
+
+======
+25/11/10 23:11 Delis Nikos <delis89@gmail.com>
+	
+	*add Subversion_Merging_Locking tutorial=======
 	*added class RoomManagement(.cpp & .h)
 
 =====
 25/11/10 22:25 Sofronas Vangelis <pli2128@gmail.com>
-        *added my week report           
+        *added my week report     
