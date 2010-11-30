@@ -94,3 +94,6 @@
 
 	*added class reservationManagement(.cpp && .h)
 =======
+30/11/10 22:55 Marias Stergios <plir2011@gmail.com>
+	
+	*add class mainwindow (.cpp & .h) , main (.cpp), ui_mainwindow (.h) and mainwindow (.ui) again...
