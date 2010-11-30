@@ -1,0 +1,12 @@
+Μέσα σε κάθε φάκελο έκδοσης θα βρείτε 4 αρχεία .
+
+1-Το μοντέλο της βάσης σε PNG format . ( Database Model x.x.png )
+2-Το μοντέλο της βάσης σε MySQL Diagram Format. ( Database Model x.x.mwb )
+3-Τον κώδικα δημιουργίας της βάσης. ( Database Creator x.x.txt )
+4-Τον κώδικα εισαγωγής δεδομένων για τεστ. ( Database Commiter x.x.txt )
+
+Για οποιαδήποτε διόρθωση στείλτε μου e-mail .
+Θα κάνω τις διορθώσεις εγώ .
+
+John Georgoudakis . xD
+
