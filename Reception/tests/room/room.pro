@@ -1,12 +1,11 @@
 QT          += sql
 CONFIG      += qtestlib
+
 TEMPLATE     = app
 TARGET       = testing
-DEPENDPATH  += ..\..\project
-INCLUDEPATH += ..\..\project
 
-HEADERS += troom.h \
-           room.h
+DEPENDPATH  += ..\..\src
+INCLUDEPATH += ..\..\src
 
-SOURCES += troom.cpp \
-           room.cpp
+HEADERS += troom.h room.h
+SOURCES += troom.cpp room.cpp
