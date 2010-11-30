@@ -1,18 +1,13 @@
-#include <QApplication>
-#include <cstdlib>
-
+#include <QtGui/QApplication>
 #include "mainwindow.h"
-#include "sqlMechanism.h"
+
+//#include "sqlMechanism.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     MainWindow w;
-
-    SQLMechanism m;
-
+    //SQLMechanism m;
     w.show();
-
     return a.exec();
 }
