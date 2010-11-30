@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'troom.h'
 **
-** Created: Fri 26. Nov 01:37:26 2010
+** Created: Tue 30. Nov 23:56:40 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
