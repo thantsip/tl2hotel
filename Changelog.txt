@@ -85,3 +85,7 @@
 26/11/10 00:56 Marias Stergios <plir2011@gmail.com>
 	
 	*add my week report
+======
+30/11/10 19:02 Marias Stergios <plir2011@gmail.com>
+	
+	*add class mainwindow (.cpp & .h) , main (.cpp), ui_mainwindow (.h) and mainwindow (.ui)
