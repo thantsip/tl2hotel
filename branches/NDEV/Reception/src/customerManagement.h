@@ -6,10 +6,11 @@
 #define CUSTOMERMANAGEMENT_H
 
 #include <QString>
-
 #include "sqlMechanism.h"
 #include "customer.h"
 
+#include <QMessageBox>
+#include <QChar>
 /**
   *Creates new customers in the database or edits/deletes and already existing customer in the database
   */
@@ -23,9 +24,11 @@ private:
 
 public:
     CustomerManagement();
-    void newCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname);
-    void deleteCustomer(QString prIdCustomer);
-    void editCustomer(QString prIdCustomer,QString CustomerName,QString CustomerSurname);
+    void newCustomer(Customer customer);
+    void deleteCustomer(Customer customer);
+    void editCustomer(Customer customer);
+
+   bool checkInData(Customer customer);
 
 
 /**
