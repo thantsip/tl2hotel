@@ -1,7 +1,7 @@
 #include "filehandler.h"
 
 /*
- *remove a file
+ *remove a FILE
  */
 bool FileHandler::removeFile(QString fileName)
 {
