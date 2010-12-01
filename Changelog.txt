@@ -105,3 +105,7 @@
 30/11/10 23:54 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
 
 	*added class reservationManagement(.cpp && .h) old deleted
+======
+01/12/10 9:25 Marias Stergios <plir2011@gmail.com>
+	
+	*add my week report
