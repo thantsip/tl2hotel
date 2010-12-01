@@ -15,7 +15,10 @@ CustomerManagement::~CustomerManagement() {
   */
 void CustomerManagement::newCustomer(Customer customer)
 {
-  sqlMechanism.execQuery("insert into Customers values('"+customer.getId()+"','"+customer.getName()"', '"+customer.getSurname()+"') ");
+    if(CustomerManagement::checkInData(customer))
+       {
+        sqlMechanism.execQuery("insert into Customers values('"+customer.getId()+"','"+customer.getName()+"', '"+customer.getSurname()+"') ");
+       }
 }
 
 /**
@@ -31,7 +34,7 @@ void CustomerManagement::editCustomer(Customer customer)
   */
 void CustomerManagement::deleteCustomer(Customer customer)
 {
-  sqlMechanism.execQuery("delete prIdCustomer from Customers where prIdCustomer='"+customer.getId()+"'");
+  sqlMechanism.execQuery("delete from Customers where prIdCustomer='"+customer.getId()+"'");
 }
 
 
@@ -39,7 +42,7 @@ void CustomerManagement::deleteCustomer(Customer customer)
   *checks if data are correct
   */
 
-bool CustomerManagement::checkInData(Customer Customer)
+bool CustomerManagement::checkInData(Customer customer)
 {
 
     QString cId=customer.getId();
@@ -53,7 +56,7 @@ bool CustomerManagement::checkInData(Customer Customer)
           *check that the customerId has no spaces
           */
 
-    if(!cId.isEmpty)
+    if(!cId.isEmpty())
                 {
                     ret = true;
                 }
@@ -63,7 +66,7 @@ bool CustomerManagement::checkInData(Customer Customer)
                     ret = false;     
         }
 
-        if(!cName.isEmpty)
+        if(!cName.isEmpty())
         {
 
              ret=true;          
@@ -74,7 +77,7 @@ bool CustomerManagement::checkInData(Customer Customer)
                         ret = false;
         }
 
-        if(!cSurname.isEmpty)
+        if(!cSurname.isEmpty())
             {
                  ret=true;
             }
