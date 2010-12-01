@@ -1,7 +1,12 @@
 #ifndef ROOMMANAGEMENT_H
 #define ROOMMANAGEMENT_H
 
+#include <QMessageBox>
+#include <QString>
+#include <QChar>
+
 #include "sqlMechanism.h"
+
 #include "room.h"
 
 /**
@@ -17,9 +22,10 @@ protected:
 public:
 
        RoomManagement();
-       void newRoom(int id, int RoomNumber, int RoomFloor, int Capacity,QString extras);
-       void deleteRoom(int id);
-       void editRoom(int id, int RoomNumber, int RoomFloor, int Capacity,QString extras);
+       void newRoom(Room room);
+       void deleteRoom(Room room);
+       void editRoom(Room room);
+       bool checkInData(Room room);
 
 
     /**
