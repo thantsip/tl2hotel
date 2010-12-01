@@ -136,7 +136,7 @@ void MainWindow::on_NewReservation_clicked()
         else
         {
             //ReservationManagement Res;
-            //Res.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),ui->CustomerIdReservation->text().toInt(),ui->RoomNumberReservation->text().toInt());
+            //Res.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),ui->RoomNumberReservation->text().toInt(),ui->CustomerIdReservation->text().toInt());
 
             ui->CheckInDate->setDate(QDate(QDate::currentDate()));
             ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
