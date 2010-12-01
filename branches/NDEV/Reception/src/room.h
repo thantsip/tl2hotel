@@ -6,7 +6,6 @@ using namespace std;
 
 class Room
 {
-    int id;
     int roomNumber;
     int roomFloor;
     int Capacity;
@@ -14,21 +13,19 @@ class Room
 
 public:
     Room();
-    Room(int i, bool fr,int nm,int fl, int cap);
+    Room(bool fr,int nm,int fl, int cap);
 
     //setters
-    void setId(int i);
     void setFree(bool fr);
     void setRoomNumber(int nm);
     void setRoomFloor(int fl);
     void setCapacity(int cap);
 
     //getters
-    int getId();
     bool getFree();
     int  getRoomNumber();
-    int   getRoomFloor();
-    int   getCapacity();
+    int  getRoomFloor();
+    int  getCapacity();
 
 
 };
