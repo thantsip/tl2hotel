@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'troom.h'
 **
-** Created: Wed 1. Dec 02:45:08 2010
+** Created: Wed 1. Dec 17:21:37 2010
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_TRoom[] = {
        4,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,17 +33,16 @@ static const uint qt_meta_data_TRoom[] = {
  // slots: signature, parameters, type, tag, flags
        7,    6,    6,    6, 0x08,
       25,    6,    6,    6, 0x08,
-      34,    6,    6,    6, 0x08,
-      45,    6,    6,    6, 0x08,
-      62,    6,    6,    6, 0x08,
-      78,    6,    6,    6, 0x08,
+      36,    6,    6,    6, 0x08,
+      53,    6,    6,    6, 0x08,
+      69,    6,    6,    6, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_TRoom[] = {
-    "TRoom\0\0testConstructor()\0testId()\0"
-    "testFree()\0testRoomNumber()\0testRoomFloor()\0"
+    "TRoom\0\0testConstructor()\0testFree()\0"
+    "testRoomNumber()\0testRoomFloor()\0"
     "testCapacity()\0"
 };
 
@@ -77,14 +76,13 @@ int TRoom::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: testConstructor(); break;
-        case 1: testId(); break;
-        case 2: testFree(); break;
-        case 3: testRoomNumber(); break;
-        case 4: testRoomFloor(); break;
-        case 5: testCapacity(); break;
+        case 1: testFree(); break;
+        case 2: testRoomNumber(); break;
+        case 3: testRoomFloor(); break;
+        case 4: testCapacity(); break;
         default: ;
         }
-        _id -= 6;
+        _id -= 5;
     }
     return _id;
 }
