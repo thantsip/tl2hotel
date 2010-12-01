@@ -5,8 +5,14 @@ pushd = "%cd%"
 
 cd "%~dp0"
 for /d %%D in ("..\tests\*") do (
-  mingw32-make -s -C "%%D"
-  erase /F /Q "%%D\debug\*.o"
+  cd "%%D"
+  qmake -Wnone
+  mingw32-make -s
+  erase /F /Q "debug\*.o"
+  erase /F /Q "Makefile*"
+  rmdir release
+  erase "debug\moc_*"
+  cd "%~dp0"
 )
 
 popd
