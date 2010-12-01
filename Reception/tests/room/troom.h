@@ -7,7 +7,6 @@ class TRoom : public QObject {
 
   private slots:
     void testConstructor ();
-    void testId ();
     void testFree ();
     void testRoomNumber ();
     void testRoomFloor ();
