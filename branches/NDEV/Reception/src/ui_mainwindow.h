@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 30. Nov 16:38:57 2010
+** Created: Wed 1. Dec 16:39:11 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -554,7 +554,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hotel Manager", 0, QApplication::UnicodeUTF8));
         Exit->setText(QApplication::translate("MainWindow", "\316\210\316\276\316\277\316\264\316\277\317\202", 0, QApplication::UnicodeUTF8));
         Clean->setText(QApplication::translate("MainWindow", "\316\232\316\261\316\270\316\261\317\201\316\271\317\203\316\274\317\214\317\202 \316\214\316\273\317\211\316\275", 0, QApplication::UnicodeUTF8));
         Cut->setText(QApplication::translate("MainWindow", "\316\221\317\200\316\277\316\272\316\277\317\200\316\256", 0, QApplication::UnicodeUTF8));
