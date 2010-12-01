@@ -5,7 +5,6 @@
 //default constructor
 Room::Room()
 {
-    id=0;
     free=true;
     roomNumber=0;
     roomFloor=0;
@@ -13,9 +12,8 @@ Room::Room()
 }
 
 //constructor with all class atributes
-Room::Room(int i, bool fr,int nm,int fl, int cap)
+Room::Room(bool fr,int nm,int fl, int cap)
 {
-    id=i;
     free=fr;
     roomNumber=nm;
     roomFloor=fl;
@@ -23,13 +21,6 @@ Room::Room(int i, bool fr,int nm,int fl, int cap)
 }
 
 //-------------------- setter operations ----------------------//
-//setId->sets the room id
-void Room::setId(int i){
-    if (i>=0) //checks if the room id is valid
-        id = i;
-    else
-        cerr << "Invalid room id\nPlease try again. . .\n";
-}
 
 
 //setFree->sets the status of the room.(free or not)
@@ -53,11 +44,6 @@ void Room::setCapacity(int cap)
 }
 
 //-------------- getter operations -----------------------//
-
-//getId-> returns the room id
- int Room::getId(){
-    return id;
-}
 
 
 //getFree-> returns the status of the room (free or not)[true/false]
