@@ -132,17 +132,16 @@ bool SqlConnection::dbCreateInstance()
      */
     if(db.isOpen())
     {
-/*
+
     query.exec("create table Groups (prIdGroup INTEGER PRIMARY KEY , "
                                         "GroupName VARCHAR(25))");
-*/
+
 
     query.exec("create table Customers (prIdCustomer VARCHAR(25) PRIMARY KEY , "
                                         "CustomerName VARCHAR(25) ,"
                                         "CustomerSurname VARCHAR(25))");
 
-    query.exec("create table Rooms (prIdRoom INTEGER PRIMARY KEY AUTOINCREMENT , "
-                                        "RoomNumber INTEGER ,"
+    query.exec("create table Rooms (RoomNumber INTEGER PRIMARY KEY AUTOINCREMENT ,"
                                         "RoomFloor INTEGER ,"
                                         "Capacity INTEGER ,"
                                         "Extras TEXT )");
