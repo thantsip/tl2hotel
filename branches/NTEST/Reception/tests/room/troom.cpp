@@ -1,24 +1,16 @@
 #include "troom.h"
 
-int tId = 1;
 int tRoomNumber = 2;
 int tRoomFloor = 3;
 int tCapacity = 4;
 bool tFree = true;
 
 void TRoom::testConstructor () {
-  Room r (tId, tFree, tRoomNumber, tRoomFloor, tCapacity);
-  QVERIFY (r.getId()         == tId          &&
-           r.getFree()       == tFree        &&
+  Room r (tFree, tRoomNumber, tRoomFloor, tCapacity);
+  QVERIFY (r.getFree()       == tFree        &&
 		   r.getRoomNumber() == tRoomNumber  &&
 		   r.getRoomFloor()  == tRoomFloor   &&
 		   r.getCapacity()   == tCapacity);
-}
-
-void TRoom::testId () {
-  Room r;
-  r.setId (tId);
-  QVERIFY (r.getId() == tId);
 }
 
 void TRoom::testFree () {
