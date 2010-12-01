@@ -114,3 +114,6 @@
 	
 	*added my week report 
 =======
+1/12/10 16:51 Marias Stergios <plir2011@gmail.com>
+	
+	*Update mainwindow
