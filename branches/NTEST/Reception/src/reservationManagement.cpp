@@ -81,13 +81,13 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
     /**
       *check if the data given by the user are correct
       */
-    if(ReservationManagement::checkInData(room,customer))
-    {
+    //if(ReservationManagement::checkInData(room,customer))
+    //{
         /**
           *insert the data into table RoomsResevation
           */
         sqlMechanism.execQuery("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId) values('"+DateFrom+"','"+DateTo+"','"+QString("%1").arg(customer.getId())+"','"+QString("%1").arg(room.getRoomNumber())+"') ");
-    }
+    //}
 }
 /**
   *a function that checks if the data given by the user are correct
