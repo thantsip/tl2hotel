@@ -9,8 +9,8 @@ void TCustomer::testConstructor () {
   Customer c (id, name, surname, group);
   QVERIFY (c.getId()      == id      &&
            c.getName()    == name    &&
-		   c.getSurname() == surname &&
-		   c.getGroupId() == group);
+           c.getSurname() == surname &&
+           c.getGroupId() == group);
 }
 
 void TCustomer::testId () {
