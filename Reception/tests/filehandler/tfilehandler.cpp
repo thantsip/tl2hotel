@@ -9,7 +9,7 @@ TFileHandler::isFileExist () {
 }
 
 void
-TFileHandler::removeFile() {
+TFileHandler::removeFile () {
   FileHandler fh;
   QVERIFY (fh.removeFile(filename) == true);
 }

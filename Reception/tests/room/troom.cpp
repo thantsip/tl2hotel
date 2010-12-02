@@ -8,9 +8,9 @@ bool tFree = true;
 void TRoom::testConstructor () {
   Room r (tFree, tRoomNumber, tRoomFloor, tCapacity);
   QVERIFY (r.getFree()       == tFree        &&
-		   r.getRoomNumber() == tRoomNumber  &&
-		   r.getRoomFloor()  == tRoomFloor   &&
-		   r.getCapacity()   == tCapacity);
+           r.getRoomNumber() == tRoomNumber  &&
+           r.getRoomFloor()  == tRoomFloor   &&
+           r.getCapacity()   == tCapacity);
 }
 
 void TRoom::testFree () {
