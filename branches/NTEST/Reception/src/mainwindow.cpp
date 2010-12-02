@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -135,8 +136,13 @@ void MainWindow::on_NewReservation_clicked()
         }
         else
         {
-            //ReservationManagement Res;
-            //Res.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),ui->CustomerIdReservation->text().toInt(),ui->RoomNumberReservation->text().toInt());
+            Room room;
+            Customer customer;
+
+            customer.setId(ui->CustomerIdReservation->text());
+            room.setRoomNumber(ui->RoomNumberReservation->text().toInt());
+
+            ResM.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),room,customer);
 
             ui->CheckInDate->setDate(QDate(QDate::currentDate()));
             ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
@@ -156,8 +162,14 @@ void MainWindow::on_InsertCustomer_clicked()
     }
     else
     {
-        //CustomerManagement CM;
-        //CM.newCustomer(ui->CustomerID->text(), ui->CustomerName->text(), ui->CustomerSurname->text(), ui->CustomerGroupId->text());
+        Customer customer;
+
+        customer.setId( ui->CustomerID->text() );
+        customer.setName( ui->CustomerName->text());
+        customer.setSurname( ui->CustomerSurname->text());
+        customer.setGroupId( ui->CustomerGroupId->text().toInt());
+
+        CM.newCustomer(customer);
 
         ui->CustomerName->setText("");
         ui->CustomerSurname->setText("");
@@ -176,8 +188,11 @@ void MainWindow::on_DeleteCustomer_clicked()
     }
     else
     {
-        //CustomerManagement CM;
-        //CM.deleteCustomer(ui->CustomerID->text());
+        Customer customer;
+
+        customer.setId(ui->CustomerIDDelete->text());
+        CM.deleteCustomer(customer);
+
 
         ui->CustomerIDDelete->setText("");
         ui->CustomerIDDelete->setFocus();
@@ -225,8 +240,12 @@ void MainWindow::on_InsertRoom_clicked()
     }
     else
     {
-        //RoomManagement RM;
-        //RM.newRoom(ui->RoomNumber->text().toInt(),ui->RoomFloor->text().toInt(),ui->RoomCapacity->text());
+        Room room;
+        room.setCapacity( ui->RoomCapacity->text().toInt() );
+        room.setRoomFloor( ui->RoomFloor->text().toInt() );
+        room.setRoomNumber( ui->RoomNumber->text().toInt() );
+
+        RM.newRoom(room);
 
         ui->RoomCapacity->setText("");
         ui->RoomFloor->setText("");
@@ -244,7 +263,10 @@ void MainWindow::on_DeleteRoom_clicked()
     }
     else
     {
-        QMessageBox::about(0,Title,"OK");
+        Room room;
+        room.setRoomNumber(ui->DeleteRoomNumber->text().toInt());
+
+        RM.deleteRoom(room);
         ui->DeleteRoomNumber->setText("");;
         ui->DeleteRoomNumber->setFocus();
     }
@@ -259,8 +281,6 @@ void MainWindow::on_pushButton_clicked()
     }
     else
     {
-        //RoomManagement RM;
-        //RM.deleteRoom(ui->RoomNumber->text().toInt());
 
         ui->FindRoomFloor->setFocus();
     }
