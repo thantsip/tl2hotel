@@ -1,8 +1,8 @@
-QT          += sql
-CONFIG      += qtestlib
+QT     += sql
+CONFIG += qtestlib
 
-TEMPLATE     = app
-TARGET       = testing
+TEMPLATE = app
+TARGET   = testing
 
 DEPENDPATH  += ..\..\src
 INCLUDEPATH += ..\..\src

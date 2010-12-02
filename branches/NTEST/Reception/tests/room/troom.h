@@ -10,5 +10,5 @@ class TRoom : public QObject {
     void testFree ();
     void testRoomNumber ();
     void testRoomFloor ();
-	void testCapacity ();
+    void testCapacity ();
 };
