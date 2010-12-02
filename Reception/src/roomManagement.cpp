@@ -22,11 +22,11 @@ RoomManagement::~RoomManagement()
   */
 void RoomManagement::newRoom(Room room)
 {
-
-            sqlMechanism.execQuery("insert into Rooms values('"+QString("%1").arg(room.getRoomNumber())+"', '"+QString("%1").arg(room.getRoomFloor())+"','"+QString("%1").arg(room.getCapacity())+"') ");
-
-
- }
+    if(RoomManagement::checkInData(room))
+        {
+            sqlMechanism.execQuery("insert into Rooms values('"+QString("%1").arg(room.getRoomNumber())+"', '"+QString("%1").arg(room.getRoomFloor())+"','"+QString("%1").arg(room.getCapacity())+"','') ");
+        }
+}
 
 
 /**
@@ -35,7 +35,7 @@ void RoomManagement::newRoom(Room room)
 void RoomManagement::deleteRoom(Room room)
 {
 
-    sqlMechanism.execQuery("delete from Rooms where RoomNumber='"+QString(room.getRoomNumber())+"'");
+    sqlMechanism.execQuery("delete from Rooms where RoomNumber = '"+QString("%1").arg(room.getRoomNumber())+"' ");
 }
 
 /**

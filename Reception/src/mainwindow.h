@@ -3,10 +3,11 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QDate>
 
-//#include "customerManagement.h"
-//#include "roomManagement.h"
-//#include "reservationManagement.h"
+#include "customerManagement.h"
+#include "roomManagement.h"
+#include "reservationManagement.h"
 
 static const QString Title                 = QObject::tr("Hotel Manager");
 static const QString EmptyRes              = QObject::tr("Please fill out customer ID and room number");
@@ -32,6 +33,9 @@ protected:
 
 private:
     Ui::MainWindow *ui;
+    CustomerManagement CM;
+    RoomManagement RM;
+    ReservationManagement ResM;
 
 private slots:
     void on_SaveRoom_clicked();
