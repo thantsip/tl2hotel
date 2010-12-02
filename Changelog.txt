@@ -117,3 +117,7 @@
 1/12/10 16:51 Marias Stergios <plir2011@gmail.com>
 	
 	*Update mainwindow
+=======
+2/12/10 2:15 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+
+	*added week report for 3rd week
