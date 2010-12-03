@@ -58,7 +58,7 @@ Room RoomManagement::fetchRoom(int roomnumber)
     {
     roomfloor = fetchquery.value(1).toInt();
     roomcapacity = fetchquery.value(2).toInt();
-    roomextras = fetchquery.value(2).toString();
+    roomextras = fetchquery.value(3).toString();
     }
     room.setRoomNumber(roomnumber);
     room.setRoomFloor(roomfloor);
