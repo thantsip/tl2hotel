@@ -7,7 +7,7 @@ class TCustomerManagement : public QObject {
 
   private slots:
     void testNewCustomer ();
-    void testDeleteCustomer ();
     void testEditCustomer ();
+    void testDeleteCustomer ();
     void testCheckInData ();
 };
