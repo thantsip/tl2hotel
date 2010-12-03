@@ -52,7 +52,7 @@ Customer CustomerManagement::fetchCustomer(QString id)
     {
     customername = fetchquery.value(1).toString();
     customersurname = fetchquery.value(2).toString();
-    groupid = fetchquery.value(2).toInt();
+    groupid = fetchquery.value(3).toInt();
     }
     customer.setId(id);
     customer.setName(customername);
