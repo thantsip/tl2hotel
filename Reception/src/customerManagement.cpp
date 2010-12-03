@@ -37,11 +37,34 @@ void CustomerManagement::deleteCustomer(Customer customer)
   sqlMechanism.execQuery("delete from Customers where prIdCustomer='"+customer.getId()+"'");
 }
 
+/*
+*Fetch the customer with the id
+*/
+Customer CustomerManagement::fetchCustomer(QString id)
+{
+    QSqlQuery fetchquery;
+    QString customername,customersurname;
+    int groupid;
+    Customer customer;
+
+    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer='"+id+"'");
+    while (fetchquery.next())
+    {
+    customername = fetchquery.value(1).toString();
+    customersurname = fetchquery.value(2).toString();
+    groupid = fetchquery.value(3).toInt();
+    }
+    customer.setId(id);
+    customer.setName(customername);
+    customer.setSurname(customersurname);
+    customer.setGroupId(groupid);
+
+    return customer;
+}
 
 /**
   *checks if data are correct
   */
-
 bool CustomerManagement::checkInData(Customer customer)
 {
 
@@ -62,7 +85,7 @@ bool CustomerManagement::checkInData(Customer customer)
                 }
         else
         {
-           QMessageBox::critical(0,"Input Data Error","Check the Customer Id");
+           QMessageBox::warning(0,"Input Data Error","Check the Customer Id");
                     ret = false;     
         }
 
@@ -73,7 +96,7 @@ bool CustomerManagement::checkInData(Customer customer)
 
         }
         else {
-             QMessageBox::critical(0,"Input Data Error","Check the Customer Name");
+             QMessageBox::warning(0,"Input Data Error","Check the Customer Name");
                         ret = false;
         }
 
@@ -82,7 +105,7 @@ bool CustomerManagement::checkInData(Customer customer)
                  ret=true;
             }
         else{
-             QMessageBox::critical(0,"Input Data Error","Check the Customer Surname");
+             QMessageBox::warning(0,"Input Data Error","Check the Customer Surname");
             ret = false;
 
 
