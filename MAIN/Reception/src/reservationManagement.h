@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QString>
 #include <QChar>
+#include <QSqlQuery>
+#include <QVariant>
 
 /**
  *Reservation Management Class

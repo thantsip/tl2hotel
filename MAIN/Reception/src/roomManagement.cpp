@@ -45,6 +45,29 @@ void RoomManagement::editRoom(Room room)
 {
    sqlMechanism.execQuery("update Rooms SET RoomNumber='"+QString(room.getRoomNumber())+"', RoomFloor='"+QString(room.getRoomFloor())+"', Capacity='"+QString(room.getCapacity())+"' ) ");
 }
+
+Room RoomManagement::fetchRoom(int roomnumber)
+{
+    QSqlQuery fetchquery;
+    int roomfloor,roomcapacity;
+    QString roomextras;
+    Room room;
+
+    fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomnumber)+"'");
+    while (fetchquery.next())
+    {
+    roomfloor = fetchquery.value(1).toInt();
+    roomcapacity = fetchquery.value(2).toInt();
+    roomextras = fetchquery.value(2).toString();
+    }
+    room.setRoomNumber(roomnumber);
+    room.setRoomFloor(roomfloor);
+    room.setCapacity(roomcapacity);
+
+    return room;
+}
+
+
 /**
   *checks if data are correct
   */
@@ -59,7 +82,7 @@ bool RoomManagement::checkInData(Room room)
 
     if(0==rNum)
             {
-                QMessageBox::critical(0,"Input Data Error","Check the Room Number");
+                QMessageBox::warning(0,"Input Data Error","Check the Room Number");
                 ret = false;
             }
     else
@@ -70,7 +93,7 @@ bool RoomManagement::checkInData(Room room)
     if(0==rFloor)
     {
 
-                   QMessageBox::critical(0,"Input Data Error","Check the Room Floor");
+                   QMessageBox::warning(0,"Input Data Error","Check the Room Floor");
                     ret = false;
 
     }
@@ -80,7 +103,7 @@ bool RoomManagement::checkInData(Room room)
 
     if(0== cpct)
         {
-        QMessageBox::critical(0,"Input Data Error","Check the Capacity");
+        QMessageBox::warning(0,"Input Data Error","Check the Capacity");
         ret = false;
 
         }
