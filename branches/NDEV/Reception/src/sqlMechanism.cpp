@@ -11,7 +11,7 @@ SQLMechanism::~SQLMechanism()
 {
 }
 
-bool SQLMechanism::execQuery(QString sqlQuery)
+QSqlQuery SQLMechanism::execQuery(QString sqlQuery)
 {		
 	/*
 	 *declare a QSqlQuery object
@@ -25,7 +25,7 @@ bool SQLMechanism::execQuery(QString sqlQuery)
         if(SqlConnec->isConnected())
         {
                 query.exec(sqlQuery);
-		return true;
+                return query;
         }
         else
         {
@@ -35,15 +35,15 @@ bool SQLMechanism::execQuery(QString sqlQuery)
                 SqlConnec->dbConnect();
                 if(SqlConnec->isConnected())
                 {
-                                query.exec(sqlQuery);
-                                return true;
+                      query.exec(sqlQuery);
+                      return query;
                 }
                 else
                 {
                         /*
                          *@return false if database is not open
                          */
-                        return false;
+                        return NULL;
                 }
         }
 }
