@@ -6,6 +6,8 @@
 #define CUSTOMERMANAGEMENT_H
 
 #include <QString>
+#include <QSqlQuery>
+#include <QVariant>
 #include "sqlMechanism.h"
 #include "customer.h"
 
@@ -27,6 +29,8 @@ public:
     void newCustomer(Customer customer);
     void deleteCustomer(Customer customer);
     void editCustomer(Customer customer);
+
+    Customer fetchCustomer(QString id);
 
    bool checkInData(Customer customer);
 

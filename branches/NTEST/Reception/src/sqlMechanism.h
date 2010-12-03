@@ -15,7 +15,7 @@ class SQLMechanism
     public:
         SQLMechanism();
         ~SQLMechanism();
-        bool execQuery(QString sqlQuery);
+        QSqlQuery execQuery(QString sqlQuery);
 };
 
 #endif // SQLMECHANISM_H

@@ -4,6 +4,8 @@
 #include <QMessageBox>
 #include <QString>
 #include <QChar>
+#include <QSqlQuery>
+#include <QVariant>
 
 #include "sqlMechanism.h"
 
@@ -25,6 +27,8 @@ public:
        void newRoom(Room room);
        void deleteRoom(Room room);
        void editRoom(Room room);
+       Room fetchRoom(int roomnumber);
+
        bool checkInData(Room room);
 
 
