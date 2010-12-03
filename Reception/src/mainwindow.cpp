@@ -208,9 +208,16 @@ void MainWindow::on_FindCustomer_clicked()
     }
     else
     {
-        QMessageBox::about(0,Title,"OK");
+        Customer customer;
+
+        customer = CM.fetchCustomer(ui->FindID->text());
+        ui->FindName->setText(customer.getName());
+        ui->FindSurname->setText(customer.getSurname());
+        ui->FindGroupID->setText(QString("%1").arg(customer.getGroupId()));
+
         ui->FindName->setFocus();
     }
+
 }
 
 void MainWindow::on_SaveCustomer_clicked()
@@ -281,6 +288,11 @@ void MainWindow::on_pushButton_clicked()
     }
     else
     {
+        Room room;
+
+        room = RM.fetchRoom(ui->FindRoomNumber->text().toInt());
+        ui->FindRoomFloor->setText(QString("%1").arg(room.getRoomFloor()));
+        ui->FindRoomCapacity->setText(QString("%1").arg(room.getCapacity()));
 
         ui->FindRoomFloor->setFocus();
     }

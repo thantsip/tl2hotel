@@ -52,7 +52,7 @@ bool FileHandler::isFileExist(QString fileName)
         /*
          *Gui message that informs that the file was not found
          */
-        QMessageBox::critical(0,fileHandlerstr,fileNotExistStr);
+        QMessageBox::warning(0,fileHandlerstr,fileNotExistStr);
 
         /*
          *@return false
