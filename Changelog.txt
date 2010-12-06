@@ -134,4 +134,7 @@
 	
 	*added roomManagement.(cpp & h)
 =======
-
+6/12/10 18:13 Arabatzi Chrisa <xrysaram@gmail.com>
+	
+	*Update roomManagement.(cpp & h)
+=======
