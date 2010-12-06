@@ -80,7 +80,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
   vector<Room> RoomManagement::fetchAllRooms()
   {
 
-    // Room room;
+     Room room;
+
+     vector<Room> roomVector;
 
     QSqlQuery fetchquery;
 
@@ -113,6 +115,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
   vector<Room> RoomManagement::fetchFreeRooms()
   {
       Room room;
+
+
+      vector<Room> froomVector;
 
      QSqlQuery fetchquery;
 
