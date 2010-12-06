@@ -1,3 +1,4 @@
+
 #include "roomManagement.h"
 
 
@@ -46,6 +47,10 @@ void RoomManagement::editRoom(Room room)
    sqlMechanism.execQuery("update Rooms SET RoomNumber='"+QString(room.getRoomNumber())+"', RoomFloor='"+QString(room.getRoomFloor())+"', Capacity='"+QString(room.getCapacity())+"' ) ");
 }
 
+
+/**
+  * returns the features of the selected room
+  */
 Room RoomManagement::fetchRoom(int roomnumber)
 {
     QSqlQuery fetchquery;
@@ -67,6 +72,71 @@ Room RoomManagement::fetchRoom(int roomnumber)
     return room;
 }
 
+
+/**
+  * returns all rooms from the db into a vector
+  */
+
+  vector<Room> RoomManagement::fetchAllRooms()
+  {
+
+    // Room room;
+
+    QSqlQuery fetchquery;
+
+
+    fetchquery = sqlMechanism.execQuery(" SELECT * FROM Rooms ");
+
+    while(fetchquery.next())
+    {
+
+
+         room.setRoomNumber(fetchquery.value(1).toInt());
+         room.setRoomFloor( fetchquery.value(2).toInt());
+         room.setCapacity(fetchquery.value(3).toInt());
+
+
+
+        roomVector.push_back(room);
+
+    }
+
+    return roomVector;
+
+  }
+
+
+
+  /**
+    * returns free rooms into a vector
+    */
+  vector<Room> RoomManagement::fetchFreeRooms()
+  {
+      Room room;
+
+     QSqlQuery fetchquery;
+
+
+
+     fetchquery = sqlMechanism.execQuery(" SELECT * FROM Rooms WHERE free=1 ");
+
+     while(fetchquery.next())
+     {
+
+          room.setRoomNumber(fetchquery.value(1).toInt());
+          room.setRoomFloor( fetchquery.value(2).toInt());
+          room.setCapacity(fetchquery.value(3).toInt());
+
+          froomVector.push_back( room );
+
+     }
+
+     return froomVector;
+
+
+
+
+  }
 
 /**
   *checks if data are correct

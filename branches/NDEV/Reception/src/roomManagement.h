@@ -6,19 +6,23 @@
 #include <QChar>
 #include <QSqlQuery>
 #include <QVariant>
+#include <vector>
+#include <QSqlResult>
 
 #include "sqlMechanism.h"
 
 #include "room.h"
 
 /**
-  *Creates new rooms in the databas or edits or deletes and  rooms in the database
+  *Creates new rooms in the database, edits/ deletes room
   */
 
 class RoomManagement
 {
 protected:
     Room room;
+    vector<Room> roomVector;
+    vector<Room> froomVector;
     SQLMechanism sqlMechanism;
 
 public:
@@ -28,6 +32,10 @@ public:
        void deleteRoom(Room room);
        void editRoom(Room room);
        Room fetchRoom(int roomnumber);
+      vector<Room> fetchAllRooms();
+      vector<Room> fetchFreeRooms();
+
+
 
        bool checkInData(Room room);
 
