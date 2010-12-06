@@ -21,8 +21,6 @@ class RoomManagement
 {
 protected:
     Room room;
-    vector<Room> roomVector;
-    vector<Room> froomVector;
     SQLMechanism sqlMechanism;
 
 public:
