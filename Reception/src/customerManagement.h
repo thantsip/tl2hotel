@@ -8,11 +8,11 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QVariant>
-#include "sqlMechanism.h"
-#include "customer.h"
-
+#include <vector>
 #include <QMessageBox>
 #include <QChar>
+#include "sqlMechanism.h"
+#include "customer.h"
 /**
   *Creates new customers in the database or edits/deletes and already existing customer in the database
   */
@@ -31,8 +31,10 @@ public:
     void editCustomer(Customer customer);
 
     Customer fetchCustomer(QString id);
+    vector<Customer> fetchAllCustomers();
+    vector<Customer> searchCustomerByValue(QString value);
 
-   bool checkInData(Customer customer);
+    bool checkInData(Customer customer);
 
 
 /**

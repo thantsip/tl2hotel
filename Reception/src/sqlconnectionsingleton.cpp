@@ -123,6 +123,21 @@ bool SqlConnection::dbRemove()
  */
 bool SqlConnection::dbCreateInstance()
 {
+    bool ret = false;
+
+    /* create and setup a progress bar. */
+    int step = 0;
+    QProgressDialog progress;
+    progress.setWindowModality(Qt::WindowModal);
+    //progress.setWindowTitle(appName);
+    //progress.setCancelButtonText(QString()); /* hide cancel button. */
+    progress.setLabelText(dbCreationStr);
+    progress.setMinimum(step);
+    progress.setMaximum(PBAR_MAX_STEPS);
+
+    /* start progress. */
+    progress.setValue(++step);
+
     /*
      *declare a QSqlQuery object
      */
@@ -133,33 +148,51 @@ bool SqlConnection::dbCreateInstance()
     if(db.isOpen())
     {
 
-    query.exec("create table Groups (prIdGroup INTEGER PRIMARY KEY , "
+    progress.setValue(++step);
+    ret = query.exec("create table Groups (prIdGroup INTEGER PRIMARY KEY , "
                                         "GroupName VARCHAR(25))");
 
+    progress.setValue(++step);
+    if(ret)
+    {
 
-    query.exec("create table Customers (prIdCustomer VARCHAR(25) PRIMARY KEY , "
+    ret = query.exec("create table Customers (prIdCustomer VARCHAR(25) PRIMARY KEY , "
                                         "CustomerName VARCHAR(25) ,"
-                                        "CustomerSurname VARCHAR(25))");
-
-    query.exec("create table Rooms (RoomNumber INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                                        "CustomerSurname VARCHAR(25) ,"
+                                        "GroupId INTEGER)");
+    }
+    progress.setValue(++step);
+    if(ret)
+    {
+    ret = query.exec("create table Rooms (RoomNumber INTEGER PRIMARY KEY AUTOINCREMENT ,"
                                         "RoomFloor INTEGER ,"
                                         "Capacity INTEGER ,"
+                                        "Free INTEGER ,"
                                         "Extras TEXT )");
-
-    query.exec("create table RoomsReservation (prIdReservation INTEGER PRIMARY KEY AUTOINCREMENT , "
+    }
+    progress.setValue(progress.maximum());
+    if(ret)
+    {
+    ret = query.exec("create table RoomsReservation (prIdReservation INTEGER PRIMARY KEY AUTOINCREMENT , "
                                         "DateFrom TEXT ,"
                                         "DateTo TEXT ,"
                                         "fkCustomerId VARCHAR(25) ,"
                                         "fkRoomId INTEGER ,"
                                         "FOREIGN KEY (fkCustomerId) REFERENCES Customers,"
                                         "FOREIGN KEY (fkRoomId) REFERENCES Rooms)");
-        return true;
+
     }
-    else
-        /*
-         *@return false if database is not open
-         */
-        return false;
+     progress.setValue(++step);
+    if(!ret)
+    {
+        QMessageBox::information(0,dbConnectErrorStr,dbCreationStr);
+        FileHandler rm;
+        db.close();
+        rm.removeFile(dbFileNameStr);
+    }
+}
+
+    return ret;
 }
 
 bool SqlConnection::isConnected()

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QString>
 #include <QSqlQuery>
+#include <QProgressDialog>
 
 #include "filehandler.h"
 
@@ -13,6 +14,7 @@
  */
 static const QString dbDriverStr = "QSQLITE";
 static const QString dbFileNameStr = "database.s3db";
+static const int PBAR_MAX_STEPS =5;
 
 /*
  * GUI string messages.
