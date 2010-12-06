@@ -138,3 +138,11 @@
 	
 	*Update roomManagement.(cpp & h)
 =======
+6/12/10 11:44 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+	
+	*Updated FileHandler.cpp
+	*Updated SQLConnectionSingleton(.cpp &.h)
+	*Updated ReservationManagement.cpp
+	*Updated CustomerManagement (.cpp & .h)
+=======
+

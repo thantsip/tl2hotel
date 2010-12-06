@@ -112,17 +112,12 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
            error++;
         }
     }
-    if(error != 0)
+    if(error != 0 || rNum == 0)
     {
-      QMessageBox::warning(0,"Input Data Error","Check customer id");
+      QMessageBox::warning(0,"Input Data Error","Invalid customer id\nOr room number");
       ret = false;
     }
 
-    if(rNum==0)
-        {
-            QMessageBox::warning(0,"Input Data Error","Check the Room Number");
-            ret = false;
-        }
 
     else
         ret = true;

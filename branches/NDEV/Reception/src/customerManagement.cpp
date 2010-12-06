@@ -44,7 +44,7 @@ Customer CustomerManagement::fetchCustomer(QString id)
 {
     QSqlQuery fetchquery;
     QString customername,customersurname;
-    int groupid;
+    int groupid = 0;
     Customer customer;
 
     fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer='"+id+"'");
@@ -60,6 +60,68 @@ Customer CustomerManagement::fetchCustomer(QString id)
     customer.setGroupId(groupid);
 
     return customer;
+}
+
+/**
+  *fetch all the customers and return them into a vector
+  */
+vector<Customer> CustomerManagement::fetchAllCustomers()
+{
+    QSqlQuery fetchquery;
+    Customer customer;
+    vector<Customer> custVector;
+
+    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers");
+    /**
+      *while there is a available row set the data into a customer object
+      *and then push it on a vector
+      */
+    while(fetchquery.next())
+    {
+        customer.setId(fetchquery.value(0).toString());
+        customer.setName(fetchquery.value(1).toString());
+        customer.setSurname(fetchquery.value(2).toString());
+        customer.setGroupId(fetchquery.value(3).toInt());
+
+        custVector.push_back(customer);
+    }
+    /**
+      *return the vector that containce
+      */
+    return custVector;
+
+}
+
+/**
+  *fetch the customers by id,name or surname
+  */
+vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
+{
+    QSqlQuery fetchquery;
+    Customer customer;
+    vector<Customer> custVector;
+
+    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer='"+value+"' OR CustomerName='"+value+"' OR CustomerSurname='"+value+"'");
+
+    /**
+      *while there is a available row set the data into a customer object
+      *and then push it on a vector
+      */
+    while(fetchquery.next())
+    {
+        customer.setId(fetchquery.value(0).toString());
+        customer.setName(fetchquery.value(1).toString());
+        customer.setSurname(fetchquery.value(2).toString());
+        customer.setGroupId(fetchquery.value(3).toInt());
+
+        custVector.push_back(customer);
+    }
+    /**
+      *return the vector that containce
+      */
+    return custVector;
+
+
 }
 
 /**
