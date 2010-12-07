@@ -32,8 +32,8 @@ public:
        Room fetchRoom(int roomnumber);
       vector<Room> fetchAllRooms();
       vector<Room> fetchFreeRooms();
-
-
+vector<Room> searchRoomByCapacity(int capacity);
+vector<Room> searchRoomByFloor(int floor);
 
        bool checkInData(Room room);
 
