@@ -128,4 +128,65 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
       */
     return ret;
 
+double ReservationManagement::roomCheckout(int reservationId)
+{
+   QString query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = ";
+
+    query.append(QString("%1").arg(id));
+
+    //cout << query.toStdString();
+
+    QSqlQuery q = sqlMechanism.execQuery(query);
+
+    int diff=0;
+    QString customerId;
+    int roomId=0;
+
+     while ( q.next() ) {
+                         //DateFrom
+                         QDate d1 = q.value(0).toDate();
+
+                         //DateTo
+                         QDate d2 = q.value(1).toDate();
+
+                         //Diff in days
+                         diff = d1.daysTo(d2);
+
+                        //customerId
+                         QString cId = q.value(2).toString();
+                         customerId = cId;
+
+                         //RoomId
+                         int rid = q.value(3).toInt();
+                         roomId = rid;
+
+                    }
+ /**
+   *@getCustomer
+   *@et the Object
+   */    
+
+    query = "SELECT CustomerName ,CustomerSurname ,fkGroupId  FROM Customers WHERE prIdCustomer  = '";
+
+    query.append(customerId);
+    query.append("'");
+
+    //cout << "\n";
+    //cout << query.toStdString();
+
+    q = sqlMechanism.execQuery(query);
+
+    while ( q.next() ) {
+        QString name = q.value(0).toString();
+        QString surname = q.value(1).toString();
+        int groupId = q.value(2).toInt();
+        Customer c(customerId,name,surname,groupId);
+
+    /**
+      *associate customer with reservation
+      */
+        customer = c;
+    }
+
+
 }
