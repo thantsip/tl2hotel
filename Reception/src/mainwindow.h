@@ -31,6 +31,8 @@ public:
 protected:
     void changeEvent(QEvent *e);
 
+    bool eventFilter(QObject *obj, QEvent *event);
+
 private:
     Ui::MainWindow *ui;
     CustomerManagement CM;
@@ -38,6 +40,9 @@ private:
     ReservationManagement ResM;
 
 private slots:
+    void on_InstantTableView_cellClicked(int row, int column);
+    void on_InstantEdit_textChanged(QString );
+    void on_Tabs2_selected(QString );
     void on_SaveRoom_clicked();
     void on_pushButton_clicked();
     void on_DeleteRoom_clicked();
@@ -51,6 +56,10 @@ private slots:
     void on_Tabs_selected(QString );
     void on_Clean_triggered();
     void on_Exit_triggered();
+
+    void showRoomGrid();
+    void CustomerTableView();
+    void RoomTableView();
 };
 
 #endif // MAINWINDOW_H

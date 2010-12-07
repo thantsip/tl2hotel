@@ -91,10 +91,10 @@ Room RoomManagement::fetchRoom(int roomnumber)
     {
 
 
-         room.setRoomNumber(fetchquery.value(1).toInt());
-         room.setRoomFloor( fetchquery.value(2).toInt());
-         room.setCapacity(fetchquery.value(3).toInt());
-
+         room.setRoomNumber(fetchquery.value(0).toInt());
+         room.setRoomFloor( fetchquery.value(1).toInt());
+         room.setCapacity(fetchquery.value(2).toInt());
+         room.setFree(fetchquery.value(3).toInt());
 
 
         roomVector.push_back(room);
