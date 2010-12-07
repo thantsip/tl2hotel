@@ -58,7 +58,7 @@ Room RoomManagement::fetchRoom(int roomnumber)
     QString roomextras;
     Room room;
 
-    fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomnumber)+"'");
+   fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomnumber)+"'");
     while (fetchquery.next())
     {
     roomfloor = fetchquery.value(1).toInt();
@@ -80,12 +80,10 @@ Room RoomManagement::fetchRoom(int roomnumber)
   vector<Room> RoomManagement::fetchAllRooms()
   {
 
-     Room room;
-
-     vector<Room> roomVector;
 
     QSqlQuery fetchquery;
-
+    Room room;
+    vector<Room> roomVector;
 
     fetchquery = sqlMechanism.execQuery(" SELECT * FROM Rooms ");
 
@@ -138,10 +136,92 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
      return froomVector;
 
+ }
+
+     /**
+       *search Room by Capacity
+       */
+
+
+    vector<Room> RoomManagement::searchRoomByCapacity(int capacity)
+     {
+
+
+         QSqlQuery fetchquery;
+
+         Room room;
+
+         vector<Room> roomVector;
+
+         fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE Capacity='"+QString("%1").arg(capacity)+"'");
+
+         /**
+           *while there is a available row set the data into a room object
+           *and then push it on a vector
+           */
+         while(fetchquery.next())
+          {
+
+               room.setRoomNumber(fetchquery.value(1).toInt());
+               room.setRoomFloor( fetchquery.value(2).toInt());
+               room.setCapacity(fetchquery.value(3).toInt());
+
+               roomVector.push_back( room );
+
+          }
+         /**
+              *return the vector that containce
+              */
+
+          return roomVector;
 
 
 
-  }
+
+       }
+
+     /**
+       *fetch the room by floor
+       */
+
+
+     vector<Room> RoomManagement::searchRoomByFloor(int floor)
+     {
+         QSqlQuery fetchquery;
+         Room room;
+         vector<Room> froomVector;
+
+         fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomFloor='"+QString("%1").arg(floor)+"'");
+
+         /**
+           *while there is a available row set the data into a room object
+           *and then push it on a vector
+           */
+         while(fetchquery.next())
+          {
+
+               room.setRoomNumber(fetchquery.value(1).toInt());
+               room.setRoomFloor( fetchquery.value(2).toInt());
+               room.setCapacity(fetchquery.value(3).toInt());
+
+               froomVector.push_back( room );
+
+          }
+
+          return froomVector;
+
+
+
+
+       }
+
+
+
+
+
+
+
+
 
 /**
   *checks if data are correct
