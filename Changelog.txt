@@ -145,4 +145,9 @@
 	*Updated ReservationManagement.cpp
 	*Updated CustomerManagement (.cpp & .h)
 =======
+7/12/10 12:47 Mitrai Dimitris <dimitris.mitrou24@gmail.com>
+ 
+               *Updated roomManagement(.cpp & h)
+
+=======
 
