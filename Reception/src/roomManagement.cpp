@@ -25,7 +25,7 @@ void RoomManagement::newRoom(Room room)
 {
     if(RoomManagement::checkInData(room))
         {
-            sqlMechanism.execQuery("insert into Rooms values('"+QString("%1").arg(room.getRoomNumber())+"', '"+QString("%1").arg(room.getRoomFloor())+"','"+QString("%1").arg(room.getCapacity())+"','') ");
+            sqlMechanism.execQuery("insert into Rooms values('"+QString("%1").arg(room.getRoomNumber())+"', '"+QString("%1").arg(room.getRoomFloor())+"','"+QString("%1").arg(room.getCapacity())+"','"+QString("1")+"','"+QString("extra")+"') ");
         }
 }
 
@@ -54,7 +54,7 @@ void RoomManagement::editRoom(Room room)
 Room RoomManagement::fetchRoom(int roomnumber)
 {
     QSqlQuery fetchquery;
-    int roomfloor,roomcapacity;
+    int roomfloor,roomcapacity,roomfree;
     QString roomextras;
     Room room;
 
@@ -63,11 +63,13 @@ Room RoomManagement::fetchRoom(int roomnumber)
     {
     roomfloor = fetchquery.value(1).toInt();
     roomcapacity = fetchquery.value(2).toInt();
-    roomextras = fetchquery.value(3).toString();
+    roomfree = fetchquery.value(3).toInt();
+    roomextras = fetchquery.value(4).toString();
     }
     room.setRoomNumber(roomnumber);
     room.setRoomFloor(roomfloor);
     room.setCapacity(roomcapacity);
+    room.setFree(roomfree);
 
     return room;
 }
@@ -96,8 +98,7 @@ Room RoomManagement::fetchRoom(int roomnumber)
          room.setCapacity(fetchquery.value(2).toInt());
          room.setFree(fetchquery.value(3).toInt());
 
-
-        roomVector.push_back(room);
+         roomVector.push_back(room);
 
     }
 
