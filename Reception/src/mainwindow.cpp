@@ -91,7 +91,7 @@ void MainWindow::RoomTableView()
         ui->RoomTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
         ui->RoomTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
         ui->RoomTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
-        ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg(Room[i].getFree()) ));
+        ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg(RM.getStatus(Room[i].getRoomNumber() ) )));
     }
 }
 
@@ -206,6 +206,7 @@ void MainWindow::on_NewReservation_clicked()
             room.setRoomNumber(ui->RoomNumberReservation->text().toInt());
 
             ResM.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),room,customer);
+            RM.setStatus(room.getRoomNumber(),false);
 
             ui->CheckInDate->setDate(QDate(QDate::currentDate()));
             ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
@@ -422,7 +423,7 @@ void MainWindow::showRoomGrid()
         RoomLabel->setObjectName(RoomNumTitle);
         RoomLabel->setText(RoomNumTitle);
         //-----------------------------------------------------------
-        if(Room[RoomNum].getFree()==true)
+        if(RM.getStatus(Room[RoomNum].getRoomNumber())==true)
             RoomLabel->setStyleSheet("color: white; background-color:green;");
         else
             RoomLabel->setStyleSheet("color: white; background-color:red;");
