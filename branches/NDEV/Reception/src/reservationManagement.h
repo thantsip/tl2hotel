@@ -66,7 +66,7 @@ public:
          */
        bool checkInData(Room room,Customer customer);
        //roomCancelation();
-       //roomCheckout();
+       double roomCheckout(int reservationId);
 
 };
 

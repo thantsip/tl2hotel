@@ -127,12 +127,13 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
       *@return false if data is incorrect
       */
     return ret;
+}
 
 double ReservationManagement::roomCheckout(int reservationId)
 {
    QString query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = ";
 
-    query.append(QString("%1").arg(id));
+    query.append(QString("%1").arg(reservationId));
 
     //cout << query.toStdString();
 

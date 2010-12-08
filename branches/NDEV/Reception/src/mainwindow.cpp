@@ -69,6 +69,7 @@ void MainWindow::CustomerTableView()
     vector<Customer> Customers;
     Customers = CM.fetchAllCustomers();
     ui->CustomerTable->setRowCount(Customers.size());
+
     for (i=0;i<(int)Customers.size();i++)
     {
         ui->CustomerTable->setItem(i,0,new QTableWidgetItem(Customers[i].getId()));
@@ -84,12 +85,13 @@ void MainWindow::RoomTableView()
     vector<Room> Room;
     Room = RM.fetchAllRooms();
     ui->RoomTable->setRowCount(Room.size());
+
     for (i=0;i<(int)Room.size();i++)
     {
-        ui->RoomTable->setItem(i,0,new QTableWidgetItem(Room[i].getRoomNumber()));
-        ui->RoomTable->setItem(i,1,new QTableWidgetItem(Room[i].getRoomFloor()));
-        ui->RoomTable->setItem(i,2,new QTableWidgetItem(Room[i].getCapacity()));
-        ui->RoomTable->setItem(i,3,new QTableWidgetItem(Room[i].getFree()));
+        ui->RoomTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+        ui->RoomTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+        ui->RoomTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+        ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg(Room[i].getFree()) ));
     }
 }
 

@@ -17,7 +17,7 @@ void CustomerManagement::newCustomer(Customer customer)
 {
     if(CustomerManagement::checkInData(customer))
        {
-        sqlMechanism.execQuery("insert into Customers values('"+customer.getId()+"','"+customer.getName()+"', '"+customer.getSurname()+"') ");
+        sqlMechanism.execQuery("insert into Customers values('"+customer.getId()+"','"+customer.getName()+"', '"+customer.getSurname()+"' , '"+QString("%1").arg(customer.getGroupId())+"') ");
        }
 }
 
@@ -101,7 +101,7 @@ vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
     Customer customer;
     vector<Customer> custVector;
 
-    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer='"+value+"' OR CustomerName='"+value+"' OR CustomerSurname='"+value+"'");
+    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer LIKE '%"+value+"%' OR CustomerName LIKE '%"+value+"%' OR CustomerSurname LIKE '%"+value+"%'");
 
     /**
       *while there is a available row set the data into a customer object
