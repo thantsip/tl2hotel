@@ -24,7 +24,8 @@ Room::Room(bool fr,int nm,int fl, int cap)
 
 
 //setFree->sets the status of the room.(free or not)
-void Room::setFree(bool fr){
+void Room::setFree(bool fr)
+{
         free = fr;
 }
 

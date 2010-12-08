@@ -69,7 +69,14 @@ Room RoomManagement::fetchRoom(int roomnumber)
     room.setRoomNumber(roomnumber);
     room.setRoomFloor(roomfloor);
     room.setCapacity(roomcapacity);
-    room.setFree(roomfree);
+    if(roomfree==1)
+    {
+        room.setFree(true);
+    }
+    else
+    {
+        room.setFree(false);
+    }
 
     return room;
 }
@@ -82,7 +89,7 @@ Room RoomManagement::fetchRoom(int roomnumber)
   vector<Room> RoomManagement::fetchAllRooms()
   {
 
-
+    int roomfree;
     QSqlQuery fetchquery;
     Room room;
     vector<Room> roomVector;
@@ -96,7 +103,15 @@ Room RoomManagement::fetchRoom(int roomnumber)
          room.setRoomNumber(fetchquery.value(0).toInt());
          room.setRoomFloor( fetchquery.value(1).toInt());
          room.setCapacity(fetchquery.value(2).toInt());
-         room.setFree(fetchquery.value(3).toInt());
+         roomfree = fetchquery.value(3).toInt();
+         if(roomfree==1)
+         {
+             room.setFree(true);
+         }
+         else
+         {
+             room.setFree(false);
+         }
 
          roomVector.push_back(room);
 
@@ -147,10 +162,11 @@ Room RoomManagement::fetchRoom(int roomnumber)
     vector<Room> RoomManagement::searchRoomByCapacity(int capacity)
      {
 
-
+         int roomfree;
          QSqlQuery fetchquery;
 
          Room room;
+
 
          vector<Room> roomVector;
 
@@ -166,10 +182,19 @@ Room RoomManagement::fetchRoom(int roomnumber)
                room.setRoomNumber(fetchquery.value(1).toInt());
                room.setRoomFloor( fetchquery.value(2).toInt());
                room.setCapacity(fetchquery.value(3).toInt());
-
+               roomfree = fetchquery.value(3).toInt();
+               if(roomfree==1)
+               {
+                   room.setFree(true);
+               }
+               else
+               {
+                   room.setFree(false);
+               }
                roomVector.push_back( room );
 
           }
+
          /**
               *return the vector that containce
               */
@@ -181,13 +206,13 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
        }
 
+
      /**
        *fetch the room by floor
        */
-
-
-     vector<Room> RoomManagement::searchRoomByFloor(int floor)
+ vector<Room> RoomManagement::searchRoomByFloor(int floor)
      {
+         int roomfree;
          QSqlQuery fetchquery;
          Room room;
          vector<Room> froomVector;
@@ -204,7 +229,15 @@ Room RoomManagement::fetchRoom(int roomnumber)
                room.setRoomNumber(fetchquery.value(1).toInt());
                room.setRoomFloor( fetchquery.value(2).toInt());
                room.setCapacity(fetchquery.value(3).toInt());
-
+               roomfree = fetchquery.value(3).toInt();
+               if(roomfree==1)
+               {
+                   room.setFree(true);
+               }
+               else
+               {
+                   room.setFree(false);
+               }
                froomVector.push_back( room );
 
           }
@@ -215,14 +248,6 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
 
        }
-
-
-
-
-
-
-
-
 
 /**
   *checks if data are correct
@@ -271,3 +296,32 @@ bool RoomManagement::checkInData(Room room)
 }
 
 
+//setFree->sets the status of the room.(free or not)
+void RoomManagement::setStatus(int roomNumber,bool free){
+    if(free){
+         sqlMechanism.execQuery("update Rooms SET Free=1 where RoomNumber='"+QString("%1").arg(roomNumber)+"' ");
+     }
+    else{
+        sqlMechanism.execQuery("update Rooms SET Free=0 where RoomNumber='"+QString("%1").arg(roomNumber)+"' ");
+    }
+}
+
+//getFree-> returns the status of the room (free or not)[true/false]
+bool RoomManagement::getStatus(int roomNumber)
+{
+   QSqlQuery freeQuery;
+   freeQuery = sqlMechanism.execQuery("SELECT Free FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomNumber)+"'");
+   while(freeQuery.next())
+    {
+       if(freeQuery.value(0).toInt()==1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+}

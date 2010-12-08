@@ -65,6 +65,8 @@ void ReservationManagement::setDateTo(QString dateTo1 )
 
 void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room room,Customer customer)
 {
+    QMessageBox msgBox;
+
     /**
       *check if there is any available room
       *if there is insert a reservation
@@ -74,9 +76,10 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
         /**
           *message that informs that there is none available room
           */
-        QMessageBox msgBox;
+
         msgBox.setText("Reservation not made.Room is not free at the moment.");
         msgBox.exec();
+
     }
     /**
       *check if the data given by the user are correct
@@ -88,6 +91,7 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
           */
         sqlMechanism.execQuery("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId) values('"+DateFrom+"','"+DateTo+"','"+QString("%1").arg(customer.getId())+"','"+QString("%1").arg(room.getRoomNumber())+"') ");
     }
+
 }
 /**
   *a function that checks if the data given by the user are correct
@@ -129,65 +133,56 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
     return ret;
 }
 
+
 double ReservationManagement::roomCheckout(int reservationId)
 {
-   QString query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = ";
+   double total;
+   QString query,customerId,cId;
+   QSqlQuery q;
+   int diff=0,rid,roomId=0,capacity=0;
+   QDate d1,d2;
 
-    query.append(QString("%1").arg(reservationId));
-
-    //cout << query.toStdString();
-
-    QSqlQuery q = sqlMechanism.execQuery(query);
-
-    int diff=0;
-    QString customerId;
-    int roomId=0;
+   query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = '"+QString("%1").arg(reservationId)+"'";
+   q = sqlMechanism.execQuery(query);
 
      while ( q.next() ) {
                          //DateFrom
-                         QDate d1 = q.value(0).toDate();
+                         d1 = q.value(0).toDate();
 
                          //DateTo
-                         QDate d2 = q.value(1).toDate();
+                         d2 = q.value(1).toDate();
 
                          //Diff in days
                          diff = d1.daysTo(d2);
 
                         //customerId
-                         QString cId = q.value(2).toString();
+                         cId = q.value(2).toString();
                          customerId = cId;
 
                          //RoomId
                          int rid = q.value(3).toInt();
                          roomId = rid;
-
                     }
- /**
-   *@getCustomer
-   *@et the Object
-   */    
 
-    query = "SELECT CustomerName ,CustomerSurname ,fkGroupId  FROM Customers WHERE prIdCustomer  = '";
+     query = "SELECT Capacity FROM Rooms WHERE RoomNumber = '"+QString("%1").arg(roomId)+"'";
+     q = sqlMechanism.execQuery(query);
 
-    query.append(customerId);
-    query.append("'");
-
-    //cout << "\n";
-    //cout << query.toStdString();
-
-    q = sqlMechanism.execQuery(query);
-
-    while ( q.next() ) {
-        QString name = q.value(0).toString();
-        QString surname = q.value(1).toString();
-        int groupId = q.value(2).toInt();
-        Customer c(customerId,name,surname,groupId);
-
-    /**
-      *associate customer with reservation
-      */
-        customer = c;
-    }
+     while ( q.next() )
+     {
+         capacity =  q.value(0).toInt();
+     }
 
 
+     if(0==diff)
+     {
+         diff = 1;
+     }
+
+     total = roomcharge*diff*capacity;
+
+     QMessageBox msgBox;
+     msgBox.setText(QString("%1").arg(total));
+     msgBox.exec();
+
+    return (total);
 }
