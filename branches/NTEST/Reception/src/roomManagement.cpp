@@ -323,5 +323,5 @@ bool RoomManagement::getStatus(int roomNumber)
         }
 
     }
-
+  return false;
 }
