@@ -1,5 +1,4 @@
 #include <QtTest>
-#include <QFile>
 
 #include "filehandler.h"
 
