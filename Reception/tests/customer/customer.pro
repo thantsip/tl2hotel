@@ -1,4 +1,4 @@
-QT     += sql
+QT     += core gui sql
 CONFIG += qtestlib
 
 TEMPLATE = app
