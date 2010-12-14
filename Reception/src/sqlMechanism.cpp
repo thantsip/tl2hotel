@@ -12,16 +12,16 @@ SQLMechanism::~SQLMechanism()
 }
 
 QSqlQuery SQLMechanism::execQuery(QString sqlQuery)
-{		
-	/*
-	 *declare a QSqlQuery object
-	 */
+{
+        /*
+         *declare a QSqlQuery object
+         */
         QSqlQuery query;
 
 
-	/*
-	 *check if database is open
-	 */
+        /*
+         *check if database is open
+         */
         if(SqlConnec->isConnected())
         {
                 query.exec(sqlQuery);
@@ -36,6 +36,42 @@ QSqlQuery SQLMechanism::execQuery(QString sqlQuery)
                 if(SqlConnec->isConnected())
                 {
                       query.exec(sqlQuery);
+                      return query;
+                }
+                else
+                {
+                        /*
+                         *@return false if database is not open
+                         */
+                        return NULL;
+                }
+        }
+}
+QSqlQuery SQLMechanism::prepareQuery(QString sqlQuery)
+{
+        /*
+         *declare a QSqlQuery object
+         */
+        QSqlQuery query;
+
+
+        /*
+         *check if database is open
+         */
+        if(SqlConnec->isConnected())
+        {
+                query.prepare(sqlQuery);
+                return query;
+        }
+        else
+        {
+                /*
+                *connect to database
+                */
+                SqlConnec->dbConnect();
+                if(SqlConnec->isConnected())
+                {
+                      query.prepare(sqlQuery);
                       return query;
                 }
                 else

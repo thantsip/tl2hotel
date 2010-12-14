@@ -89,7 +89,17 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
         /**
           *insert the data into table RoomsResevation
           */
-        sqlMechanism.execQuery("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId) values('"+DateFrom+"','"+DateTo+"','"+QString("%1").arg(customer.getId())+"','"+QString("%1").arg(room.getRoomNumber())+"') ");
+         QSqlQuery query = sqlMechanism.prepareQuery("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId)"
+                                  "values(:datefrom, :dateto, :custid, :roomid)");
+
+        query.bindValue(":datefrom", DateFrom);
+        query.bindValue(":dateto", DateTo);
+        query.bindValue(":custid", customer.getId());
+        query.bindValue(":roomid", room.getRoomNumber());
+        query.exec();
+
+
+
     }
 
 }
@@ -133,7 +143,6 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
     return ret;
 }
 
-
 double ReservationManagement::roomCheckout(int reservationId)
 {
    double total;
@@ -142,8 +151,10 @@ double ReservationManagement::roomCheckout(int reservationId)
    int diff=0,rid,roomId=0,capacity=0;
    QDate d1,d2;
 
-   query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = '"+QString("%1").arg(reservationId)+"'";
-   q = sqlMechanism.execQuery(query);
+   query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = :resId";
+   q = sqlMechanism.prepareQuery(query);
+   q.bindValue(":resId",reservationId);
+   q.exec();
 
      while ( q.next() ) {
                          //DateFrom
@@ -164,8 +175,10 @@ double ReservationManagement::roomCheckout(int reservationId)
                          roomId = rid;
                     }
 
-     query = "SELECT Capacity FROM Rooms WHERE RoomNumber = '"+QString("%1").arg(roomId)+"'";
-     q = sqlMechanism.execQuery(query);
+     query = "SELECT Capacity FROM Rooms WHERE RoomNumber = :rNum";
+     q = sqlMechanism.prepareQuery(query);
+     q.bindValue(":rNum",roomId);
+     q.exec();
 
      while ( q.next() )
      {
@@ -186,3 +199,4 @@ double ReservationManagement::roomCheckout(int reservationId)
 
     return (total);
 }
+
