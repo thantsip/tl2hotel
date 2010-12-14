@@ -23,20 +23,20 @@ void CustomerManagement::newCustomer(Customer customer)
 
     while(fetchquery.next())
     {
-        QMessageBox::warning(0,"Input Data Error","This ID exists");
+        QMessageBox::information(0,"Input Data Error","This ID exists");
     }
 
     if(CustomerManagement::checkInData(customer))
        {
-        QSqlQuery query;
-        query = sqlMechanism.myQuery();
-        query.prepare("INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,GroupId)"
+         QSqlQuery query;
+         query = sqlMechanism.myQuery();
+         query.prepare("INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,GroupId)"
                                           "VALUES(:custId, :custName, :custSurname, :groupId)");
-        query.bindValue(":custId", customer.getId());
-        query.bindValue(":custName",customer.getName());
-        query.bindValue(":custSurname",customer.getSurname());
-        query.bindValue(":groupId",customer.getGroupId());
-        query.exec();
+         query.bindValue(":custId", customer.getId());
+         query.bindValue(":custName",customer.getName());
+         query.bindValue(":custSurname",customer.getSurname());
+         query.bindValue(":groupId",customer.getGroupId());
+         query.exec();
         }
 }
 
@@ -45,13 +45,26 @@ void CustomerManagement::newCustomer(Customer customer)
   */
 void CustomerManagement::editCustomer(Customer customer)
 {
- QSqlQuery query;
- query = sqlMechanism.myQuery();
- query.prepare("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
- query.bindValue(":custId",customer.getId());
- query.bindValue(":custName",customer.getName());
- query.bindValue(":custSurname",customer.getSurname());
- query.exec();
+     QSqlQuery query;
+     QSqlQuery fetchquery;
+
+
+     fetchquery = sqlMechanism.myQuery();
+     fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
+     fetchquery.bindValue(":custId",customer.getId());
+     fetchquery.exec();
+
+     while(fetchquery.next())
+     {
+        QMessageBox::information(0,"Input Data Error","This customer can't be edited.Reservation in progress");
+     }
+
+     query = sqlMechanism.myQuery();
+     query.prepare("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
+     query.bindValue(":custId",customer.getId());
+     query.bindValue(":custName",customer.getName());
+     query.bindValue(":custSurname",customer.getSurname());
+     query.exec();
 }
 
 /**
@@ -59,7 +72,20 @@ void CustomerManagement::editCustomer(Customer customer)
   */
 void CustomerManagement::deleteCustomer(Customer customer)
 {
-    QSqlQuery query;
+     QSqlQuery fetchquery;
+     QSqlQuery query;
+
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
+    fetchquery.bindValue(":custId",customer.getId());
+    fetchquery.exec();
+
+    while(fetchquery.next())
+    {
+       QMessageBox::information(0,"Input Data Error","This customer can't be edited.Reservation in progress");
+    }
+
+
     query = sqlMechanism.myQuery();
     query.prepare("delete from Customers where prIdCustomer= :custId");
     query.bindValue(":custId",customer.getId());
@@ -82,9 +108,9 @@ Customer CustomerManagement::fetchCustomer(QString id)
 
     while (fetchquery.next())
     {
-    customername = fetchquery.value(1).toString();
-    customersurname = fetchquery.value(2).toString();
-    groupid = fetchquery.value(3).toInt();
+     customername = fetchquery.value(1).toString();
+     customersurname = fetchquery.value(2).toString();
+     groupid = fetchquery.value(3).toInt();
     }
     customer.setId(id);
     customer.setName(customername);
