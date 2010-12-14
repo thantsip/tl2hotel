@@ -18,7 +18,7 @@ class SQLMechanism
 
         QSqlQuery execQuery(QString sqlQuery);
 
-        QSqlQuery prepareQuery(QString sqlQuery);
+        QSqlQuery myQuery();
 };
 
 #endif // SQLMECHANISM_H

@@ -47,7 +47,7 @@ QSqlQuery SQLMechanism::execQuery(QString sqlQuery)
                 }
         }
 }
-QSqlQuery SQLMechanism::prepareQuery(QString sqlQuery)
+QSqlQuery SQLMechanism::myQuery()
 {
         /*
          *declare a QSqlQuery object
@@ -60,7 +60,7 @@ QSqlQuery SQLMechanism::prepareQuery(QString sqlQuery)
          */
         if(SqlConnec->isConnected())
         {
-                query.prepare(sqlQuery);
+             //   query.prepare(sqlQuery);
                 return query;
         }
         else
@@ -71,7 +71,7 @@ QSqlQuery SQLMechanism::prepareQuery(QString sqlQuery)
                 SqlConnec->dbConnect();
                 if(SqlConnec->isConnected())
                 {
-                      query.prepare(sqlQuery);
+                     // query.prepare(sqlQuery);
                       return query;
                 }
                 else
