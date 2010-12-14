@@ -89,7 +89,9 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
         /**
           *insert the data into table RoomsResevation
           */
-         QSqlQuery query = sqlMechanism.prepareQuery("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId)"
+         QSqlQuery query;
+         query = sqlMechanism.myQuery();
+         query.prepare("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId)"
                                   "values(:datefrom, :dateto, :custid, :roomid)");
 
         query.bindValue(":datefrom", DateFrom);
@@ -152,7 +154,8 @@ double ReservationManagement::roomCheckout(int reservationId)
    QDate d1,d2;
 
    query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = :resId";
-   q = sqlMechanism.prepareQuery(query);
+   q = sqlMechanism.myQuery();
+   q.prepare(query);
    q.bindValue(":resId",reservationId);
    q.exec();
 
@@ -176,7 +179,8 @@ double ReservationManagement::roomCheckout(int reservationId)
                     }
 
      query = "SELECT Capacity FROM Rooms WHERE RoomNumber = :rNum";
-     q = sqlMechanism.prepareQuery(query);
+     q = sqlMechanism.myQuery();
+     q.prepare(query);
      q.bindValue(":rNum",roomId);
      q.exec();
 
