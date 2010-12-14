@@ -15,11 +15,23 @@ CustomerManagement::~CustomerManagement() {
   */
 void CustomerManagement::newCustomer(Customer customer)
 {
+    QSqlQuery fetchquery;
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare("SELECT * FROM Customers WHERE prIdCustomer= :custId");
+    fetchquery.bindValue(":custId",customer.getId());
+    fetchquery.exec();
+
+    while(fetchquery.next())
+    {
+        QMessageBox::warning(0,"Input Data Error","This ID exists");
+    }
+
     if(CustomerManagement::checkInData(customer))
        {
         QSqlQuery query;
-        query = sqlMechanism.prepareQuery("insert into Customers (prIdCustomer,CustomerName,CustomerSurname,GroupId)"
-                                          "values(:custId, :custName, :custSurname, :groupId)");
+        query = sqlMechanism.myQuery();
+        query.prepare("INSERT INTO Customers (prIdCustomer,CustomerName,CustomerSurname,GroupId)"
+                                          "VALUES(:custId, :custName, :custSurname, :groupId)");
         query.bindValue(":custId", customer.getId());
         query.bindValue(":custName",customer.getName());
         query.bindValue(":custSurname",customer.getSurname());
@@ -34,7 +46,8 @@ void CustomerManagement::newCustomer(Customer customer)
 void CustomerManagement::editCustomer(Customer customer)
 {
  QSqlQuery query;
- query = sqlMechanism.prepareQuery("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
+ query = sqlMechanism.myQuery();
+ query.prepare("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
  query.bindValue(":custId",customer.getId());
  query.bindValue(":custName",customer.getName());
  query.bindValue(":custSurname",customer.getSurname());
@@ -47,7 +60,8 @@ void CustomerManagement::editCustomer(Customer customer)
 void CustomerManagement::deleteCustomer(Customer customer)
 {
     QSqlQuery query;
-    query = sqlMechanism.prepareQuery("delete from Customers where prIdCustomer= :custId");
+    query = sqlMechanism.myQuery();
+    query.prepare("delete from Customers where prIdCustomer= :custId");
     query.bindValue(":custId",customer.getId());
     query.exec();
 }
@@ -61,8 +75,8 @@ Customer CustomerManagement::fetchCustomer(QString id)
     QString customername,customersurname;
     int groupid = 0;
     Customer customer;
-
-    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers WHERE prIdCustomer= :custId");
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare("SELECT * FROM Customers WHERE prIdCustomer= :custId");
     fetchquery.bindValue(":custId",id);
     fetchquery.exec();
 
@@ -89,7 +103,8 @@ vector<Customer> CustomerManagement::fetchAllCustomers()
     Customer customer;
     vector<Customer> custVector;
 
-    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers");
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare("SELECT * FROM Customers");
     fetchquery.exec();
     /**
       *while there is a available row set the data into a customer object
@@ -120,7 +135,8 @@ vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
     Customer customer;
     vector<Customer> custVector;
 
-    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers WHERE prIdCustomer LIKE :value OR CustomerName LIKE :value OR CustomerSurname LIKE :value");
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare("SELECT * FROM Customers WHERE prIdCustomer LIKE :value OR CustomerName LIKE :value OR CustomerSurname LIKE :value");
     fetchquery.bindValue(":value",value);
     fetchquery.exec();
     /**

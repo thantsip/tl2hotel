@@ -26,7 +26,8 @@ void RoomManagement::newRoom(Room room)
     if(RoomManagement::checkInData(room))
         {
             QSqlQuery query;
-            query = sqlMechanism.prepareQuery("insert into Rooms (RoomNumber,RoomFloor,Capacity,Extras)"
+            query = sqlMechanism.myQuery();
+            query.prepare("insert into Rooms (RoomNumber,RoomFloor,Capacity,Extras)"
                                            "values(:rNum, :rFloor, :capacity, :extras)");
            query.bindValue(":rNum",room.getRoomNumber());
            query.bindValue(":rFloor",room.getRoomFloor());
@@ -43,7 +44,8 @@ void RoomManagement::newRoom(Room room)
 void RoomManagement::deleteRoom(Room room)
 {
     QSqlQuery query;
-    query = sqlMechanism.prepareQuery("delete from Rooms where RoomNumber = :rNum");
+    query = sqlMechanism.myQuery();
+    query.prepare("delete from Rooms where RoomNumber = :rNum");
     query.bindValue(":rNum",room.getRoomNumber());
     query.exec();
 }
@@ -54,7 +56,8 @@ void RoomManagement::deleteRoom(Room room)
 void RoomManagement::editRoom(Room room)
 {
     QSqlQuery query;
-    query = sqlMechanism.prepareQuery("update Rooms SET RoomNumber= :rNum, RoomFloor= :rFloor, Capacity= :capacity WHERE RoomNumber=:rNum");
+    query = sqlMechanism.myQuery();
+    query.prepare("update Rooms SET RoomNumber= :rNum, RoomFloor= :rFloor, Capacity= :capacity WHERE RoomNumber=:rNum");
     query.bindValue(":rNum",room.getRoomNumber());
     query.bindValue(":rFloor",room.getRoomFloor());
     query.bindValue(":capacity",room.getCapacity());
@@ -71,8 +74,8 @@ Room RoomManagement::fetchRoom(int roomnumber)
     int roomfloor,roomcapacity,roomfree;
     QString roomextras;
     Room room;
-
-   fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
+   fetchquery = sqlMechanism.myQuery();
+   fetchquery.prepare("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
    fetchquery.bindValue(":rNum",roomnumber);
    fetchquery.exec();
 
@@ -110,8 +113,8 @@ Room RoomManagement::fetchRoom(int roomnumber)
     QSqlQuery fetchquery;
     Room room;
     vector<Room> roomVector;
-
-    fetchquery = sqlMechanism.prepareQuery(" SELECT * FROM Rooms ");
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare(" SELECT * FROM Rooms ");
     fetchquery.exec();
 
     while(fetchquery.next())
@@ -187,8 +190,8 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
 
          vector<Room> roomVector;
-
-         fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE Capacity= :capacity");
+         fetchquery = sqlMechanism.myQuery();
+         fetchquery.prepare("SELECT * FROM Rooms WHERE Capacity= :capacity");
          fetchquery.bindValue(":capacity",capacity);
          fetchquery.exec();
 
@@ -236,8 +239,8 @@ Room RoomManagement::fetchRoom(int roomnumber)
          QSqlQuery fetchquery;
          Room room;
          vector<Room> froomVector;
-
-         fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE RoomFloor= :rFloor");
+         fetchquery = sqlMechanism.myQuery();
+         fetchquery.prepare("SELECT * FROM Rooms WHERE RoomFloor= :rFloor");
          fetchquery.bindValue(":rFloor",floor);
          fetchquery.exec();
 
