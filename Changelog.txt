@@ -170,3 +170,13 @@
 
 	*added my week report
 =======
+14/12/10 9:35 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+
+	*added updated RoomManagement(.cpp &.h)
+
+	*added updated CustomerManagement(.cpp &.h)
+
+	*added updated ReservationManagement(.cpp &.h)
+
+	*added updated sqlMechanism(.cpp &.h)
+=======

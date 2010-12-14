@@ -17,8 +17,15 @@ void CustomerManagement::newCustomer(Customer customer)
 {
     if(CustomerManagement::checkInData(customer))
        {
-        sqlMechanism.execQuery("insert into Customers values('"+customer.getId()+"','"+customer.getName()+"', '"+customer.getSurname()+"' , '"+QString("%1").arg(customer.getGroupId())+"') ");
-       }
+        QSqlQuery query;
+        query = sqlMechanism.prepareQuery("insert into Customers (prIdCustomer,CustomerName,CustomerSurname,GroupId)"
+                                          "values(:custId, :custName, :custSurname, :groupId)");
+        query.bindValue(":custId", customer.getId());
+        query.bindValue(":custName",customer.getName());
+        query.bindValue(":custSurname",customer.getSurname());
+        query.bindValue(":groupId",customer.getGroupId());
+        query.exec();
+        }
 }
 
 /**
@@ -26,7 +33,12 @@ void CustomerManagement::newCustomer(Customer customer)
   */
 void CustomerManagement::editCustomer(Customer customer)
 {
- sqlMechanism.execQuery("update Customers SET prIdCustomer='"+customer.getId()+"', CustomerName='"+customer.getName()+"', CustomerSurname='"+customer.getSurname()+"' ");
+ QSqlQuery query;
+ query = sqlMechanism.prepareQuery("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
+ query.bindValue(":custId",customer.getId());
+ query.bindValue(":custName",customer.getName());
+ query.bindValue(":custSurname",customer.getSurname());
+ query.exec();
 }
 
 /**
@@ -34,7 +46,10 @@ void CustomerManagement::editCustomer(Customer customer)
   */
 void CustomerManagement::deleteCustomer(Customer customer)
 {
-  sqlMechanism.execQuery("delete from Customers where prIdCustomer='"+customer.getId()+"'");
+    QSqlQuery query;
+    query = sqlMechanism.prepareQuery("delete from Customers where prIdCustomer= :custId");
+    query.bindValue(":custId",customer.getId());
+    query.exec();
 }
 
 /*
@@ -47,7 +62,10 @@ Customer CustomerManagement::fetchCustomer(QString id)
     int groupid = 0;
     Customer customer;
 
-    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer='"+id+"'");
+    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers WHERE prIdCustomer= :custId");
+    fetchquery.bindValue(":custId",id);
+    fetchquery.exec();
+
     while (fetchquery.next())
     {
     customername = fetchquery.value(1).toString();
@@ -71,7 +89,8 @@ vector<Customer> CustomerManagement::fetchAllCustomers()
     Customer customer;
     vector<Customer> custVector;
 
-    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers");
+    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers");
+    fetchquery.exec();
     /**
       *while there is a available row set the data into a customer object
       *and then push it on a vector
@@ -101,8 +120,9 @@ vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
     Customer customer;
     vector<Customer> custVector;
 
-    fetchquery = sqlMechanism.execQuery("SELECT * FROM Customers WHERE prIdCustomer LIKE '%"+value+"%' OR CustomerName LIKE '%"+value+"%' OR CustomerSurname LIKE '%"+value+"%'");
-
+    fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Customers WHERE prIdCustomer LIKE :value OR CustomerName LIKE :value OR CustomerSurname LIKE :value");
+    fetchquery.bindValue(":value",value);
+    fetchquery.exec();
     /**
       *while there is a available row set the data into a customer object
       *and then push it on a vector
@@ -132,7 +152,7 @@ bool CustomerManagement::checkInData(Customer customer)
 
     QString cId=customer.getId();
     QString cName=customer.getName();
-     QString cSurname=customer.getSurname();
+    QString cSurname=customer.getSurname();
 
 
     bool ret=false;

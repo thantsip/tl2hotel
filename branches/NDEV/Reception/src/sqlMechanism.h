@@ -15,7 +15,10 @@ class SQLMechanism
     public:
         SQLMechanism();
         ~SQLMechanism();
+
         QSqlQuery execQuery(QString sqlQuery);
+
+        QSqlQuery prepareQuery(QString sqlQuery);
 };
 
 #endif // SQLMECHANISM_H

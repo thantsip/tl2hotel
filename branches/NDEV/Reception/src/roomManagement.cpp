@@ -25,7 +25,14 @@ void RoomManagement::newRoom(Room room)
 {
     if(RoomManagement::checkInData(room))
         {
-            sqlMechanism.execQuery("insert into Rooms values('"+QString("%1").arg(room.getRoomNumber())+"', '"+QString("%1").arg(room.getRoomFloor())+"','"+QString("%1").arg(room.getCapacity())+"','"+QString("1")+"','"+QString("extra")+"') ");
+            QSqlQuery query;
+            query = sqlMechanism.prepareQuery("insert into Rooms (RoomNumber,RoomFloor,Capacity,Extras)"
+                                           "values(:rNum, :rFloor, :capacity, :extras)");
+           query.bindValue(":rNum",room.getRoomNumber());
+           query.bindValue(":rFloor",room.getRoomFloor());
+           query.bindValue(":capacity",room.getCapacity());
+           query.bindValue(":extras","");
+           query.exec();
         }
 }
 
@@ -35,8 +42,10 @@ void RoomManagement::newRoom(Room room)
   */
 void RoomManagement::deleteRoom(Room room)
 {
-
-    sqlMechanism.execQuery("delete from Rooms where RoomNumber = '"+QString("%1").arg(room.getRoomNumber())+"' ");
+    QSqlQuery query;
+    query = sqlMechanism.prepareQuery("delete from Rooms where RoomNumber = :rNum");
+    query.bindValue(":rNum",room.getRoomNumber());
+    query.exec();
 }
 
 /**
@@ -44,7 +53,12 @@ void RoomManagement::deleteRoom(Room room)
   */
 void RoomManagement::editRoom(Room room)
 {
-   sqlMechanism.execQuery("update Rooms SET RoomNumber='"+QString(room.getRoomNumber())+"', RoomFloor='"+QString(room.getRoomFloor())+"', Capacity='"+QString(room.getCapacity())+"' ) ");
+    QSqlQuery query;
+    query = sqlMechanism.prepareQuery("update Rooms SET RoomNumber= :rNum, RoomFloor= :rFloor, Capacity= :capacity WHERE RoomNumber=:rNum");
+    query.bindValue(":rNum",room.getRoomNumber());
+    query.bindValue(":rFloor",room.getRoomFloor());
+    query.bindValue(":capacity",room.getCapacity());
+    query.exec();
 }
 
 
@@ -58,7 +72,10 @@ Room RoomManagement::fetchRoom(int roomnumber)
     QString roomextras;
     Room room;
 
-   fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomnumber)+"'");
+   fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
+   fetchquery.bindValue(":rNum",roomnumber);
+   fetchquery.exec();
+
     while (fetchquery.next())
     {
     roomfloor = fetchquery.value(1).toInt();
@@ -94,7 +111,8 @@ Room RoomManagement::fetchRoom(int roomnumber)
     Room room;
     vector<Room> roomVector;
 
-    fetchquery = sqlMechanism.execQuery(" SELECT * FROM Rooms ");
+    fetchquery = sqlMechanism.prepareQuery(" SELECT * FROM Rooms ");
+    fetchquery.exec();
 
     while(fetchquery.next())
     {
@@ -170,7 +188,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
          vector<Room> roomVector;
 
-         fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE Capacity='"+QString("%1").arg(capacity)+"'");
+         fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE Capacity= :capacity");
+         fetchquery.bindValue(":capacity",capacity);
+         fetchquery.exec();
 
          /**
            *while there is a available row set the data into a room object
@@ -217,7 +237,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
          Room room;
          vector<Room> froomVector;
 
-         fetchquery = sqlMechanism.execQuery("SELECT * FROM Rooms WHERE RoomFloor='"+QString("%1").arg(floor)+"'");
+         fetchquery = sqlMechanism.prepareQuery("SELECT * FROM Rooms WHERE RoomFloor= :rFloor");
+         fetchquery.bindValue(":rFloor",floor);
+         fetchquery.exec();
 
          /**
            *while there is a available row set the data into a room object
