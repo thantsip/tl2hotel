@@ -184,4 +184,11 @@
  
                *Updated roomManagement(.cpp )
 ========
-
+15/12/10 23:55 Marias Stergios <plir2011@gmail.com>
+	
+	*added 
+	mainwindow (.h & .cpp & .ui)
+	ui_mainwindow (.h)
+	main (.cpp)
+	about (.h & .cpp & .ui)
+=======

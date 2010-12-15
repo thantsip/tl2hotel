@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 7. Dec 23:50:13 2010
+** Created: Wed 15. Dec 23:41:59 2010
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,6 +16,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDateEdit>
 #include <QtGui/QGridLayout>
+#include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
@@ -85,6 +86,15 @@ public:
     QLabel *label_28;
     QLineEdit *InstantEdit;
     QTableWidget *InstantTableView;
+    QGroupBox *groupBox;
+    QWidget *gridLayoutWidget_12;
+    QGridLayout *gridLayout_10;
+    QLabel *label_29;
+    QLabel *PopNum;
+    QLabel *label_34;
+    QLabel *PopFloor;
+    QLabel *label_36;
+    QLabel *PopCap;
     QWidget *tab;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
@@ -369,6 +379,68 @@ public:
         InstantTableView->setRowCount(0);
         InstantTableView->setColumnCount(0);
         Tabs2->addTab(tab_6, QString());
+        groupBox = new QGroupBox(tab_3);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(10, 180, 211, 221));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        groupBox->setFont(font);
+        groupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(228, 230, 255);"));
+        gridLayoutWidget_12 = new QWidget(groupBox);
+        gridLayoutWidget_12->setObjectName(QString::fromUtf8("gridLayoutWidget_12"));
+        gridLayoutWidget_12->setGeometry(QRect(10, 20, 191, 191));
+        gridLayout_10 = new QGridLayout(gridLayoutWidget_12);
+        gridLayout_10->setSpacing(6);
+        gridLayout_10->setContentsMargins(11, 11, 11, 11);
+        gridLayout_10->setObjectName(QString::fromUtf8("gridLayout_10"));
+        gridLayout_10->setContentsMargins(0, 0, 0, 0);
+        label_29 = new QLabel(gridLayoutWidget_12);
+        label_29->setObjectName(QString::fromUtf8("label_29"));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("MS Shell Dlg 2"));
+        font1.setPointSize(8);
+        font1.setBold(true);
+        font1.setItalic(false);
+        font1.setWeight(75);
+        label_29->setFont(font1);
+        label_29->setStyleSheet(QString::fromUtf8(""));
+
+        gridLayout_10->addWidget(label_29, 0, 0, 1, 1);
+
+        PopNum = new QLabel(gridLayoutWidget_12);
+        PopNum->setObjectName(QString::fromUtf8("PopNum"));
+        PopNum->setStyleSheet(QString::fromUtf8("font: 75 11pt \"Comic Sans MS\";\n"
+"background-color: rgb(255, 255, 255);"));
+
+        gridLayout_10->addWidget(PopNum, 1, 0, 1, 1);
+
+        label_34 = new QLabel(gridLayoutWidget_12);
+        label_34->setObjectName(QString::fromUtf8("label_34"));
+        label_34->setFont(font);
+
+        gridLayout_10->addWidget(label_34, 2, 0, 1, 1);
+
+        PopFloor = new QLabel(gridLayoutWidget_12);
+        PopFloor->setObjectName(QString::fromUtf8("PopFloor"));
+        PopFloor->setStyleSheet(QString::fromUtf8("font: 75 11pt \"Comic Sans MS\";\n"
+"background-color: rgb(255, 255, 255);"));
+
+        gridLayout_10->addWidget(PopFloor, 3, 0, 1, 1);
+
+        label_36 = new QLabel(gridLayoutWidget_12);
+        label_36->setObjectName(QString::fromUtf8("label_36"));
+        label_36->setFont(font);
+
+        gridLayout_10->addWidget(label_36, 4, 0, 1, 1);
+
+        PopCap = new QLabel(gridLayoutWidget_12);
+        PopCap->setObjectName(QString::fromUtf8("PopCap"));
+        PopCap->setStyleSheet(QString::fromUtf8("font: 75 11pt \"Comic Sans MS\";\n"
+"background-color: rgb(255, 255, 255);"));
+
+        gridLayout_10->addWidget(PopCap, 5, 0, 1, 1);
+
         Tabs->addTab(tab_3, QString());
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
@@ -539,6 +611,7 @@ public:
         CustomerTable = new QTableWidget(tab);
         CustomerTable->setObjectName(QString::fromUtf8("CustomerTable"));
         CustomerTable->setGeometry(QRect(10, 211, 651, 191));
+        CustomerTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         Tabs->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -680,6 +753,7 @@ public:
         RoomTable = new QTableWidget(tab_2);
         RoomTable->setObjectName(QString::fromUtf8("RoomTable"));
         RoomTable->setGeometry(QRect(10, 180, 641, 221));
+        RoomTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         Tabs->addTab(tab_2, QString());
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -717,7 +791,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hotel Manager", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Reception", 0, QApplication::UnicodeUTF8));
         Exit->setText(QApplication::translate("MainWindow", "\316\210\316\276\316\277\316\264\316\277\317\202", 0, QApplication::UnicodeUTF8));
         Clean->setText(QApplication::translate("MainWindow", "\316\232\316\261\316\270\316\261\317\201\316\271\317\203\316\274\317\214\317\202 \316\214\316\273\317\211\316\275", 0, QApplication::UnicodeUTF8));
         Cut->setText(QApplication::translate("MainWindow", "\316\221\317\200\316\277\316\272\316\277\317\200\316\256", 0, QApplication::UnicodeUTF8));
@@ -742,6 +816,13 @@ public:
         Tabs2->setTabText(Tabs2->indexOf(tab_5), QApplication::translate("MainWindow", "\316\225\317\215\317\201\316\265\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         label_28->setText(QApplication::translate("MainWindow", "\316\243\317\204\316\277\316\271\317\207\316\265\316\257\316\261 \316\263\316\271\316\261 \316\261\316\275\316\261\316\266\316\256\317\204\316\267\317\203\316\267:", 0, QApplication::UnicodeUTF8));
         Tabs2->setTabText(Tabs2->indexOf(tab_6), QApplication::translate("MainWindow", "\316\225\317\215\317\201\316\265\317\203\316\267 \316\240\316\265\316\273\316\261\317\204\317\216\316\275", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QApplication::translate("MainWindow", "\316\243\317\204\316\277\316\271\317\207\316\265\316\257\316\261 \316\264\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        label_29->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
+        PopNum->setText(QString());
+        label_34->setText(QApplication::translate("MainWindow", "\316\214\317\201\316\277\317\206\316\277\317\202:", 0, QApplication::UnicodeUTF8));
+        PopFloor->setText(QString());
+        label_36->setText(QApplication::translate("MainWindow", "\316\247\317\211\317\201\316\267\317\204\316\271\316\272\317\214\317\204\316\267\317\204\316\261:", 0, QApplication::UnicodeUTF8));
+        PopCap->setText(QString());
         Tabs->setTabText(Tabs->indexOf(tab_3), QApplication::translate("MainWindow", "\316\235\316\255\316\261 \316\232\317\201\316\254\317\204\316\267\317\203\316\267", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("MainWindow", "Group ID:", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "\316\225\317\200\317\216\316\275\317\205\316\274\316\277:", 0, QApplication::UnicodeUTF8));
