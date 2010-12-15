@@ -180,3 +180,8 @@
 
 	*added updated sqlMechanism(.cpp &.h)
 =======
+15/12/10 22:44 Mitrai Dimitris <dimitris.mitrou24@gmail.com>
+ 
+               *Updated roomManagement(.cpp )
+========
+
