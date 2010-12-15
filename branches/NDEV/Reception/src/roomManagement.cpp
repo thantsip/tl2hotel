@@ -58,7 +58,7 @@ void RoomManagement::deleteRoom(Room room)
          QSqlQuery query;
 
         fetchquery = sqlMechanism.myQuery();
-        fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+        fetchquery.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
         fetchquery.bindValue(":rNum",room.getRoomNumber());
         fetchquery.exec();
 
@@ -83,7 +83,7 @@ void RoomManagement::editRoom(Room room)
 
 
          fetchquery = sqlMechanism.myQuery();
-         fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+         fetchquery.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
          fetchquery.bindValue(":rNum",room.getRoomNumber());
          fetchquery.exec();
 
