@@ -23,6 +23,17 @@ RoomManagement::~RoomManagement()
   */
 void RoomManagement::newRoom(Room room)
 {
+        QSqlQuery fetchquery;
+        fetchquery = sqlMechanism.myQuery();
+        fetchquery.prepare("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
+        fetchquery.bindValue(":rNum",room.getRoomNumber());
+        fetchquery.exec();
+
+        while(fetchquery.next())
+        {
+            QMessageBox::information(0,"Input Data Error","This Number exists");
+        }
+
     if(RoomManagement::checkInData(room))
         {
             QSqlQuery query;
@@ -43,7 +54,19 @@ void RoomManagement::newRoom(Room room)
   */
 void RoomManagement::deleteRoom(Room room)
 {
-    QSqlQuery query;
+         QSqlQuery fetchquery;
+         QSqlQuery query;
+
+        fetchquery = sqlMechanism.myQuery();
+        fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+        fetchquery.bindValue(":rNum",room.getRoomNumber());
+        fetchquery.exec();
+
+        while(fetchquery.next())
+        {
+           QMessageBox::information(0,"Input Data Error","This room can't be edited.Reservation in progress");
+        }
+
     query = sqlMechanism.myQuery();
     query.prepare("delete from Rooms where RoomNumber = :rNum");
     query.bindValue(":rNum",room.getRoomNumber());
@@ -55,7 +78,20 @@ void RoomManagement::deleteRoom(Room room)
   */
 void RoomManagement::editRoom(Room room)
 {
-    QSqlQuery query;
+         QSqlQuery query;
+         QSqlQuery fetchquery;
+
+
+         fetchquery = sqlMechanism.myQuery();
+         fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+         fetchquery.bindValue(":rNum",room.getRoomNumber());
+         fetchquery.exec();
+
+         while(fetchquery.next())
+         {
+            QMessageBox::information(0,"Input Data Error","This room can't be edited.Reservation in progress");
+         }
+
     query = sqlMechanism.myQuery();
     query.prepare("update Rooms SET RoomNumber= :rNum, RoomFloor= :rFloor, Capacity= :capacity WHERE RoomNumber=:rNum");
     query.bindValue(":rNum",room.getRoomNumber());
