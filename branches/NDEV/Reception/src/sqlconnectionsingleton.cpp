@@ -167,7 +167,6 @@ bool SqlConnection::dbCreateInstance()
     ret = query.exec("create table Rooms (RoomNumber INTEGER PRIMARY KEY AUTOINCREMENT ,"
                                         "RoomFloor INTEGER ,"
                                         "Capacity INTEGER ,"
-                                        "Free INTEGER ,"
                                         "Extras TEXT )");
     }
     progress.setValue(progress.maximum());
