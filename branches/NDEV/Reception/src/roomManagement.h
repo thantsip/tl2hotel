@@ -36,7 +36,6 @@ vector<Room> searchRoomByCapacity(int capacity);
 vector<Room> searchRoomByFloor(int floor);
 
        bool checkInData(Room room);
-       void setStatus(int roomNumber,bool free);
        bool getStatus(int roomNumber);
 
 

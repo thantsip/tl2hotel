@@ -5,16 +5,14 @@
 //default constructor
 Room::Room()
 {
-    free=true;
     roomNumber=0;
     roomFloor=0;
     Capacity=0;
 }
 
 //constructor with all class atributes
-Room::Room(bool fr,int nm,int fl, int cap)
+Room::Room(int nm,int fl, int cap)
 {
-    free=fr;
     roomNumber=nm;
     roomFloor=fl;
     Capacity=cap;
@@ -24,10 +22,6 @@ Room::Room(bool fr,int nm,int fl, int cap)
 
 
 //setFree->sets the status of the room.(free or not)
-void Room::setFree(bool fr)
-{
-        free = fr;
-}
 
 void Room::setRoomNumber(int nm)
 {
@@ -47,10 +41,6 @@ void Room::setCapacity(int cap)
 //-------------- getter operations -----------------------//
 
 
-//getFree-> returns the status of the room (free or not)[true/false]
-bool Room::getFree(){
-    return free;
-}
 
 int Room::getRoomNumber()
 {
