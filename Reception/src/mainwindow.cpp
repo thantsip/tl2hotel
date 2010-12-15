@@ -52,11 +52,31 @@ void MainWindow::on_Exit_triggered()
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (event->type() == QEvent::MouseButtonRelease)
+    QString floor,num,cap;
+    vector<Room> Room;
+    Room = RM.fetchAllRooms();
+    int RoomSize=Room.size();
+
+    if (event->type() == QEvent::MouseButtonDblClick)
     {
         ui->RoomNumberReservation->setText(obj->objectName());
         return true;
-    } else
+    }
+    else if (event->type() == QEvent::MouseButtonRelease)
+    {
+        ui->PopNum->setText(obj->objectName());
+        num.setNum(obj->objectName().toInt());
+        for(int i=0;i<RoomSize;i++)
+            if(Room[i].getRoomNumber()==num.toInt())
+            {
+                floor.setNum(Room[i].getRoomFloor());
+                cap.setNum(Room[i].getCapacity());
+            }
+        ui->PopFloor->setText(floor);
+        ui->PopCap->setText(cap);
+        return true;
+    }
+    else
     {
         // standard event processing
         return QObject::eventFilter(obj, event);
@@ -402,7 +422,8 @@ void MainWindow::on_SaveRoom_clicked()
 void MainWindow::showRoomGrid()
 {
     vector<Room> Room;
-    QString RoomNumTitle;
+    QString RoomNumTitle,RoomFloor;
+
 
     Room = RM.fetchAllRooms();
 
@@ -420,8 +441,9 @@ void MainWindow::showRoomGrid()
         RoomLabel->setFont(QFont( "Comic Sans MS", 8, QFont::Bold ));
         //-----------------------------------------------------------
         RoomNumTitle.setNum(Room[RoomNum].getRoomNumber());
+        RoomFloor.setNum(Room[RoomNum].getRoomFloor());
         RoomLabel->setObjectName(RoomNumTitle);
-        RoomLabel->setText(RoomNumTitle);
+        RoomLabel->setText("Number: "+RoomNumTitle+"\n Floor: "+RoomFloor);
         //-----------------------------------------------------------
         if(RM.getStatus(Room[RoomNum].getRoomNumber())==true)
             RoomLabel->setStyleSheet("color: white; background-color:green;");
@@ -499,4 +521,11 @@ void MainWindow::on_InstantEdit_textChanged(QString )
 void MainWindow::on_InstantTableView_cellClicked(int row, int column)
 {
      ui->CustomerIdReservation->setText( ui->InstantTableView->item(row,0)->text());
+}
+
+void MainWindow::on_About_triggered()
+{
+    About ab;
+
+    ab.show();
 }

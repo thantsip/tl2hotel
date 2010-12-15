@@ -8,6 +8,7 @@
 #include "customerManagement.h"
 #include "roomManagement.h"
 #include "reservationManagement.h"
+#include "about.h"
 
 static const QString Title                 = QObject::tr("Hotel Manager");
 static const QString EmptyRes              = QObject::tr("Please fill out customer ID and room number");
@@ -40,6 +41,7 @@ private:
     ReservationManagement ResM;
 
 private slots:
+    void on_About_triggered();
     void on_InstantTableView_cellClicked(int row, int column);
     void on_InstantEdit_textChanged(QString );
     void on_Tabs2_selected(QString );
