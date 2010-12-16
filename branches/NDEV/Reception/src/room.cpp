@@ -2,7 +2,9 @@
 #include "room.h"
 
 
-//default constructor
+/*
+  *default constructor
+  */
 Room::Room()
 {
     roomNumber=0;
@@ -10,7 +12,9 @@ Room::Room()
     Capacity=0;
 }
 
-//constructor with all class atributes
+/*
+ *constructor with all class atributes
+ */
 Room::Room(int nm,int fl, int cap)
 {
     roomNumber=nm;
