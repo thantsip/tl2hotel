@@ -1,7 +1,9 @@
 #include <iostream>
 #include "customer.h"
 
-//default constructor
+/*
+ *default constructor
+ */
 Customer::Customer()
 {
     id = "";
@@ -10,7 +12,9 @@ Customer::Customer()
     groupId=0;
 }
 
-//constructor with all class atributes
+/*
+ *constructor with all class atributes
+ */
 Customer::Customer(QString i,QString n,QString sn,int ig)
 {
     id= i;
@@ -19,36 +23,51 @@ Customer::Customer(QString i,QString n,QString sn,int ig)
     groupId=ig;
 }
 
-//destructor
+/*
+ *destructor
+ */
 Customer::~Customer(){}
 
-//------------ getter operations---------------------//
-//getId->return id of the customer
+/*
+ *------------ getter operations---------------------//
+ */
+/*
+ *getId->return id of the customer
+ */
 QString Customer::getId()
 {
     return id;
 }
 
-//getName-> return the name of the customer
+/*
+ *getName-> return the name of the customer
+ */
 QString Customer::getName()
 {
     return name;
 }
 
-//getSurname -> return the surname of the customer
+/*
+ *getSurname -> return the surname of the customer
+ */
 QString Customer::getSurname()
 {
     return surname;
 }
 
-//getGroupId -> returns the groupId of the customer
+/*
+ *getGroupId -> returns the groupId of the customer
+ */
 int Customer::getGroupId()
 {
     return groupId;
 }
 
 //-------------------setter operations-------------------//
-//setId-> sets the id of the customer
+
+/*
+ *setId-> sets the id of the customer
+ */
 void Customer::setId(QString i)
 {
 
@@ -58,7 +77,9 @@ void Customer::setId(QString i)
         cerr << "invalid customer id\nPlease try again . . .\n";
 }
 
-//setName-> sets the name of the customer
+/*
+ *setName-> sets the name of the customer
+ */
 void Customer::setName(QString n)
 {
     if (n!=NULL) //checks if the name is valid
@@ -67,7 +88,9 @@ void Customer::setName(QString n)
         cerr << "invalid customer name\nPlease try again . . .\n";
 }
 
-//setSurname-> sets the surname of the customer
+/*
+ *setSurname-> sets the surname of the customer
+ */
 void Customer::setSurname(QString sn)
 {
     if (sn!=NULL) //checks if the surname is valid
@@ -76,7 +99,9 @@ void Customer::setSurname(QString sn)
         cerr << "invalid customer surname\nPlease try again . . .\n";
 }
 
-//setSurname-> sets the groupId of the customer
+/*
+ *setSurname-> sets the groupId of the customer
+ */
 void Customer::setGroupId(int ig){
 
     if (ig>=0)

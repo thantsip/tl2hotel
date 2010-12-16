@@ -356,22 +356,18 @@ bool RoomManagement::checkInData(Room room)
     return ret;
 }
 
+/**
+  *checks if data are correct
+  */
 
-//setFree->sets the status of the room.(free or not)
-void RoomManagement::setStatus(int roomNumber,bool free){
-    if(free){
-         sqlMechanism.execQuery("update Rooms SET Free=1 where RoomNumber='"+QString("%1").arg(roomNumber)+"' ");
-     }
-    else{
-        sqlMechanism.execQuery("update Rooms SET Free=0 where RoomNumber='"+QString("%1").arg(roomNumber)+"' ");
-    }
-}
 
-//getFree-> returns the status of the room (free or not)[true/false]
+/**
+  *getFree-> returns the status of the room (free or not)[true/false]
+  */
 bool RoomManagement::getStatus(int roomNumber)
 {
    QSqlQuery freeQuery;
-   freeQuery = sqlMechanism.execQuery("SELECT Free FROM Rooms WHERE RoomNumber='"+QString("%1").arg(roomNumber)+"'");
+   freeQuery = sqlMechanism.execQuery("SELECT * FROM RoomsReservation WHERE RoomNumber='"+QString("%1").arg(roomNumber)+"'");
    while(freeQuery.next())
     {
        if(freeQuery.value(0).toInt()==1)
