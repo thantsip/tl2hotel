@@ -13,9 +13,7 @@
 
 #include "room.h"
 
-/**
-  *Creates new rooms in the database, edits/ deletes room
-  */
+
 
 class RoomManagement
 {
@@ -30,18 +28,16 @@ public:
        void deleteRoom(Room room);
        void editRoom(Room room);
        Room fetchRoom(int roomnumber);
-      vector<Room> fetchAllRooms();
-      vector<Room> fetchFreeRooms();
-vector<Room> searchRoomByCapacity(int capacity);
-vector<Room> searchRoomByFloor(int floor);
+       vector<Room> fetchAllRooms();
+       vector<Room> fetchFreeRooms();
+	   vector<Room> searchRoomByCapacity(int capacity);
+	   vector<Room> searchRoomByFloor(int floor);
 
        bool checkInData(Room room);
        bool getStatus(int roomNumber);
 
 
-    /**
-      *destructor
-      */
+
        ~RoomManagement();
 };
 #endif // ROOMMANAGEMENT_H

@@ -1,8 +1,13 @@
 #include <iostream>
 #include "customer.h"
+/*
+ *Customer class
+ *This class holds the customer's information
+ */ 
+
 
 /*
- *default constructor
+ *default constructors
  */
 Customer::Customer()
 {
@@ -14,6 +19,10 @@ Customer::Customer()
 
 /*
  *constructor with all class atributes
+ &@param i is a string copy variable
+ &@param n is a string copy variable
+ &@param sn is a string copy variable
+ &@param ig is an integer copy variable
  */
 Customer::Customer(QString i,QString n,QString sn,int ig)
 {
@@ -28,11 +37,11 @@ Customer::Customer(QString i,QString n,QString sn,int ig)
  */
 Customer::~Customer(){}
 
+
 /*
- *------------ getter operations---------------------//
- */
-/*
- *getId->return id of the customer
+ *returns id of the customer
+ *@param id is a string argument
+ *@return the id result
  */
 QString Customer::getId()
 {
@@ -40,7 +49,9 @@ QString Customer::getId()
 }
 
 /*
- *getName-> return the name of the customer
+ *returns the name of the customer
+ *@param name is a string argument
+ *@return the name result
  */
 QString Customer::getName()
 {
@@ -48,7 +59,9 @@ QString Customer::getName()
 }
 
 /*
- *getSurname -> return the surname of the customer
+ *return the surname of the customer
+ *@param suname is a string argument
+ *@return the surname result
  */
 QString Customer::getSurname()
 {
@@ -56,17 +69,19 @@ QString Customer::getSurname()
 }
 
 /*
- *getGroupId -> returns the groupId of the customer
+ *returns the groupId of the customer
+ *@param groupId is an integer argument
+ *@return the groupId result
  */
 int Customer::getGroupId()
 {
     return groupId;
 }
 
-//-------------------setter operations-------------------//
 
 /*
- *setId-> sets the id of the customer
+ *sets the id of the customer
+ &@param i is a string variable
  */
 void Customer::setId(QString i)
 {
@@ -78,7 +93,8 @@ void Customer::setId(QString i)
 }
 
 /*
- *setName-> sets the name of the customer
+ *sets the name of the customer
+ &@param n is a string variable
  */
 void Customer::setName(QString n)
 {
@@ -89,7 +105,8 @@ void Customer::setName(QString n)
 }
 
 /*
- *setSurname-> sets the surname of the customer
+ *sets the surname of the customer
+ &@param sn is a string variable
  */
 void Customer::setSurname(QString sn)
 {
@@ -100,7 +117,8 @@ void Customer::setSurname(QString sn)
 }
 
 /*
- *setSurname-> sets the groupId of the customer
+ *sets the groupId of the customer
+ &@param ig is an integer variable 
  */
 void Customer::setGroupId(int ig){
 

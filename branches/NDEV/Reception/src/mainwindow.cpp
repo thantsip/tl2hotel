@@ -20,11 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
                                                                << tr("Name")
                                                                << tr("SurName")
                                                                << tr("Group ID"));
-    ui->RoomTable->setColumnCount(5);
+    ui->RoomTable->setColumnCount(4);
     ui->RoomTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
                                                            << tr("Room Floor")
                                                            << tr("Capacity")
-                                                           << tr("Free")
                                                            << tr("Extras"));
 }
 
@@ -95,7 +94,7 @@ void MainWindow::CustomerTableView()
         ui->CustomerTable->setItem(i,0,new QTableWidgetItem(Customers[i].getId()));
         ui->CustomerTable->setItem(i,1,new QTableWidgetItem(Customers[i].getName()));
         ui->CustomerTable->setItem(i,2,new QTableWidgetItem(Customers[i].getSurname()));
-        ui->CustomerTable->setItem(i,3,new QTableWidgetItem(Customers[i].getGroupId()));
+        ui->CustomerTable->setItem(i,3,new QTableWidgetItem(QString("%1").arg(Customers[i].getGroupId())));
     }
 }
 
@@ -111,7 +110,7 @@ void MainWindow::RoomTableView()
         ui->RoomTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
         ui->RoomTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
         ui->RoomTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
-        ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg(RM.getStatus(Room[i].getRoomNumber() ) )));
+        //ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg((Room[i].getExtras() ) )));
     }
 }
 
@@ -226,7 +225,6 @@ void MainWindow::on_NewReservation_clicked()
             room.setRoomNumber(ui->RoomNumberReservation->text().toInt());
 
             ResM.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),room,customer);
-            RM.setStatus(room.getRoomNumber(),false);
 
             ui->CheckInDate->setDate(QDate(QDate::currentDate()));
             ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
@@ -322,6 +320,15 @@ void MainWindow::on_SaveCustomer_clicked()
     }
     else
     {
+        Customer customer;
+
+        customer.setId( ui->FindID->text() );
+        customer.setName( ui->FindName->text());
+        customer.setSurname( ui->FindSurname->text());
+        customer.setGroupId( ui->FindGroupID->text().toInt());
+
+        CM.editCustomer(customer);
+
         ui->FindID->setText("");
         ui->FindGroupID->setText("");
         ui->FindName->setText("");
@@ -410,6 +417,13 @@ void MainWindow::on_SaveRoom_clicked()
     }
     else
     {
+        Room room;
+        room.setRoomNumber( ui->FindRoomNumber->text().toInt() );
+        room.setCapacity( ui->FindRoomCapacity->text().toInt() );
+        room.setRoomFloor( ui->FindRoomFloor->text().toInt() );
+
+        RM.editRoom(room);
+
         ui->FindRoomCapacity->setText("");
         ui->FindRoomFloor->setText("");
         ui->FindRoomNumber->setText("");
@@ -504,7 +518,7 @@ void MainWindow::on_InstantEdit_textChanged(QString )
             ui->InstantTableView->setItem(i,0,new QTableWidgetItem(searchCustomers[i].getId()));
             ui->InstantTableView->setItem(i,1,new QTableWidgetItem(searchCustomers[i].getName()));
             ui->InstantTableView->setItem(i,2,new QTableWidgetItem(searchCustomers[i].getSurname()));
-            ui->InstantTableView->setItem(i,3,new QTableWidgetItem(searchCustomers[i].getGroupId()));
+            ui->InstantTableView->setItem(i,3,new QTableWidgetItem(QString("%1").arg(searchCustomers[i].getGroupId())));
         }
     }
     else
