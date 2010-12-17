@@ -5,9 +5,7 @@
 class SQLMechanism
 {
     protected:
-    /*
-     *declare a QSqlDatabase object
-     */
+
     QSqlDatabase db;
     private:
         SqlConnection *SqlConnec;
@@ -15,8 +13,6 @@ class SQLMechanism
     public:
         SQLMechanism();
         ~SQLMechanism();
-
-        QSqlQuery execQuery(QString sqlQuery);
 
         QSqlQuery myQuery();
 };

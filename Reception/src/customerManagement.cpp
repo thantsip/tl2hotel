@@ -1,17 +1,26 @@
 #include "customerManagement.h"
 
 /**
+  Customer Management class
+  *Creates new customers in the database or edits/deletes and already existing customer in the database
+  */
+
+/**
   *constructor
  */
 CustomerManagement::CustomerManagement()
 {
 }
 
-CustomerManagement::~CustomerManagement() {
+CustomerManagement::~CustomerManagement() 
+{
 }
 
 /**
   *Creates new entry in Customer table
+  *@param customer is a customer class item
+  *@param fetchquery is an sql query
+  *@param query is an sql query
   */
 void CustomerManagement::newCustomer(Customer customer)
 {
@@ -42,33 +51,43 @@ void CustomerManagement::newCustomer(Customer customer)
 
 /**
   *Edits the fields from selected Customer in Customer table
+  *@param customer is a customer class item
+  *@param query is an sql query
+  *@param fetchquery is an sql query
   */
 void CustomerManagement::editCustomer(Customer customer)
 {
      QSqlQuery query;
      QSqlQuery fetchquery;
 
-
      fetchquery = sqlMechanism.myQuery();
-     fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
+     fetchquery.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
      fetchquery.bindValue(":custId",customer.getId());
      fetchquery.exec();
 
-     while(fetchquery.next())
-     {
-        QMessageBox::information(0,"Input Data Error","This customer can't be edited.Reservation in progress");
-     }
+     fetchquery.next();
+     if(fetchquery.isValid())
+        {
+            QMessageBox::information(0,"Input Data Error","This customer can't be edited.Reservation in progress");
+        }
+     else
+         {
+             query = sqlMechanism.myQuery();
+             query.prepare("UPDATE Customers SET CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
+             query.bindValue(":custId",customer.getId());
+             query.bindValue(":custName",customer.getName());
+             query.bindValue(":custSurname",customer.getSurname());
+             query.exec();
+         }
 
-     query = sqlMechanism.myQuery();
-     query.prepare("UPDATE Customers SET prIdCustomer=:custId, CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
-     query.bindValue(":custId",customer.getId());
-     query.bindValue(":custName",customer.getName());
-     query.bindValue(":custSurname",customer.getSurname());
-     query.exec();
+
 }
 
 /**
   *Deletes selected entry in Customer table
+  *@param customer is a customer class item
+  *@param query is an sql query
+  *@param fetchquery is an sql query
   */
 void CustomerManagement::deleteCustomer(Customer customer)
 {
@@ -76,25 +95,33 @@ void CustomerManagement::deleteCustomer(Customer customer)
      QSqlQuery query;
 
     fetchquery = sqlMechanism.myQuery();
-    fetchquery = sqlMechanism.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
+    fetchquery.prepare("SELECT * FROM RoomsReservation WHERE fkCustomerId= :custId");
     fetchquery.bindValue(":custId",customer.getId());
     fetchquery.exec();
 
-    while(fetchquery.next())
-    {
-       QMessageBox::information(0,"Input Data Error","This customer can't be edited.Reservation in progress");
-    }
-
-
-    query = sqlMechanism.myQuery();
-    query.prepare("delete from Customers where prIdCustomer= :custId");
-    query.bindValue(":custId",customer.getId());
-    query.exec();
+    fetchquery.next();
+    if(fetchquery.isValid())
+        {
+           QMessageBox::information(0,"Input Data Error","This customer can't be deleted.Reservation in progress");
+        }
+    else
+        {
+            query = sqlMechanism.myQuery();
+            query.prepare("delete from Customers where prIdCustomer= :custId");
+            query.bindValue(":custId",customer.getId());
+            query.exec();
+        }
 }
 
-/*
-*Fetch the customer with the id
-*/
+ /**
+ *Fetches the customer with the selected id
+ *@param id is a string argument
+ *@param fetchquery is an sql query
+ *@param groupid is an integer variable
+ *@param customer is a customer class item
+ *@param customername is a string variable
+ *@return the selected customer information
+ */
 Customer CustomerManagement::fetchCustomer(QString id)
 {
     QSqlQuery fetchquery;
@@ -121,7 +148,12 @@ Customer CustomerManagement::fetchCustomer(QString id)
 }
 
 /**
-  *fetch all the customers and return them into a vector
+  *fetches all the customers and return them into a vector
+  *@param fetchquery is an sql query
+  *@param customer is a customer class item
+  *@param custVector is a vector containing all customers
+  *@return the vector result
+
   */
 vector<Customer> CustomerManagement::fetchAllCustomers()
 {
@@ -145,15 +177,17 @@ vector<Customer> CustomerManagement::fetchAllCustomers()
 
         custVector.push_back(customer);
     }
-    /**
-      *return the vector that containce
-      */
+
     return custVector;
 
 }
 
 /**
-  *fetch the customers by id,name or surname
+  *fetches the customers by id,name or surname
+  *@param fetchquery is an sql query
+  *@param customer is a customer class item
+  *@param custVector is a vector containing all customers having the selected value
+  *@return the vector containing the customers with the selected value
   */
 vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
 {
@@ -162,13 +196,11 @@ vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
     vector<Customer> custVector;
 
     fetchquery = sqlMechanism.myQuery();
-    fetchquery.prepare("SELECT * FROM Customers WHERE prIdCustomer LIKE :value OR CustomerName LIKE :value OR CustomerSurname LIKE :value");
-    fetchquery.bindValue(":value",value);
-    fetchquery.exec();
-    /**
-      *while there is a available row set the data into a customer object
-      *and then push it on a vector
-      */
+    fetchquery.exec("SELECT * FROM Customers WHERE prIdCustomer LIKE '%"+value+"%' OR CustomerName LIKE '%"+value+"%' OR CustomerSurname LIKE '%"+value+"%'");
+    //fetchquery.prepare("SELECT * FROM Customers WHERE prIdCustomer LIKE :value OR CustomerName LIKE :value OR CustomerSurname LIKE :value");
+    //fetchquery.bindValue(":value",value);
+    //fetchquery.exec();
+ 
     while(fetchquery.next())
     {
         customer.setId(fetchquery.value(0).toString());
@@ -178,16 +210,20 @@ vector<Customer> CustomerManagement::searchCustomerByValue(QString value)
 
         custVector.push_back(customer);
     }
-    /**
-      *return the vector that containce
-      */
+
     return custVector;
 
 
 }
 
 /**
-  *checks if data are correct
+  *checks if customer data is correct
+  *@param customer is a customer class item
+  *@param cId is a string variable
+  *@param cName is a string variable
+  *@param cSurname is a string variable
+  *@param ret is a boolean
+  *@return the statement whether the data is correct or not
   */
 bool CustomerManagement::checkInData(Customer customer)
 {
@@ -199,11 +235,10 @@ bool CustomerManagement::checkInData(Customer customer)
 
     bool ret=false;
 
-    /**
-          *check that the customerId has no spaces
-          */
 
-    if(!cId.isEmpty())
+          
+
+    if(!cId.isEmpty()) 
                 {
                     ret = true;
                 }
@@ -224,7 +259,7 @@ bool CustomerManagement::checkInData(Customer customer)
                         ret = false;
         }
 
-        if(!cSurname.isEmpty())
+        if(!cSurname.isEmpty()) 
             {
                  ret=true;
             }
