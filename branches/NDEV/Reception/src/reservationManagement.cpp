@@ -1,5 +1,9 @@
 #include "reservationManagement.h"
-
+/**
+ *Reservation Management Class
+ *Checks if selected room is free and adds reservation to the database,or cancels existing reservation or makes checkout of reservation
+ *@param reservationId is an integer identifier number
+ */
 
  /**
    *Default Constructors
@@ -15,6 +19,9 @@ ReservationManagement::ReservationManagement()
 
 /**
   *Copy,set,get Constructors
+  *@param reservationId1 is an integer copy variable
+  *@param dateFrom1 is a string copy variable
+  *@param dateTo1 is a string copy variable
   */
 ReservationManagement::ReservationManagement(int reservationId1,QString dateFrom1,QString dateTo1)
 {
@@ -24,6 +31,11 @@ ReservationManagement::ReservationManagement(int reservationId1,QString dateFrom
 }
 
 
+/**
+  *returns the reservation id
+  *@param reservationId is an integer argument
+  *@return the reservationId result
+  */
 int ReservationManagement::getReservationId()
 {
     return reservationId;
@@ -59,36 +71,29 @@ void ReservationManagement::setDateTo(QString dateTo1 )
 }
 
 /**
-  *Room Reservation Function
-  *makes the reservation of the selected room
-  */
-
+  *makes the reservation of the selected room and inserts it into table RoomsResevation
+  *@param query is an sql query
+  *@param room is a room class item
+  *@param customer is a customer class item
+*/  
 void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room room,Customer customer)
 {
     QMessageBox msgBox;
 
-    /**
-      *check if there is any available room
-      *if there is insert a reservation
-      */
-    if(!room.getFree())
+
+
+   /* if(!room.getFree())
     {
-        /**
-          *message that informs that there is none available room
-          */
 
         msgBox.setText("Reservation not made.Room is not free at the moment.");
         msgBox.exec();
 
-    }
-    /**
-      *check if the data given by the user are correct
-      */
+    }*/
+
+
     if( ReservationManagement::checkInData(room,customer) )
     {
-        /**
-          *insert the data into table RoomsResevation
-          */
+ 
          QSqlQuery query;
          query = sqlMechanism.myQuery();
          query.prepare("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId)"
@@ -106,8 +111,13 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
 
 }
 /**
-  *a function that checks if the data given by the user are correct
-  *if not a message appears that informs for an error
+  *checks if the data given by the user is correct
+  *@param rNum is an integer variable
+  *@param cId is a string variable
+  *@param c is a character variable
+  *@param error is and integer variable
+  *@param ret is a boolean
+  *@return the statement whether the data is correct or not
   */
 bool ReservationManagement::checkInData(Room room, Customer customer)
 {
@@ -118,9 +128,7 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
     int error = 0;
     bool ret = false;
 
-    /**
-      *check that the customerId has no spaces or symbols
-      */
+
     foreach(c,cId)
     {
         if(!c.isLetterOrNumber())
@@ -138,19 +146,30 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
     else
         ret = true;
 
-    /**
-      *@return true data is correct
-      *@return false if data is incorrect
-      */
+
     return ret;
 }
+
+/**
+ *checks out the selected reservation and calculates the charge for the room
+ *@param total is a double variable
+ *@param customerId is a string variable
+ *@param cId is a string variable
+ *@param q is an sql query
+ *@param diff is an integer variable
+ *@param roomId is an integer variable
+ *@param capacity is an integer variable
+ *@param d1 is a date variable
+ *@param d2 is a date variable
+ *@return the total charge the customer has to pay
+ */
 
 double ReservationManagement::roomCheckout(int reservationId)
 {
    double total;
    QString query,customerId,cId;
    QSqlQuery q;
-   int diff=0,rid,roomId=0,capacity=0;
+   int diff=0,roomId=0,capacity=0;
    QDate d1,d2;
 
    query = "SELECT DateFrom,DateTo,fkCustomerId,fkRoomId FROM RoomsReservation WHERE prIdReservation = :resId";

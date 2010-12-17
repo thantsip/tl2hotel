@@ -6,7 +6,6 @@
 #include <QFile>
 
 
-/* GUI string messages. */
 static const QString fileHandlerstr     = QObject::tr("File Handler");
 static const QString fileNotExistStr    = QObject::tr("File does not Exist. \nCreate new Database Instance.");
 static const QString fileRemovedStr     = QObject::tr("File was removed.");
@@ -16,9 +15,9 @@ class FileHandler
 {
 public:
 
-    /*chech if the file exist*/
+
     bool isFileExist(QString fileName);
-    /*remove file*/
+
     bool removeFile(QString fileName);
 };
 
