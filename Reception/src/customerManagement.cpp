@@ -73,10 +73,11 @@ void CustomerManagement::editCustomer(Customer customer)
      else
          {
              query = sqlMechanism.myQuery();
-             query.prepare("UPDATE Customers SET CustomerName=:custName, CustomerSurname=:custSurname WHERE prIdCustomer=:custId");
+             query.prepare("UPDATE Customers SET CustomerName=:custName, CustomerSurname=:custSurname ,GroupId=:custGroupId WHERE prIdCustomer=:custId");
              query.bindValue(":custId",customer.getId());
              query.bindValue(":custName",customer.getName());
              query.bindValue(":custSurname",customer.getSurname());
+             query.bindValue(":custGroupId",customer.getGroupId());
              query.exec();
          }
 
