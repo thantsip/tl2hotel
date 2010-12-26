@@ -169,6 +169,25 @@ bool SqlConnection::dbCreateInstance()
                                         "Capacity INTEGER ,"
                                         "Extras TEXT )");
     }
+
+    progress.setValue(++step);
+    if(ret)
+    {
+    ret = query.exec("create table Prices (RoomCapacity INTEGER,"
+                                           "Price DOUBLE)");
+    }
+
+    progress.setValue(++step);
+    if(ret)
+    {
+    ret = query.exec("create table Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                                           "Name VARCHAR(25) , "
+                                           "Surname VARCHAR(25) ,"
+                                           "Username VARCHAR(25) , "
+                                           "Password VARCHAR(25),"
+                                           "Role VARCHAR(15))");
+    }
+
     progress.setValue(progress.maximum());
     if(ret)
     {
@@ -181,6 +200,7 @@ bool SqlConnection::dbCreateInstance()
                                         "FOREIGN KEY (fkRoomId) REFERENCES Rooms)");
 
     }
+
      progress.setValue(++step);
     if(!ret)
     {
