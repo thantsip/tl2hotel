@@ -48,7 +48,7 @@ public:
        void roomReservation(QString DateFrom,QString DateTo,Room room,Customer customer);
 
        bool checkInData(Room room,Customer customer);
-       double roomCheckout(int reservationId);
+       double roomCheckout(int RoomNumber);
 
 };
 
