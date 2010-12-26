@@ -14,7 +14,7 @@
  */
 static const QString dbDriverStr = "QSQLITE";
 static const QString dbFileNameStr = "database.s3db";
-static const int PBAR_MAX_STEPS =5;
+static const int PBAR_MAX_STEPS =7;
 
 /*
  * GUI string messages.

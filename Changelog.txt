@@ -204,3 +204,9 @@
  
                *added my week report
 ========
+26/12/10 16:10 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+ 
+                *added my week report
+		*added reservationManagement(.cpp & .h)
+		*added sqlconnectionsingleton(.cpp & .h)
+========

@@ -81,7 +81,7 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
     QMessageBox msgBox;
     RoomManagement RM;
 
-    //if room is not freee in this period
+    //if room is not free in this period
    if(!RM.getStatus(room.getRoomNumber()))
     {
         msgBox.setText("Reservation not made.\nRoom is not free at the moment.");
@@ -148,22 +148,108 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
 
 /**
  *checks out the selected reservation and calculates the charge for the room
- *@param total is a double variable
- *@param customerId is a string variable
- *@param cId is a string variable
- *@param q is an sql query
- *@param diff is an integer variable
+ *@param totAmount is a double variable
+ *@param resId is a string variable
+ *@param check is a bool variable
+ *@param query is an sql query
+ *@param daysToPay is an integer variable
  *@param roomId is an integer variable
- *@param capacity is an integer variable
- *@param d1 is a date variable
- *@param d2 is a date variable
- *@return the total charge the customer has to pay
+ *@param checkIn is a date variable
+ *@param checkOut is a date variable
+ *@return the totAmount charge the customer has to pay
  */
-double ReservationManagement::roomCheckout(int reservationId)
+double ReservationManagement::roomCheckout(int RoomNumber)
 {
-    //Pernei to room meso tou reservationId vlepei ti capacity exei to room , pigenei ston pinaka prices
-    //kai vlepei to capacity auto se timi antistoixei, krataei auti tin timi tin polaplasiazei me
-    //tin diafora imerominion checkin-checkout kai epistrefei to teliko apotelesma.
-   return 0;
+            Room room;
+            QDateTime checkIn;
+            QDateTime checkOut;
+            bool check = false;
+            int daysToPay = 0;
+            int resId = 0;
+            double totAmount = 0;
+            double price = 0;
+            QSqlQuery query;
+            query = sqlMechanism.myQuery();
+
+
+
+            /*
+             *select the capacity of the room that is about to Check Out
+             */
+            query.prepare("select Capacity from Rooms where RoomNumber = :rNum");
+            query.bindValue(":rNum",RoomNumber);
+            query.exec();
+
+            if(query.next())
+            {
+                    room.setCapacity(query.value(0).toInt());
+                    check = true;
+            }
+                    else
+                    QMessageBox::information(0,"Search Error","There is no room with that number");
+            /*
+             *select the price of a room with the current capacity
+             */
+            if(check)
+             {
+
+                query.prepare("select Price from Prices where RoomCapacity = :cap");
+                query.bindValue(":cap",room.getCapacity());
+                query.exec();
+
+                if(query.next())
+                {
+                    price = query.value(0).toDouble();
+                    check = true;
+                }
+                else
+                {
+                    QMessageBox::information(0,"Search Error","There is no price for that capacity");
+                    check = false;
+                }
+            }
+            /*
+             *select DateFrom, DateTo and reservation id of the current reservation
+             */
+            if(check)
+            {
+                query.prepare("select DateFrom,DateTo,prIdReservation, from RoomsReservation where fkRoomId = :rNum");
+                query.bindValue(":rNum",RoomNumber);
+                query.exec();
+
+                if(query.next())
+                {
+
+                    checkIn = query.value(0).toDateTime();
+                    checkOut = query.value(1).toDateTime();
+                    resId = query.value(2).toInt();
+                    check  = true;
+                }
+
+                else
+                {
+                    QMessageBox::information(0,"Search Error","There is no reservation for that room");
+                    check = false;
+                }
+             }
+             if(check)
+             {
+             /*
+              *calculate the final price
+              */
+                daysToPay = checkIn.daysTo(checkOut);
+                totAmount = daysToPay * price;
+                /*
+                 *delete the current reservation from the database
+                 */
+                query.prepare("delete from RoomsReservation where prIdReservation =:resId");
+                query.bindValue(":resId",resId);
+                query.exec();
+
+                return totAmount;
+             }
+             else
+                 QMessageBox::information(0,"Error","Operation Failed");
+
 }
 
