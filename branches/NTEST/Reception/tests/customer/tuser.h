@@ -1,14 +1,15 @@
 #include <QtTest>
 
-#include "customer.h"
+#include "user.h"
 
-class TCustomer : public QObject {
+class TUser : public QObject {
   Q_OBJECT
 
   private slots:
     void testConstructor ();
-    void testId ();
     void testName ();
     void testSurname ();
-    void testGroupId ();
+    void testUsername ();
+    void testPassword ();
+    void testRole ();
 };
