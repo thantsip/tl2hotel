@@ -4,8 +4,6 @@
 
 #include <QString>
 
-#include <sqlMechanism.h>
-
 
 class User
 
@@ -20,8 +18,6 @@ class User
     QString password;
 
     QString role;
-
-    SQLMechanism sqlMechanism;
 
 
 
