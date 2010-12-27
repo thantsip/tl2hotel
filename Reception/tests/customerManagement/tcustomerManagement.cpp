@@ -29,9 +29,10 @@ void TCustomerManagement::testSearchCustomerByValue () {
   QString id ("AX2222");
   QString surname ("Michael");
   QString name ("Johinson");
-  QString key ("Joh");
   int group = 3;
 
+  QString key ("Joh");
+  
   Customer cust (id, name, surname, group);
   CustomerManagement cm;
 
