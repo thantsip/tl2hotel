@@ -19,7 +19,7 @@ void TRoomManagement::testFetchFreeRooms () {
 
   vector<Room> rooms = rm.fetchFreeRooms ();
 
-  QVERIFY (rooms.size () == 0);
+  QVERIFY (rooms.size () == 2);
 }
 
 void TRoomManagement::testSearchRoomByCapacity () {
