@@ -81,7 +81,7 @@ void User::setName(QString name)
 
 {
 
-    name = this->name;
+    this->name = name;
 
 }
 
@@ -98,7 +98,7 @@ void User::setSurname(QString surname)
 
 {
 
-    surname = this->surname;
+    this->surname = surname;
 
 }
 
@@ -115,7 +115,7 @@ void User::setUsername(QString username)
 
 {
 
-    username = this->username;
+    this->username = username;
 
 }
 
@@ -132,7 +132,7 @@ void User::setPassword(QString password)
 
 {
 
-    password = this->password;
+    this->password = password;
 
 }
 
@@ -149,7 +149,7 @@ void User::setRole(QString role)
 
 {
 
-    role = this->role;
+    this->role = role;
 
 }
 
