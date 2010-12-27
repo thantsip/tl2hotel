@@ -131,7 +131,7 @@ void RoomManagement::editRoom(Room room)
 Room RoomManagement::fetchRoom(int roomnumber)
 {
    QSqlQuery fetchquery;
-   int roomfloor,roomcapacity;
+   int roomfloor,roomcapacity, rn = 0;
    QString roomextras;
    Room room;
    fetchquery = sqlMechanism.myQuery();
@@ -141,11 +141,12 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
     while (fetchquery.next())
     {
+	rn = fetchquery.value(0).toInt();
     roomfloor = fetchquery.value(1).toInt();
     roomcapacity = fetchquery.value(2).toInt();
     roomextras = fetchquery.value(4).toString();
     }
-    room.setRoomNumber(roomnumber);
+    room.setRoomNumber(rn);
     room.setRoomFloor(roomfloor);
     room.setCapacity(roomcapacity);
 
