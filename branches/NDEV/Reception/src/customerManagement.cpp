@@ -141,7 +141,7 @@ Customer CustomerManagement::fetchCustomer(QString id)
      customersurname = fetchquery.value(2).toString();
      groupid = fetchquery.value(3).toInt();
     }
-    customer.setName(cid);
+    customer.setId(cid);
     customer.setName(customername);
     customer.setSurname(customersurname);
     customer.setGroupId(groupid);
