@@ -8,8 +8,8 @@ TFileHandler::createFile () {
 
   if (!file.open (QIODevice::WriteOnly))
     QFAIL ("Fail: file cannot created.");
-
-  file.close ();
+  else
+    file.close ();
 }
 
 void

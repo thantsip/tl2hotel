@@ -1,30 +1,44 @@
 #include "tcustomerManagement.h"
 
 void TCustomerManagement::testFetchAllCustomers () {
-  QString id ("AX1111");
-  QString surname ("Joanna");
-  QString name ("Johanson");
-  int group = 1;
+  QString idA ("AX1111");
+  QString surnameA ("Joanna");
+  QString nameA ("Johanson");
+  int groupA = 1;
 
-  Customer cust (id, name, surname, group);
+  Customer custA (idA, nameA, surnameA, groupA);
+
+  QString idB ("BX1111");
+  QString surnameB ("John");
+  QString nameB ("Hercules");
+  int groupB = 2;
+
+  Customer custB (idB, nameB, surnameB, groupB);
+
   CustomerManagement cm;
-  cm.newCustomer (cust);
+
+  cm.newCustomer (custA);
+  cm.newCustomer (custB);
+
   vector<Customer> custs = cm.fetchAllCustomers ();
-  QVERIFY (custs.size () == 1);
+
+  QVERIFY (custs.size () == 2);
 }
 
 void TCustomerManagement::testSearchCustomerByValue () {
   QString id ("AX2222");
   QString surname ("Michael");
-  QString name ("Rubinson");
-  QString key ("inso");
-  int group = 1;
+  QString name ("Johinson");
+  QString key ("Joh");
+  int group = 3;
 
   Customer cust (id, name, surname, group);
   CustomerManagement cm;
+
   cm.newCustomer (cust);
   vector<Customer> custs = cm.searchCustomerByValue (key);
-  QVERIFY (custs.size () == 1);
+
+  QVERIFY (custs.size () == 3);
 }
 
 void TCustomerManagement::testNewCustomer () {
@@ -35,8 +49,10 @@ void TCustomerManagement::testNewCustomer () {
 
   Customer temp, cust (id, name, surname, group);
   CustomerManagement cm;
+
   cm.newCustomer (cust);
   temp = cm.fetchCustomer (id);
+
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
 		   cust.getSurname () == temp.getSurname () &&
@@ -51,8 +67,10 @@ void TCustomerManagement::testEditCustomer () {
 
   Customer temp, cust (id, name, surname, group);
   CustomerManagement cm;
+
   cm.editCustomer (cust);
   temp = cm.fetchCustomer (id);
+
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
 		   cust.getSurname () == temp.getSurname () &&
@@ -67,6 +85,7 @@ void TCustomerManagement::testDeleteCustomer () {
   cust.setId (id);
   cm.deleteCustomer (cust);
   temp = cm.fetchCustomer (id);
+
   QVERIFY (cust.getId () != temp.getId ());
 }
 
@@ -78,8 +97,10 @@ void TCustomerManagement::testFetchCustomer () {
 
   Customer temp, cust (id, name, surname, group);
   CustomerManagement cm;
+
   cm.newCustomer (cust);
   temp = cm.fetchCustomer (id);
+
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
 		   cust.getSurname () == temp.getSurname () &&
@@ -90,9 +111,11 @@ void TCustomerManagement::testCheckInData () {
   QString empty ("");
   Customer cust;
   CustomerManagement cm;
+
   cust.setId (empty);
   cust.setName (empty);
   cust.setSurname (empty);
+
   QVERIFY (cm.checkInData (cust) == false);
 }
 
