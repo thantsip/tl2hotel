@@ -6,5 +6,5 @@ TARGET   = testing
 DEPENDPATH  += ..\..\src
 INCLUDEPATH += ..\..\src
 
-HEADERS += tcustomer.h customer.h
-SOURCES += tcustomer.cpp customer.cpp
+HEADERS += tuser.h user.h
+SOURCES += tuser.cpp user.cpp
