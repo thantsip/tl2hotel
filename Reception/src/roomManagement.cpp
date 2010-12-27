@@ -205,12 +205,12 @@ Room RoomManagement::fetchRoom(int roomnumber)
 
      //!To erotima de doulevei sosta!
      fetchquery = sqlMechanism.myQuery();
-     fetchquery.exec("SELECT DISTINCT Rooms.RoomNumber,Rooms.RoomFloor,Rooms.Capacity FROM Rooms INNER JOIN RoomsReservation WHERE Rooms.RoomNumber!=(SELECT DISTINCT RoomsReservation.fkRoomId FROM RoomsReservation)");
+     fetchquery.exec("SELECT * FROM Rooms WHERE RoomNumber NOT IN (SELECT DISTINCT fkRoomId FROM RoomsReservation);");
 
      while(fetchquery.next())
      {
           room.setRoomNumber(fetchquery.value(1).toInt());
-          room.setRoomFloor( fetchquery.value(2).toInt());
+          room.setRoomFloor(fetchquery.value(2).toInt());
           room.setCapacity(fetchquery.value(3).toInt());
 
           froomVector.push_back( room );
