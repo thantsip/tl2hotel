@@ -2,6 +2,8 @@
 
 #include "roomManagement.h"
 
+using namespace std;
+
 class TRoomManagement : public QObject {
   Q_OBJECT
 
@@ -14,7 +16,6 @@ class TRoomManagement : public QObject {
     void testEditRoom ();
     void testDeleteRoom ();
     void testFetchRoom ();
-    void testSetStatus ();
     void testGetStatus ();
     void testCheckInData ();
 };
