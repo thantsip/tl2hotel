@@ -126,7 +126,7 @@ void CustomerManagement::deleteCustomer(Customer customer)
 Customer CustomerManagement::fetchCustomer(QString id)
 {
     QSqlQuery fetchquery;
-    QString customername,customersurname;
+    QString customername,customersurname, cid ("");
     int groupid = 0;
     Customer customer;
     fetchquery = sqlMechanism.myQuery();
@@ -136,11 +136,12 @@ Customer CustomerManagement::fetchCustomer(QString id)
 
     while (fetchquery.next())
     {
+	 cid = fetchquery.value(0).toString();
      customername = fetchquery.value(1).toString();
      customersurname = fetchquery.value(2).toString();
      groupid = fetchquery.value(3).toInt();
     }
-    customer.setId(id);
+    customer.setName(cid);
     customer.setName(customername);
     customer.setSurname(customersurname);
     customer.setGroupId(groupid);
