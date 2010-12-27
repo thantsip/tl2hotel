@@ -8,7 +8,7 @@ void TReceptionist::testConstructor () {
   QVERIFY (r.getFund () == tFund);
 }
 
-void TReceptionist::testRoomNumber () {
+void TReceptionist::testFund () {
   Receptionist r;
 
   r.setFund (tFund);
