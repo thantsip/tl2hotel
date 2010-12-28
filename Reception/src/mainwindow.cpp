@@ -544,3 +544,47 @@ void MainWindow::on_About_triggered()
    // ab.show();
     ab.showNormal();
 }
+
+void MainWindow::on_CreateMassiveRoomTable_clicked()
+{
+    if(ui->MassiveRoomTableNum->text().toInt()>0)
+    {
+        ui->MassiveRoomTable->setColumnCount(4);
+        ui->MassiveRoomTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                               << tr("Room Floor")
+                                                               << tr("Capacity")
+                                                               << tr("Extras"));
+
+        ui->MassiveRoomTable->setRowCount(ui->MassiveRoomTableNum->text().toInt());
+        ui->CreateMassiveRoom->setEnabled(true);
+    }
+    else
+    {
+        QMessageBox::about(0,Title,"Fill the number of rooms");
+    }
+}
+
+void MainWindow::on_CreateMassiveRoom_clicked()
+{
+    int i;
+
+    for(i=0;i<(int)ui->MassiveRoomTableNum->text().toInt();i++)
+    {
+        Room room;
+        room.setCapacity(ui->MassiveRoomTable->item(i,2)->text().toInt());
+        room.setRoomFloor(ui->MassiveRoomTable->item(i,1)->text().toInt());
+        room.setRoomNumber(ui->MassiveRoomTable->item(i,0)->text().toInt());
+        RM.newRoom(room);
+    }
+    showRoomGrid();
+    RoomTableView();
+    QMessageBox::about(0,Title,"Done!");
+    ui->MassiveRoomTable->setColumnCount(0);
+    ui->MassiveRoomTable->setRowCount(0);
+    ui->CreateMassiveRoom->setEnabled(false);
+}
+
+void MainWindow::on_CheckOut_clicked()
+{
+    ResM.roomCheckout(ui->CheckOutNum->text().toInt());
+}

@@ -41,6 +41,9 @@ private:
     ReservationManagement ResM;
 
 private slots:
+    void on_CheckOut_clicked();
+    void on_CreateMassiveRoom_clicked();
+    void on_CreateMassiveRoomTable_clicked();
     void on_About_triggered();
     void on_InstantTableView_cellClicked(int row, int column);
     void on_InstantEdit_textChanged(QString );
