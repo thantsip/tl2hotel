@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 15. Dec 23:41:59 2010
-**      by: Qt User Interface Compiler version 4.6.2
+** Created: Tue 28. Dec 19:23:22 2010
+**      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -49,7 +49,6 @@ public:
     QWidget *gridLayoutWidget_3;
     QGridLayout *gridLayout_4;
     QLineEdit *RoomNumberReservation;
-    QLineEdit *CustomerIdReservation;
     QLabel *label_9;
     QLabel *label_17;
     QLabel *label_18;
@@ -58,6 +57,7 @@ public:
     QDateEdit *CheckInDate;
     QDateEdit *CheckOutDate;
     QLabel *label_3;
+    QLineEdit *CustomerIdReservation;
     QTabWidget *Tabs2;
     QWidget *tab_4;
     QScrollArea *scrollArea;
@@ -95,6 +95,13 @@ public:
     QLabel *PopFloor;
     QLabel *label_36;
     QLabel *PopCap;
+    QWidget *tab_7;
+    QWidget *gridLayoutWidget_14;
+    QGridLayout *gridLayout_12;
+    QLabel *label_35;
+    QLabel *label_37;
+    QLineEdit *CheckOutNum;
+    QPushButton *CheckOut;
     QWidget *tab;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
@@ -129,22 +136,8 @@ public:
     QPushButton *FindCustomer;
     QTableWidget *CustomerTable;
     QWidget *tab_2;
-    QWidget *gridLayoutWidget_2;
-    QGridLayout *gridLayout_2;
-    QLineEdit *RoomCapacity;
-    QLineEdit *RoomFloor;
-    QLineEdit *RoomNumber;
-    QLabel *label_10;
-    QLabel *label_11;
-    QLabel *label_12;
-    QPushButton *InsertRoom;
-    QLabel *label_2;
-    QWidget *gridLayoutWidget_6;
-    QGridLayout *gridLayout_6;
-    QLineEdit *DeleteRoomNumber;
-    QLabel *label_24;
-    QPushButton *DeleteRoom;
-    QLabel *label_25;
+    QTabWidget *tabWidget;
+    QWidget *tab_8;
     QWidget *gridLayoutWidget_7;
     QGridLayout *gridLayout_7;
     QLineEdit *FindRoomCapacity;
@@ -156,7 +149,31 @@ public:
     QPushButton *SaveRoom;
     QLabel *label_27;
     QPushButton *pushButton;
+    QWidget *gridLayoutWidget_6;
+    QGridLayout *gridLayout_6;
+    QLineEdit *DeleteRoomNumber;
+    QLabel *label_24;
+    QPushButton *DeleteRoom;
+    QLabel *label_25;
     QTableWidget *RoomTable;
+    QWidget *gridLayoutWidget_2;
+    QGridLayout *gridLayout_2;
+    QLineEdit *RoomCapacity;
+    QLineEdit *RoomFloor;
+    QLineEdit *RoomNumber;
+    QLabel *label_10;
+    QLabel *label_11;
+    QLabel *label_12;
+    QPushButton *InsertRoom;
+    QLabel *label_2;
+    QWidget *tab_9;
+    QWidget *gridLayoutWidget_13;
+    QGridLayout *gridLayout_11;
+    QLabel *label_33;
+    QLineEdit *MassiveRoomTableNum;
+    QPushButton *CreateMassiveRoomTable;
+    QTableWidget *MassiveRoomTable;
+    QPushButton *CreateMassiveRoom;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
@@ -167,7 +184,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(698, 476);
+        MainWindow->resize(700, 518);
         Exit = new QAction(MainWindow);
         Exit->setObjectName(QString::fromUtf8("Exit"));
         Clean = new QAction(MainWindow);
@@ -186,7 +203,7 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         Tabs = new QTabWidget(centralWidget);
         Tabs->setObjectName(QString::fromUtf8("Tabs"));
-        Tabs->setGeometry(QRect(0, 0, 691, 431));
+        Tabs->setGeometry(QRect(0, 0, 691, 471));
         Tabs->setInputMethodHints(Qt::ImhNone);
         Tabs->setTabShape(QTabWidget::Rounded);
         Tabs->setDocumentMode(false);
@@ -206,11 +223,6 @@ public:
         RoomNumberReservation->setObjectName(QString::fromUtf8("RoomNumberReservation"));
 
         gridLayout_4->addWidget(RoomNumberReservation, 5, 1, 1, 1);
-
-        CustomerIdReservation = new QLineEdit(gridLayoutWidget_3);
-        CustomerIdReservation->setObjectName(QString::fromUtf8("CustomerIdReservation"));
-
-        gridLayout_4->addWidget(CustomerIdReservation, 4, 1, 1, 1);
 
         label_9 = new QLabel(gridLayoutWidget_3);
         label_9->setObjectName(QString::fromUtf8("label_9"));
@@ -257,22 +269,27 @@ public:
 
         gridLayout_4->addWidget(label_3, 0, 0, 1, 2);
 
+        CustomerIdReservation = new QLineEdit(gridLayoutWidget_3);
+        CustomerIdReservation->setObjectName(QString::fromUtf8("CustomerIdReservation"));
+
+        gridLayout_4->addWidget(CustomerIdReservation, 4, 1, 1, 1);
+
         Tabs2 = new QTabWidget(tab_3);
         Tabs2->setObjectName(QString::fromUtf8("Tabs2"));
-        Tabs2->setGeometry(QRect(230, 10, 451, 391));
+        Tabs2->setGeometry(QRect(230, 10, 451, 431));
         Tabs2->setMovable(true);
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         scrollArea = new QScrollArea(tab_4);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(10, 10, 431, 351));
+        scrollArea->setGeometry(QRect(10, 10, 431, 391));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 349));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 429, 389));
         gridLayoutWidget_8 = new QWidget(scrollAreaWidgetContents);
         gridLayoutWidget_8->setObjectName(QString::fromUtf8("gridLayoutWidget_8"));
-        gridLayoutWidget_8->setGeometry(QRect(10, 10, 411, 331));
+        gridLayoutWidget_8->setGeometry(QRect(10, 10, 411, 371));
         Grid = new QGridLayout(gridLayoutWidget_8);
         Grid->setSpacing(6);
         Grid->setContentsMargins(11, 11, 11, 11);
@@ -381,7 +398,7 @@ public:
         Tabs2->addTab(tab_6, QString());
         groupBox = new QGroupBox(tab_3);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(10, 180, 211, 221));
+        groupBox->setGeometry(QRect(10, 180, 211, 261));
         QFont font;
         font.setBold(true);
         font.setWeight(75);
@@ -389,7 +406,7 @@ public:
         groupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(228, 230, 255);"));
         gridLayoutWidget_12 = new QWidget(groupBox);
         gridLayoutWidget_12->setObjectName(QString::fromUtf8("gridLayoutWidget_12"));
-        gridLayoutWidget_12->setGeometry(QRect(10, 20, 191, 191));
+        gridLayoutWidget_12->setGeometry(QRect(10, 20, 191, 231));
         gridLayout_10 = new QGridLayout(gridLayoutWidget_12);
         gridLayout_10->setSpacing(6);
         gridLayout_10->setContentsMargins(11, 11, 11, 11);
@@ -442,6 +459,38 @@ public:
         gridLayout_10->addWidget(PopCap, 5, 0, 1, 1);
 
         Tabs->addTab(tab_3, QString());
+        tab_7 = new QWidget();
+        tab_7->setObjectName(QString::fromUtf8("tab_7"));
+        gridLayoutWidget_14 = new QWidget(tab_7);
+        gridLayoutWidget_14->setObjectName(QString::fromUtf8("gridLayoutWidget_14"));
+        gridLayoutWidget_14->setGeometry(QRect(10, 10, 160, 71));
+        gridLayout_12 = new QGridLayout(gridLayoutWidget_14);
+        gridLayout_12->setSpacing(6);
+        gridLayout_12->setContentsMargins(11, 11, 11, 11);
+        gridLayout_12->setObjectName(QString::fromUtf8("gridLayout_12"));
+        gridLayout_12->setContentsMargins(0, 0, 0, 0);
+        label_35 = new QLabel(gridLayoutWidget_14);
+        label_35->setObjectName(QString::fromUtf8("label_35"));
+        label_35->setAlignment(Qt::AlignCenter);
+
+        gridLayout_12->addWidget(label_35, 0, 0, 1, 2);
+
+        label_37 = new QLabel(gridLayoutWidget_14);
+        label_37->setObjectName(QString::fromUtf8("label_37"));
+
+        gridLayout_12->addWidget(label_37, 1, 0, 1, 1);
+
+        CheckOutNum = new QLineEdit(gridLayoutWidget_14);
+        CheckOutNum->setObjectName(QString::fromUtf8("CheckOutNum"));
+
+        gridLayout_12->addWidget(CheckOutNum, 1, 1, 1, 1);
+
+        CheckOut = new QPushButton(gridLayoutWidget_14);
+        CheckOut->setObjectName(QString::fromUtf8("CheckOut"));
+
+        gridLayout_12->addWidget(CheckOut, 2, 0, 1, 2);
+
+        Tabs->addTab(tab_7, QString());
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayoutWidget = new QWidget(tab);
@@ -610,92 +659,17 @@ public:
 
         CustomerTable = new QTableWidget(tab);
         CustomerTable->setObjectName(QString::fromUtf8("CustomerTable"));
-        CustomerTable->setGeometry(QRect(10, 211, 651, 191));
+        CustomerTable->setGeometry(QRect(10, 211, 651, 221));
         CustomerTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         Tabs->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        gridLayoutWidget_2 = new QWidget(tab_2);
-        gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(10, 10, 201, 129));
-        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
-        gridLayout_2->setSpacing(6);
-        gridLayout_2->setContentsMargins(11, 11, 11, 11);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        RoomCapacity = new QLineEdit(gridLayoutWidget_2);
-        RoomCapacity->setObjectName(QString::fromUtf8("RoomCapacity"));
-
-        gridLayout_2->addWidget(RoomCapacity, 4, 1, 1, 1);
-
-        RoomFloor = new QLineEdit(gridLayoutWidget_2);
-        RoomFloor->setObjectName(QString::fromUtf8("RoomFloor"));
-
-        gridLayout_2->addWidget(RoomFloor, 2, 1, 1, 1);
-
-        RoomNumber = new QLineEdit(gridLayoutWidget_2);
-        RoomNumber->setObjectName(QString::fromUtf8("RoomNumber"));
-
-        gridLayout_2->addWidget(RoomNumber, 1, 1, 1, 1);
-
-        label_10 = new QLabel(gridLayoutWidget_2);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-
-        gridLayout_2->addWidget(label_10, 4, 0, 1, 1);
-
-        label_11 = new QLabel(gridLayoutWidget_2);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-
-        gridLayout_2->addWidget(label_11, 2, 0, 1, 1);
-
-        label_12 = new QLabel(gridLayoutWidget_2);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
-
-        gridLayout_2->addWidget(label_12, 1, 0, 1, 1);
-
-        InsertRoom = new QPushButton(gridLayoutWidget_2);
-        InsertRoom->setObjectName(QString::fromUtf8("InsertRoom"));
-
-        gridLayout_2->addWidget(InsertRoom, 5, 0, 1, 2);
-
-        label_2 = new QLabel(gridLayoutWidget_2);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setFrameShape(QFrame::StyledPanel);
-        label_2->setAlignment(Qt::AlignCenter);
-
-        gridLayout_2->addWidget(label_2, 0, 0, 1, 2);
-
-        gridLayoutWidget_6 = new QWidget(tab_2);
-        gridLayoutWidget_6->setObjectName(QString::fromUtf8("gridLayoutWidget_6"));
-        gridLayoutWidget_6->setGeometry(QRect(230, 10, 201, 81));
-        gridLayout_6 = new QGridLayout(gridLayoutWidget_6);
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setContentsMargins(11, 11, 11, 11);
-        gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
-        gridLayout_6->setContentsMargins(0, 0, 0, 0);
-        DeleteRoomNumber = new QLineEdit(gridLayoutWidget_6);
-        DeleteRoomNumber->setObjectName(QString::fromUtf8("DeleteRoomNumber"));
-
-        gridLayout_6->addWidget(DeleteRoomNumber, 1, 1, 1, 1);
-
-        label_24 = new QLabel(gridLayoutWidget_6);
-        label_24->setObjectName(QString::fromUtf8("label_24"));
-
-        gridLayout_6->addWidget(label_24, 1, 0, 1, 1);
-
-        DeleteRoom = new QPushButton(gridLayoutWidget_6);
-        DeleteRoom->setObjectName(QString::fromUtf8("DeleteRoom"));
-
-        gridLayout_6->addWidget(DeleteRoom, 3, 0, 1, 2);
-
-        label_25 = new QLabel(gridLayoutWidget_6);
-        label_25->setObjectName(QString::fromUtf8("label_25"));
-        label_25->setFrameShape(QFrame::StyledPanel);
-        label_25->setAlignment(Qt::AlignCenter);
-
-        gridLayout_6->addWidget(label_25, 0, 0, 1, 2);
-
-        gridLayoutWidget_7 = new QWidget(tab_2);
+        tabWidget = new QTabWidget(tab_2);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setGeometry(QRect(10, 10, 661, 431));
+        tab_8 = new QWidget();
+        tab_8->setObjectName(QString::fromUtf8("tab_8"));
+        gridLayoutWidget_7 = new QWidget(tab_8);
         gridLayoutWidget_7->setObjectName(QString::fromUtf8("gridLayoutWidget_7"));
         gridLayoutWidget_7->setGeometry(QRect(450, 10, 201, 161));
         gridLayout_7 = new QGridLayout(gridLayoutWidget_7);
@@ -750,15 +724,129 @@ public:
 
         gridLayout_7->addWidget(pushButton, 2, 0, 1, 2);
 
-        RoomTable = new QTableWidget(tab_2);
+        gridLayoutWidget_6 = new QWidget(tab_8);
+        gridLayoutWidget_6->setObjectName(QString::fromUtf8("gridLayoutWidget_6"));
+        gridLayoutWidget_6->setGeometry(QRect(230, 10, 201, 81));
+        gridLayout_6 = new QGridLayout(gridLayoutWidget_6);
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setContentsMargins(11, 11, 11, 11);
+        gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
+        gridLayout_6->setContentsMargins(0, 0, 0, 0);
+        DeleteRoomNumber = new QLineEdit(gridLayoutWidget_6);
+        DeleteRoomNumber->setObjectName(QString::fromUtf8("DeleteRoomNumber"));
+
+        gridLayout_6->addWidget(DeleteRoomNumber, 1, 1, 1, 1);
+
+        label_24 = new QLabel(gridLayoutWidget_6);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+
+        gridLayout_6->addWidget(label_24, 1, 0, 1, 1);
+
+        DeleteRoom = new QPushButton(gridLayoutWidget_6);
+        DeleteRoom->setObjectName(QString::fromUtf8("DeleteRoom"));
+
+        gridLayout_6->addWidget(DeleteRoom, 3, 0, 1, 2);
+
+        label_25 = new QLabel(gridLayoutWidget_6);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+        label_25->setFrameShape(QFrame::StyledPanel);
+        label_25->setAlignment(Qt::AlignCenter);
+
+        gridLayout_6->addWidget(label_25, 0, 0, 1, 2);
+
+        RoomTable = new QTableWidget(tab_8);
         RoomTable->setObjectName(QString::fromUtf8("RoomTable"));
         RoomTable->setGeometry(QRect(10, 180, 641, 221));
         RoomTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        gridLayoutWidget_2 = new QWidget(tab_8);
+        gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
+        gridLayoutWidget_2->setGeometry(QRect(10, 10, 201, 129));
+        gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        RoomCapacity = new QLineEdit(gridLayoutWidget_2);
+        RoomCapacity->setObjectName(QString::fromUtf8("RoomCapacity"));
+
+        gridLayout_2->addWidget(RoomCapacity, 4, 1, 1, 1);
+
+        RoomFloor = new QLineEdit(gridLayoutWidget_2);
+        RoomFloor->setObjectName(QString::fromUtf8("RoomFloor"));
+
+        gridLayout_2->addWidget(RoomFloor, 2, 1, 1, 1);
+
+        RoomNumber = new QLineEdit(gridLayoutWidget_2);
+        RoomNumber->setObjectName(QString::fromUtf8("RoomNumber"));
+
+        gridLayout_2->addWidget(RoomNumber, 1, 1, 1, 1);
+
+        label_10 = new QLabel(gridLayoutWidget_2);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+
+        gridLayout_2->addWidget(label_10, 4, 0, 1, 1);
+
+        label_11 = new QLabel(gridLayoutWidget_2);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        gridLayout_2->addWidget(label_11, 2, 0, 1, 1);
+
+        label_12 = new QLabel(gridLayoutWidget_2);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        gridLayout_2->addWidget(label_12, 1, 0, 1, 1);
+
+        InsertRoom = new QPushButton(gridLayoutWidget_2);
+        InsertRoom->setObjectName(QString::fromUtf8("InsertRoom"));
+
+        gridLayout_2->addWidget(InsertRoom, 5, 0, 1, 2);
+
+        label_2 = new QLabel(gridLayoutWidget_2);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFrameShape(QFrame::StyledPanel);
+        label_2->setAlignment(Qt::AlignCenter);
+
+        gridLayout_2->addWidget(label_2, 0, 0, 1, 2);
+
+        tabWidget->addTab(tab_8, QString());
+        tab_9 = new QWidget();
+        tab_9->setObjectName(QString::fromUtf8("tab_9"));
+        gridLayoutWidget_13 = new QWidget(tab_9);
+        gridLayoutWidget_13->setObjectName(QString::fromUtf8("gridLayoutWidget_13"));
+        gridLayoutWidget_13->setGeometry(QRect(10, 10, 268, 21));
+        gridLayout_11 = new QGridLayout(gridLayoutWidget_13);
+        gridLayout_11->setSpacing(6);
+        gridLayout_11->setContentsMargins(11, 11, 11, 11);
+        gridLayout_11->setObjectName(QString::fromUtf8("gridLayout_11"));
+        gridLayout_11->setContentsMargins(0, 0, 0, 0);
+        label_33 = new QLabel(gridLayoutWidget_13);
+        label_33->setObjectName(QString::fromUtf8("label_33"));
+
+        gridLayout_11->addWidget(label_33, 0, 0, 1, 1);
+
+        MassiveRoomTableNum = new QLineEdit(gridLayoutWidget_13);
+        MassiveRoomTableNum->setObjectName(QString::fromUtf8("MassiveRoomTableNum"));
+
+        gridLayout_11->addWidget(MassiveRoomTableNum, 0, 1, 1, 1);
+
+        CreateMassiveRoomTable = new QPushButton(gridLayoutWidget_13);
+        CreateMassiveRoomTable->setObjectName(QString::fromUtf8("CreateMassiveRoomTable"));
+
+        gridLayout_11->addWidget(CreateMassiveRoomTable, 0, 2, 1, 1);
+
+        MassiveRoomTable = new QTableWidget(tab_9);
+        MassiveRoomTable->setObjectName(QString::fromUtf8("MassiveRoomTable"));
+        MassiveRoomTable->setGeometry(QRect(10, 40, 641, 331));
+        CreateMassiveRoom = new QPushButton(tab_9);
+        CreateMassiveRoom->setObjectName(QString::fromUtf8("CreateMassiveRoom"));
+        CreateMassiveRoom->setEnabled(false);
+        CreateMassiveRoom->setGeometry(QRect(520, 380, 131, 23));
+        tabWidget->addTab(tab_9, QString());
         Tabs->addTab(tab_2, QString());
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 698, 21));
+        menuBar->setGeometry(QRect(0, 0, 700, 21));
         menu = new QMenu(menuBar);
         menu->setObjectName(QString::fromUtf8("menu"));
         menu_2 = new QMenu(menuBar);
@@ -784,6 +872,7 @@ public:
 
         Tabs->setCurrentIndex(0);
         Tabs2->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -824,6 +913,10 @@ public:
         label_36->setText(QApplication::translate("MainWindow", "\316\247\317\211\317\201\316\267\317\204\316\271\316\272\317\214\317\204\316\267\317\204\316\261:", 0, QApplication::UnicodeUTF8));
         PopCap->setText(QString());
         Tabs->setTabText(Tabs->indexOf(tab_3), QApplication::translate("MainWindow", "\316\235\316\255\316\261 \316\232\317\201\316\254\317\204\316\267\317\203\316\267", 0, QApplication::UnicodeUTF8));
+        label_35->setText(QApplication::translate("MainWindow", "CheckOut", 0, QApplication::UnicodeUTF8));
+        label_37->setText(QApplication::translate("MainWindow", "\316\224\317\211\316\274\316\254\317\204\316\271\316\277:", 0, QApplication::UnicodeUTF8));
+        CheckOut->setText(QApplication::translate("MainWindow", "CheckOut", 0, QApplication::UnicodeUTF8));
+        Tabs->setTabText(Tabs->indexOf(tab_7), QApplication::translate("MainWindow", "CheckOut", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("MainWindow", "Group ID:", 0, QApplication::UnicodeUTF8));
         label_5->setText(QApplication::translate("MainWindow", "\316\225\317\200\317\216\316\275\317\205\316\274\316\277:", 0, QApplication::UnicodeUTF8));
         label_7->setText(QApplication::translate("MainWindow", "\316\214\316\275\316\277\316\274\316\261:", 0, QApplication::UnicodeUTF8));
@@ -841,20 +934,25 @@ public:
         label_21->setText(QApplication::translate("MainWindow", "\316\225\317\200\316\265\316\276\316\265\317\201\316\263\316\261\317\203\316\257\316\261 \316\243\317\204\316\277\316\271\317\207\316\265\316\257\317\211\316\275 \316\240\316\265\316\273\316\254\317\204\316\267", 0, QApplication::UnicodeUTF8));
         FindCustomer->setText(QApplication::translate("MainWindow", "\316\225\317\215\317\201\316\265\317\203\316\267 \316\240\316\265\316\273\316\254\317\204\316\267", 0, QApplication::UnicodeUTF8));
         Tabs->setTabText(Tabs->indexOf(tab), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\240\316\265\316\273\316\261\317\204\317\216\316\275", 0, QApplication::UnicodeUTF8));
-        label_10->setText(QApplication::translate("MainWindow", "\316\247\317\211\317\201\316\267\317\204\316\271\316\272\317\214\317\204\316\267\317\204\316\261:", 0, QApplication::UnicodeUTF8));
-        label_11->setText(QApplication::translate("MainWindow", "\316\214\317\201\316\277\317\206\316\277\317\202:", 0, QApplication::UnicodeUTF8));
-        label_12->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
-        InsertRoom->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
-        label_24->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
-        DeleteRoom->setText(QApplication::translate("MainWindow", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
-        label_25->setText(QApplication::translate("MainWindow", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
         label_22->setText(QApplication::translate("MainWindow", "\316\247\317\211\317\201\316\267\317\204\316\271\316\272\317\214\317\204\316\267\317\204\316\261:", 0, QApplication::UnicodeUTF8));
         label_23->setText(QApplication::translate("MainWindow", "\316\214\317\201\316\277\317\206\316\277\317\202:", 0, QApplication::UnicodeUTF8));
         label_26->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
         SaveRoom->setText(QApplication::translate("MainWindow", "\316\221\316\273\316\273\316\261\316\263\316\256 \316\243\317\204\316\277\316\271\317\207\316\265\316\257\317\211\316\275 \316\272\316\261\316\271 \316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267", 0, QApplication::UnicodeUTF8));
         label_27->setText(QApplication::translate("MainWindow", "\316\225\317\200\316\265\316\276\316\265\317\201\316\263\316\261\317\203\316\257\316\261 \316\243\317\204\316\277\316\271\317\207\316\265\316\257\317\211\316\275 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
         pushButton->setText(QApplication::translate("MainWindow", "\316\225\317\215\317\201\316\265\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        label_24->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
+        DeleteRoom->setText(QApplication::translate("MainWindow", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        label_25->setText(QApplication::translate("MainWindow", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        label_10->setText(QApplication::translate("MainWindow", "\316\247\317\211\317\201\316\267\317\204\316\271\316\272\317\214\317\204\316\267\317\204\316\261:", 0, QApplication::UnicodeUTF8));
+        label_11->setText(QApplication::translate("MainWindow", "\316\214\317\201\316\277\317\206\316\277\317\202:", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
+        InsertRoom->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        label_33->setText(QApplication::translate("MainWindow", "\316\240\317\214\317\203\316\261 \316\264\317\211\316\274\316\254\317\204\316\271\316\261 \316\270\316\261 \316\265\316\271\317\203\316\254\316\263\316\265\317\204\316\265;", 0, QApplication::UnicodeUTF8));
+        CreateMassiveRoomTable->setText(QApplication::translate("MainWindow", "\316\224\316\267\316\274\316\271\316\277\317\205\317\201\316\263\316\257\316\261", 0, QApplication::UnicodeUTF8));
+        CreateMassiveRoom->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\264\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tab_9), QApplication::translate("MainWindow", "\316\234\316\261\316\266\316\271\316\272\316\256 \316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         Tabs->setTabText(Tabs->indexOf(tab_2), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         menu->setTitle(QApplication::translate("MainWindow", "\316\221\317\201\317\207\316\265\316\257\316\277", 0, QApplication::UnicodeUTF8));
         menu_2->setTitle(QApplication::translate("MainWindow", "\316\225\317\200\316\265\316\276\316\265\317\201\316\263\316\261\317\203\316\257\316\261", 0, QApplication::UnicodeUTF8));
