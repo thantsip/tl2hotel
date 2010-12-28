@@ -216,3 +216,7 @@
 	mainwindow (.h & .cpp & .ui)
 	main (.cpp)
 	about (.h & .cpp & .ui)
+========
+28/12/10 15:32 Marias Stergios <plir2011@gmail.com>
+	
+	*add my week report
