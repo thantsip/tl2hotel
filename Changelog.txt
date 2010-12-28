@@ -210,3 +210,9 @@
 		*added reservationManagement(.cpp & .h)
 		*added sqlconnectionsingleton(.cpp & .h)
 ========
+28/12/10 15:25 Marias Stergios <plir2011@gmail.com>
+	
+	*added 
+	mainwindow (.h & .cpp & .ui)
+	main (.cpp)
+	about (.h & .cpp & .ui)

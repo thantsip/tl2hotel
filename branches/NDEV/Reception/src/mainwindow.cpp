@@ -25,6 +25,11 @@ MainWindow::MainWindow(QWidget *parent) :
                                                            << tr("Room Floor")
                                                            << tr("Capacity")
                                                            << tr("Extras"));
+    ui->CreateRoomTable->setColumnCount(4);
+    ui->CreateRoomTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
 }
 
 MainWindow::~MainWindow()
@@ -467,7 +472,7 @@ void MainWindow::showRoomGrid()
         RoomLabel->installEventFilter(this);
         ui->Grid->addWidget(RoomLabel,i,j);
         num++;
-        if(j<7)
+        if(j<4)
         {
             j++;
         }
@@ -542,4 +547,55 @@ void MainWindow::on_About_triggered()
     About ab;
 
     ab.show();
+}
+
+void MainWindow::on_CreateRoomTableButton_clicked()
+{
+    if(ui->CreateRoomTableNum->text().toInt()>0)
+    {
+        ui->CreateRoomTable->setRowCount(ui->CreateRoomTableNum->text().toInt());
+        ui->CreateRoomTableButton2->setEnabled(true);
+    }
+    else
+    {
+        QMessageBox::about(0,Title,"Please fill out Capacity of Rooms");
+    }
+}
+
+void MainWindow::on_CreateRoomTableButton2_clicked()
+{
+    int i,j;
+    bool empty=0;
+
+    for (i=0;i<3;i++)
+    {
+        for(j=0;j<ui->CreateRoomTableNum->text().toInt();j++)
+        {
+            /*if(ui->CreateRoomTable->item(j,i)->text()=="")
+            {
+                empty=1;
+            }*/
+        }
+    }
+    if(empty==1)
+    {
+        QMessageBox::about(0,Title,NotAllRoomData);
+    }
+    else
+    {
+        for (i=0;i<ui->CreateRoomTableNum->text().toInt();i++)
+        {
+            Room room;
+            room.setRoomNumber(ui->CreateRoomTable->item(i,0)->text().toInt());
+            room.setRoomFloor(ui->CreateRoomTable->item(i,1)->text().toInt());
+            room.setCapacity(ui->CreateRoomTable->item(i,2)->text().toInt());
+            RM.newRoom(room);
+        }
+        RoomTableView();
+        showRoomGrid();
+        QMessageBox::about(0,Title,"DONE");
+        ui->CreateRoomTable->setRowCount(0);
+        ui->CreateRoomTableNum->setText("");
+        ui->CreateRoomTableButton2->setEnabled(false);
+    }
 }
