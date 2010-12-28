@@ -6,8 +6,8 @@
 #include <QChar>
 #include <QVariant>
 
+#include "sqlMechanism.h"
 #include "user.h"
-
 
 class Admin : public User
 {
