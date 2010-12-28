@@ -22,6 +22,17 @@ Receptionist::Receptionist()
 }
 
 
+
+ /*
+
+  *receptionist destructor
+
+  */
+
+Receptionist::~Receptionist() {}
+
+
+
 /*
 
  *constructor with all class atributes
