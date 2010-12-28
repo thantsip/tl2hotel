@@ -6,5 +6,10 @@ TARGET   = testing
 DEPENDPATH  += ..\..\src
 INCLUDEPATH += ..\..\src
 
-HEADERS += treceptionist.h receptionist.h
-SOURCES += treceptionist.cpp receptionist.cpp
+HEADERS += treceptionist.h \
+            receptionist.h \
+			        user.h
+
+SOURCES += treceptionist.cpp \
+            receptionist.cpp \
+			        user.cpp
