@@ -7,9 +7,9 @@ int gCapacity = 2;
 void TRoom::testConstructor () {
   Room r (gRoomNumber, gRoomFloor, gCapacity);
 
-  QVERIFY (r.gegRoomNumber () == gRoomNumber  &&
-           r.gegRoomFloor ()  == gRoomFloor   &&
-           r.gegCapacity ()   == gCapacity);
+  QVERIFY (r.getRoomNumber () == gRoomNumber  &&
+           r.getRoomFloor ()  == gRoomFloor   &&
+           r.getCapacity ()   == gCapacity);
 }
 
 void TRoom::testRoomNumber () {
@@ -17,7 +17,7 @@ void TRoom::testRoomNumber () {
 
   r.setRoomNumber (gRoomNumber);
 
-  QVERIFY (r.gegRoomNumber () == gRoomNumber);
+  QVERIFY (r.getRoomNumber () == gRoomNumber);
 }
 
 void TRoom::testRoomFloor () {
@@ -25,7 +25,7 @@ void TRoom::testRoomFloor () {
 
   r.setRoomFloor (gRoomFloor);
 
-  QVERIFY (r.gegRoomFloor () == gRoomFloor);
+  QVERIFY (r.getRoomFloor () == gRoomFloor);
 }
 
 void TRoom::testCapacity () {
@@ -33,7 +33,7 @@ void TRoom::testCapacity () {
 
   r.setCapacity (gCapacity);
 
-  QVERIFY (r.gegCapacity () == gCapacity);
+  QVERIFY (r.getCapacity () == gCapacity);
 }
 
 QTEST_MAIN (TRoom)
