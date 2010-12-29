@@ -7,7 +7,7 @@ class TCustomerManagement : public QObject {
 
   private slots:
     void testFetchAllCustomers ();
-	void testSearchCustomerByValue ();
+    void testSearchCustomerByValue ();
     void testNewCustomer ();
     void testEditCustomer ();
     void testDeleteCustomer ();
