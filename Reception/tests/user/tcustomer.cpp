@@ -1,49 +1,49 @@
 #include "tcustomer.h"
 
-QString tId ("AX1111");
-QString tSurname ("Malkovich");
-QString tName ("Peter");
-int tGroup = 1;
+QString gId ("AX1111");
+QString gSurname ("Malkovich");
+QString gName ("Peter");
+int gGroup = 1;
 
 void TCustomer::testConstructor () {
-  Customer c (tId, tName, tSurname, tGroup);
+  Customer c (gId, gName, gSurname, gGroup);
 
-  QVERIFY (c.getId ()      == tId      &&
-           c.getName ()    == tName    &&
-           c.getSurname () == tSurname &&
-           c.getGroupId () == tGroup);
+  QVERIFY (c.getId ()      == gId      &&
+           c.getName ()    == gName    &&
+           c.getSurname () == gSurname &&
+           c.getGroupId () == gGroup);
 }
 
 void TCustomer::testId () {
   Customer c;
 
-  c.setId (tId);
+  c.setId (gId);
 
-  QVERIFY (c.getId () == tId);
+  QVERIFY (c.getId () == gId);
 }
 
 void TCustomer::testName () {
   Customer c;
 
-  c.setName (tName);
+  c.setName (gName);
 
-  QVERIFY (c.getName () == tName);
+  QVERIFY (c.getName () == gName);
 }
 
 void TCustomer::testSurname () {
   Customer c;
 
-  c.setSurname (tSurname);
+  c.setSurname (gSurname);
 
-  QVERIFY (c.getSurname () == tSurname);
+  QVERIFY (c.getSurname () == gSurname);
 }
 
 void TCustomer::testGroupId () {
   Customer c;
 
-  c.setGroupId (tGroup);
+  c.setGroupId (gGroup);
 
-  QVERIFY (c.getGroupId () == tGroup);
+  QVERIFY (c.getGroupId () == gGroup);
 }
 
 QTEST_MAIN (TCustomer)

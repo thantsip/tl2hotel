@@ -10,7 +10,7 @@ class TRoomManagement : public QObject {
   private slots:
     void testFetchAllRooms ();
     void testFetchFreeRooms ();
-	void testSearchRoomByCapacity ();
+    void testSearchRoomByCapacity ();
     void testSearchRoomByFloor ();
     void testNewRoom ();
     void testEditRoom ();

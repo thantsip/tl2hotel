@@ -1,39 +1,39 @@
 #include "troom.h"
 
-int tRoomNumber = 1;
-int tRoomFloor = 1;
-int tCapacity = 2;
+int gRoomNumber = 1;
+int gRoomFloor = 1;
+int gCapacity = 2;
 
 void TRoom::testConstructor () {
-  Room r (tRoomNumber, tRoomFloor, tCapacity);
+  Room r (gRoomNumber, gRoomFloor, gCapacity);
 
-  QVERIFY (r.getRoomNumber () == tRoomNumber  &&
-           r.getRoomFloor ()  == tRoomFloor   &&
-           r.getCapacity ()   == tCapacity);
+  QVERIFY (r.gegRoomNumber () == gRoomNumber  &&
+           r.gegRoomFloor ()  == gRoomFloor   &&
+           r.gegCapacity ()   == gCapacity);
 }
 
 void TRoom::testRoomNumber () {
   Room r;
 
-  r.setRoomNumber (tRoomNumber);
+  r.setRoomNumber (gRoomNumber);
 
-  QVERIFY (r.getRoomNumber () == tRoomNumber);
+  QVERIFY (r.gegRoomNumber () == gRoomNumber);
 }
 
 void TRoom::testRoomFloor () {
   Room r;
 
-  r.setRoomFloor (tRoomFloor);
+  r.setRoomFloor (gRoomFloor);
 
-  QVERIFY (r.getRoomFloor () == tRoomFloor);
+  QVERIFY (r.gegRoomFloor () == gRoomFloor);
 }
 
 void TRoom::testCapacity () {
   Room r;
 
-  r.setCapacity (tCapacity);
+  r.setCapacity (gCapacity);
 
-  QVERIFY (r.getCapacity () == tCapacity);
+  QVERIFY (r.gegCapacity () == gCapacity);
 }
 
 QTEST_MAIN (TRoom)

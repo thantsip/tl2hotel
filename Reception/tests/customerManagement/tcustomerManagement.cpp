@@ -56,8 +56,8 @@ void TCustomerManagement::testNewCustomer () {
 
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
-		   cust.getSurname () == temp.getSurname () &&
-		   cust.getGroupId () == temp.getGroupId ());
+           cust.getSurname () == temp.getSurname () &&
+           cust.getGroupId () == temp.getGroupId ());
 }
 
 void TCustomerManagement::testEditCustomer () {
@@ -74,8 +74,8 @@ void TCustomerManagement::testEditCustomer () {
 
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
-		   cust.getSurname () == temp.getSurname () &&
-		   cust.getGroupId () == temp.getGroupId ());
+           cust.getSurname () == temp.getSurname () &&
+           cust.getGroupId () == temp.getGroupId ());
 }
 
 void TCustomerManagement::testDeleteCustomer () {
@@ -104,8 +104,8 @@ void TCustomerManagement::testFetchCustomer () {
 
   QVERIFY (cust.getId ()      == temp.getId ()      &&
            cust.getName ()    == temp.getName ()    &&
-		   cust.getSurname () == temp.getSurname () &&
-		   cust.getGroupId () == temp.getGroupId ());
+           cust.getSurname () == temp.getSurname () &&
+           cust.getGroupId () == temp.getGroupId ());
 }
 
 void TCustomerManagement::testCheckInData () {

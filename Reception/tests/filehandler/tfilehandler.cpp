@@ -1,27 +1,29 @@
 #include "tfilehandler.h"
 
-QString tFilename ("fh-test.txt");
+QString gFilename ("fh-test.txt");
 
 void
 TFileHandler::createFile () {
-  QFile file (tFilename);
+  QFile file (gFilename);
 
-  if (!file.open (QIODevice::WriteOnly))
+  if (!file.open (QIODevice::WriteOnly)) {
     QFAIL ("Fail: file cannot created.");
-  else
+  }
+  else {
     file.close ();
+  }
 }
 
 void
 TFileHandler::isFileExist () {
   FileHandler fh;
-  QVERIFY (fh.isFileExist (tFilename) == true);
+  QVERIFY (fh.isFileExist (gFilename) == true);
 }
 
 void
 TFileHandler::removeFile () {
   FileHandler fh;
-  QVERIFY (fh.removeFile(tFilename) == true);
+  QVERIFY (fh.removeFile(gFilename) == true);
 }
 
 QTEST_MAIN (TFileHandler)

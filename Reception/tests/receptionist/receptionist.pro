@@ -8,8 +8,8 @@ INCLUDEPATH += ..\..\src
 
 HEADERS += treceptionist.h \
             receptionist.h \
-			        user.h
+                    user.h
 
 SOURCES += treceptionist.cpp \
             receptionist.cpp \
-			        user.cpp
+                    user.cpp
