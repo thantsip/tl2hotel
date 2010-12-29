@@ -13,7 +13,7 @@ void TUser::testConstructor () {
            u.getSurname ()  == gSurname  &&
            u.getUsername () == gUsername &&
            u.getPassword () == gPassword &&
-		   u.getRole ()     == gRole);
+           u.getRole ()     == gRole);
 }
 
 void TUser::testName () {
