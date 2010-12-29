@@ -1,19 +1,19 @@
 #include "treceptionist.h"
 
-double tFund = 12.21;
+double gFund = 12.21;
 
 void TReceptionist::testConstructor () {
-  Receptionist r (tFund);
+  Receptionist r (gFund);
 
-  QVERIFY (r.getFund () == tFund);
+  QVERIFY (r.gegFund () == gFund);
 }
 
 void TReceptionist::testFund () {
   Receptionist r;
 
-  r.setFund (tFund);
+  r.setFund (gFund);
 
-  QVERIFY (r.getFund () == tFund);
+  QVERIFY (r.gegFund () == gFund);
 }
 
 QTEST_MAIN (TReceptionist)

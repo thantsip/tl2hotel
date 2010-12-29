@@ -56,8 +56,8 @@ void TRoomManagement::testNewRoom () {
   temp = rm.fetchRoom (roomNumber);
 
   QVERIFY (room.getRoomNumber () == temp.getRoomNumber () &&
-		   room.getRoomFloor ()  == temp.getRoomFloor ()  &&
-		   room.getCapacity ()   == temp.getCapacity ());
+           room.getRoomFloor ()  == temp.getRoomFloor ()  &&
+           room.getCapacity ()   == temp.getCapacity ());
 }
 
 void TRoomManagement::testEditRoom () {
@@ -70,8 +70,8 @@ void TRoomManagement::testEditRoom () {
   temp = rm.fetchRoom (roomNumber);
 
   QVERIFY (room.getRoomNumber () == temp.getRoomNumber () &&
-		   room.getRoomFloor ()  == temp.getRoomFloor ()  &&
-		   room.getCapacity ()   == temp.getCapacity ());
+           room.getRoomFloor ()  == temp.getRoomFloor ()  &&
+           room.getCapacity ()   == temp.getCapacity ());
 }
 
 void TRoomManagement::testDeleteRoom () {
@@ -97,8 +97,8 @@ void TRoomManagement::testFetchRoom () {
   temp = rm.fetchRoom (roomNumber);
 
   QVERIFY (room.getRoomNumber () == temp.getRoomNumber () &&
-		   room.getRoomFloor ()  == temp.getRoomFloor ()  &&
-		   room.getCapacity ()   == temp.getCapacity ());
+           room.getRoomFloor ()  == temp.getRoomFloor ()  &&
+           room.getCapacity ()   == temp.getCapacity ());
 }
 
 void TRoomManagement::testGetStatus () {
