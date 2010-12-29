@@ -5,7 +5,7 @@ double gFund = 12.21;
 void TReceptionist::testConstructor () {
   Receptionist r (gFund);
 
-  QVERIFY (r.gegFund () == gFund);
+  QVERIFY (r.getFund () == gFund);
 }
 
 void TReceptionist::testFund () {
@@ -13,7 +13,7 @@ void TReceptionist::testFund () {
 
   r.setFund (gFund);
 
-  QVERIFY (r.gegFund () == gFund);
+  QVERIFY (r.getFund () == gFund);
 }
 
 QTEST_MAIN (TReceptionist)
