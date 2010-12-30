@@ -1,6 +1,18 @@
+/** @file tcustomerManagement.cpp
+ *  @brief CustomerManagement Unit Test Implementation
+ *  @author Efstathios Xatzikiriakidis
+ *
+ *  This is the unit test for the "CustomerManagement" class.
+ */
+
 #include "tcustomerManagement.h"
 
-void TCustomerManagement::testFetchAllCustomers () {
+/** Fetch All Customers Test Method
+ *  @brief This method tries to test the "fetchAllCustomers" method of "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testFetchAllCustomers ()
+{
   QString idA ("AX1111");
   QString surnameA ("Joanna");
   QString nameA ("Johanson");
@@ -25,14 +37,18 @@ void TCustomerManagement::testFetchAllCustomers () {
   QVERIFY (custs.size () == 2);
 }
 
-void TCustomerManagement::testSearchCustomerByValue () {
+/** Search Customer By Value Test Method
+ *  @brief This method tries to test the "searchCustomerByValue" method of "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testSearchCustomerByValue ()
+{
   QString id ("AX2222");
   QString surname ("Michael");
   QString name ("Johinson");
+  QString key ("Joh");
   int group = 3;
 
-  QString key ("Joh");
-  
   Customer cust (id, name, surname, group);
   CustomerManagement cm;
 
@@ -42,7 +58,12 @@ void TCustomerManagement::testSearchCustomerByValue () {
   QVERIFY (custs.size () == 3);
 }
 
-void TCustomerManagement::testNewCustomer () {
+/** New Customer Test Method
+ *  @brief This method tests the "newCustomer" method of the "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testNewCustomer ()
+{
   QString id ("AX3333");
   QString surname ("Malkovich");
   QString name ("Peter");
@@ -60,7 +81,12 @@ void TCustomerManagement::testNewCustomer () {
            cust.getGroupId () == temp.getGroupId ());
 }
 
-void TCustomerManagement::testEditCustomer () {
+/** Edit Customer Test Method
+ *  @brief This method tests the "editCustomer" method of the "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testEditCustomer ()
+{
   QString id ("AX3333");
   QString surname ("Gates");
   QString name ("John");
@@ -78,7 +104,12 @@ void TCustomerManagement::testEditCustomer () {
            cust.getGroupId () == temp.getGroupId ());
 }
 
-void TCustomerManagement::testDeleteCustomer () {
+/** Delete Customer Test Method
+ *  @brief This method tests the "deleteCustomer" method of the "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testDeleteCustomer ()
+{
   QString id ("AX3333");
   Customer cust, temp;
   CustomerManagement cm;
@@ -90,7 +121,12 @@ void TCustomerManagement::testDeleteCustomer () {
   QVERIFY (cust.getId () != temp.getId ());
 }
 
-void TCustomerManagement::testFetchCustomer () {
+/** Fetch Customer Test Method
+ *  @brief This method tests the "fetchCustomer" method of the "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testFetchCustomer ()
+{
   QString id ("AX4444");
   QString surname ("Brand");
   QString name ("Alex");
@@ -108,7 +144,12 @@ void TCustomerManagement::testFetchCustomer () {
            cust.getGroupId () == temp.getGroupId ());
 }
 
-void TCustomerManagement::testCheckInData () {
+/** Customer Check In Data Test Method
+ *  @brief This method tests the "checkInData" method of the "CustomerManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomerManagement::testCheckInData ()
+{
   QString empty ("");
   Customer cust;
   CustomerManagement cm;

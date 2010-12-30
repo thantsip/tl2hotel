@@ -1,30 +1,48 @@
+/** @file troomManagement.cpp
+ *  @brief RoomManagement Unit Test Implementation
+ *  @author Efstathios Xatzikiriakidis
+ *
+ *  This is the unit test for the "RoomManagement" class.
+ */
+
 #include "troomManagement.h"
 
-void TRoomManagement::testFetchAllRooms () {
+/** Fetch All Rooms Test Method
+ *  @brief This method tries to test the "fetchAllRooms" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testFetchAllRooms ()
+{
   Room roomA (1, 1, 2);
   Room roomB (2, 1, 1);
-
   RoomManagement rm;
 
   rm.newRoom (roomA);
   rm.newRoom (roomB);
-
   vector<Room> rooms = rm.fetchAllRooms ();
 
   QVERIFY (rooms.size () == 2);
 }
 
-void TRoomManagement::testFetchFreeRooms () {
+/** Fetch Free Rooms Test Method
+ *  @brief This method tries to test the "fetchFreeRooms" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testFetchFreeRooms ()
+{
   RoomManagement rm;
-
   vector<Room> rooms = rm.fetchFreeRooms ();
 
   QVERIFY (rooms.size () == 2);
 }
 
-void TRoomManagement::testSearchRoomByCapacity () {
+/** Search Room By Capacity Test Method
+ *  @brief This method tries to test the "searchRoomByCapacity" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testSearchRoomByCapacity ()
+{
   int capacity = 4;
-
   Room room (3, 2, capacity);
   RoomManagement rm;
 
@@ -34,9 +52,13 @@ void TRoomManagement::testSearchRoomByCapacity () {
   QVERIFY (rooms.size () == 1);
 }
 
-void TRoomManagement::testSearchRoomByFloor () {
+/** Search Room By Floor Test Method
+ *  @brief This method tries to test the "searchRoomByFloor" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testSearchRoomByFloor ()
+{
   int roomFloor = 1;
-
   Room room (4, roomFloor, 2);
   RoomManagement rm;
 
@@ -46,9 +68,13 @@ void TRoomManagement::testSearchRoomByFloor () {
   QVERIFY (rooms.size () == 3);
 }
 
-void TRoomManagement::testNewRoom () {
+/** New Room Test Method
+ *  @brief This method tries to test the "newRoom" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testNewRoom ()
+{
   int roomNumber = 5;
-
   Room temp, room (roomNumber, 1, 2);
   RoomManagement rm;
 
@@ -60,9 +86,13 @@ void TRoomManagement::testNewRoom () {
            room.getCapacity ()   == temp.getCapacity ());
 }
 
-void TRoomManagement::testEditRoom () {
+/** Edit Room Test Method
+ *  @brief This method tries to test the "editRoom" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testEditRoom ()
+{
   int roomNumber = 5;
-
   Room temp, room (roomNumber, 2, 4);
   RoomManagement rm;
 
@@ -74,9 +104,13 @@ void TRoomManagement::testEditRoom () {
            room.getCapacity ()   == temp.getCapacity ());
 }
 
-void TRoomManagement::testDeleteRoom () {
+/** Delete Room Test Method
+ *  @brief This method tries to test the "deleteRoom" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testDeleteRoom ()
+{
   int roomNumber = 5;
-
   Room room, temp;
   RoomManagement rm;
 
@@ -87,9 +121,13 @@ void TRoomManagement::testDeleteRoom () {
   QVERIFY (room.getRoomNumber () != temp.getRoomNumber ());
 }
 
-void TRoomManagement::testFetchRoom () {
+/** Fetch Room Test Method
+ *  @brief This method tries to test the "fetchRoom" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testFetchRoom ()
+{
   int roomNumber = 6;
-
   Room temp, room (roomNumber, 1, 2);
   RoomManagement rm;
 
@@ -101,9 +139,13 @@ void TRoomManagement::testFetchRoom () {
            room.getCapacity ()   == temp.getCapacity ());
 }
 
-void TRoomManagement::testGetStatus () {
+/** Get Room Status Test Method
+ *  @brief This method tries to test the "getStatus" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testGetStatus ()
+{
   int roomNumber = 7;
-
   Room room (roomNumber, 1, 2);
   RoomManagement rm;
 
@@ -112,9 +154,13 @@ void TRoomManagement::testGetStatus () {
   QVERIFY (rm.getStatus (roomNumber) == true);
 }
 
-void TRoomManagement::testCheckInData () {
+/** Room Check In Data Test Method
+ *  @brief This method tries to test the "checkInData" method of "RoomManagement" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TRoomManagement::testCheckInData ()
+{
   int error = 0;
-
   Room room;
   RoomManagement rm;
 
