@@ -1,12 +1,24 @@
+/** @file tuser.cpp
+ *  @brief User Unit Test Implementation
+ *  @author Efstathios Xatzikiriakidis
+ *
+ *  This is the unit test for the "User" class.
+ */
+
 #include "tuser.h"
 
-QString gName ("Efstathios");
-QString gSurname ("Xatzikiriakidis");
-QString gUsername ("efstuser");
-QString gPassword ("efstpass");
-QString gRole ("Receptionist");
+QString gName     = QString ("Efstathios");      /**< User name value (test data). */
+QString gSurname  = QString ("Xatzikiriakidis"); /**< User surname value (test data). */
+QString gUsername = QString ("efst_user");       /**< User username value (test data). */
+QString gPassword = QString ("efst_pass");       /**< User password value (test data). */
+QString gRole     = QString ("Receptionist");    /**< User role value (test data). */
 
-void TUser::testConstructor () {
+/** User Constructor Test Method
+ *  @brief This method tests the constructor of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testConstructor ()
+{
   User u (gName, gSurname, gUsername, gPassword, gRole);
 
   QVERIFY (u.getName ()     == gName     &&
@@ -16,41 +28,61 @@ void TUser::testConstructor () {
            u.getRole ()     == gRole);
 }
 
-void TUser::testName () {
+/** User Name Test Method
+ *  @brief This method tests the Name set/get methods of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testName ()
+{
   User u;
-
   u.setName (gName);
 
   QVERIFY (u.getName () == gName);
 }
 
-void TUser::testSurname () {
+/** User Surname Test Method
+ *  @brief This method tests the Surname set/get methods of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testSurname ()
+{
   User u;
-
   u.setSurname (gSurname);
 
   QVERIFY (u.getSurname () == gSurname);
 }
 
-void TUser::testUsername () {
+/** User Username Test Method
+ *  @brief This method tests the Username set/get methods of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testUsername ()
+{
   User u;
-
   u.setUsername (gUsername);
 
   QVERIFY (u.getUsername () == gUsername);
 }
 
-void TUser::testPassword () {
+/** User Password Test Method
+ *  @brief This method tests the Password set/get methods of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testPassword ()
+{
   User u;
-
   u.setPassword (gPassword);
 
   QVERIFY (u.getPassword () == gPassword);
 }
 
-void TUser::testRole () {
+/** User Role Test Method
+ *  @brief This method tests the Role set/get methods of the "User" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TUser::testRole ()
+{
   User u;
-
   u.setRole (gRole);
 
   QVERIFY (u.getRole () == gRole);
