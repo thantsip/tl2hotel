@@ -41,6 +41,10 @@ private:
     ReservationManagement ResM;
 
 private slots:
+    void on_DeleteAllRooms_clicked();
+    void on_Re_clicked();
+    void on_MassiveRoomEditSave_clicked();
+    void on_RefreshRoom_clicked();
     void on_CheckOut_clicked();
     void on_CreateMassiveRoom_clicked();
     void on_CreateMassiveRoomTable_clicked();
