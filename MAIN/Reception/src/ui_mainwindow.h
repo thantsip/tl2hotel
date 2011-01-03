@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 28. Dec 19:23:22 2010
+** Created: Mon 3. Jan 12:57:23 2011
 **      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -136,7 +136,7 @@ public:
     QPushButton *FindCustomer;
     QTableWidget *CustomerTable;
     QWidget *tab_2;
-    QTabWidget *tabWidget;
+    QTabWidget *RefreshRoom2;
     QWidget *tab_8;
     QWidget *gridLayoutWidget_7;
     QGridLayout *gridLayout_7;
@@ -174,6 +174,14 @@ public:
     QPushButton *CreateMassiveRoomTable;
     QTableWidget *MassiveRoomTable;
     QPushButton *CreateMassiveRoom;
+    QWidget *tab_10;
+    QTableWidget *MassiveRoomEditTable;
+    QPushButton *MassiveRoomEditSave;
+    QPushButton *RefreshRoom;
+    QWidget *tab_11;
+    QPushButton *DeleteAllRooms;
+    QTableWidget *MassiveRoomDeleteTable;
+    QPushButton *Re;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
@@ -184,7 +192,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(700, 518);
+        MainWindow->resize(700, 514);
         Exit = new QAction(MainWindow);
         Exit->setObjectName(QString::fromUtf8("Exit"));
         Clean = new QAction(MainWindow);
@@ -664,9 +672,9 @@ public:
         Tabs->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        tabWidget = new QTabWidget(tab_2);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(10, 10, 661, 431));
+        RefreshRoom2 = new QTabWidget(tab_2);
+        RefreshRoom2->setObjectName(QString::fromUtf8("RefreshRoom2"));
+        RefreshRoom2->setGeometry(QRect(10, 10, 661, 431));
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
         gridLayoutWidget_7 = new QWidget(tab_8);
@@ -808,12 +816,12 @@ public:
 
         gridLayout_2->addWidget(label_2, 0, 0, 1, 2);
 
-        tabWidget->addTab(tab_8, QString());
+        RefreshRoom2->addTab(tab_8, QString());
         tab_9 = new QWidget();
         tab_9->setObjectName(QString::fromUtf8("tab_9"));
         gridLayoutWidget_13 = new QWidget(tab_9);
         gridLayoutWidget_13->setObjectName(QString::fromUtf8("gridLayoutWidget_13"));
-        gridLayoutWidget_13->setGeometry(QRect(10, 10, 268, 21));
+        gridLayoutWidget_13->setGeometry(QRect(10, 10, 268, 25));
         gridLayout_11 = new QGridLayout(gridLayoutWidget_13);
         gridLayout_11->setSpacing(6);
         gridLayout_11->setContentsMargins(11, 11, 11, 11);
@@ -841,7 +849,31 @@ public:
         CreateMassiveRoom->setObjectName(QString::fromUtf8("CreateMassiveRoom"));
         CreateMassiveRoom->setEnabled(false);
         CreateMassiveRoom->setGeometry(QRect(520, 380, 131, 23));
-        tabWidget->addTab(tab_9, QString());
+        RefreshRoom2->addTab(tab_9, QString());
+        tab_10 = new QWidget();
+        tab_10->setObjectName(QString::fromUtf8("tab_10"));
+        MassiveRoomEditTable = new QTableWidget(tab_10);
+        MassiveRoomEditTable->setObjectName(QString::fromUtf8("MassiveRoomEditTable"));
+        MassiveRoomEditTable->setGeometry(QRect(10, 40, 641, 331));
+        MassiveRoomEditSave = new QPushButton(tab_10);
+        MassiveRoomEditSave->setObjectName(QString::fromUtf8("MassiveRoomEditSave"));
+        MassiveRoomEditSave->setGeometry(QRect(500, 380, 151, 23));
+        RefreshRoom = new QPushButton(tab_10);
+        RefreshRoom->setObjectName(QString::fromUtf8("RefreshRoom"));
+        RefreshRoom->setGeometry(QRect(10, 10, 161, 23));
+        RefreshRoom2->addTab(tab_10, QString());
+        tab_11 = new QWidget();
+        tab_11->setObjectName(QString::fromUtf8("tab_11"));
+        DeleteAllRooms = new QPushButton(tab_11);
+        DeleteAllRooms->setObjectName(QString::fromUtf8("DeleteAllRooms"));
+        DeleteAllRooms->setGeometry(QRect(480, 380, 171, 23));
+        MassiveRoomDeleteTable = new QTableWidget(tab_11);
+        MassiveRoomDeleteTable->setObjectName(QString::fromUtf8("MassiveRoomDeleteTable"));
+        MassiveRoomDeleteTable->setGeometry(QRect(10, 40, 641, 331));
+        Re = new QPushButton(tab_11);
+        Re->setObjectName(QString::fromUtf8("Re"));
+        Re->setGeometry(QRect(10, 10, 161, 23));
+        RefreshRoom2->addTab(tab_11, QString());
         Tabs->addTab(tab_2, QString());
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -872,7 +904,7 @@ public:
 
         Tabs->setCurrentIndex(0);
         Tabs2->setCurrentIndex(0);
-        tabWidget->setCurrentIndex(0);
+        RefreshRoom2->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -948,11 +980,17 @@ public:
         label_12->setText(QApplication::translate("MainWindow", "\316\221\317\201\316\271\316\270\316\274\317\214\317\202:", 0, QApplication::UnicodeUTF8));
         InsertRoom->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\316\277\317\205", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_8), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        RefreshRoom2->setTabText(RefreshRoom2->indexOf(tab_8), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         label_33->setText(QApplication::translate("MainWindow", "\316\240\317\214\317\203\316\261 \316\264\317\211\316\274\316\254\317\204\316\271\316\261 \316\270\316\261 \316\265\316\271\317\203\316\254\316\263\316\265\317\204\316\265;", 0, QApplication::UnicodeUTF8));
         CreateMassiveRoomTable->setText(QApplication::translate("MainWindow", "\316\224\316\267\316\274\316\271\316\277\317\205\317\201\316\263\316\257\316\261", 0, QApplication::UnicodeUTF8));
         CreateMassiveRoom->setText(QApplication::translate("MainWindow", "\316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\264\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tab_9), QApplication::translate("MainWindow", "\316\234\316\261\316\266\316\271\316\272\316\256 \316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        RefreshRoom2->setTabText(RefreshRoom2->indexOf(tab_9), QApplication::translate("MainWindow", "\316\234\316\261\316\266\316\271\316\272\316\256 \316\225\316\271\317\203\316\261\316\263\317\211\316\263\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        MassiveRoomEditSave->setText(QApplication::translate("MainWindow", "\316\221\317\200\316\277\316\270\316\256\316\272\316\265\317\205\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        RefreshRoom->setText(QApplication::translate("MainWindow", "\316\221\316\275\316\261\316\275\316\255\317\211\317\203\316\267 \316\233\316\257\317\203\317\204\316\261\317\202 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275 ", 0, QApplication::UnicodeUTF8));
+        RefreshRoom2->setTabText(RefreshRoom2->indexOf(tab_10), QApplication::translate("MainWindow", "\316\234\316\261\316\266\316\271\316\272\316\256 \316\225\317\200\316\265\316\276\316\265\317\201\316\263\316\261\317\203\316\257\316\261 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        DeleteAllRooms->setText(QApplication::translate("MainWindow", "\316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\237\316\273\317\211\316\275 \317\204\317\211\316\275 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
+        Re->setText(QApplication::translate("MainWindow", "\316\221\316\275\316\261\316\275\316\255\317\211\317\203\316\267 \316\233\316\257\317\203\317\204\316\261\317\202 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275 ", 0, QApplication::UnicodeUTF8));
+        RefreshRoom2->setTabText(RefreshRoom2->indexOf(tab_11), QApplication::translate("MainWindow", "\316\234\316\261\316\266\316\271\316\272\316\256 \316\224\316\271\316\261\316\263\317\201\316\261\317\206\316\256 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         Tabs->setTabText(Tabs->indexOf(tab_2), QApplication::translate("MainWindow", "\316\224\316\271\316\261\317\207\316\265\316\257\317\201\316\271\317\203\316\267 \316\224\317\211\316\274\316\261\317\204\316\257\317\211\316\275", 0, QApplication::UnicodeUTF8));
         menu->setTitle(QApplication::translate("MainWindow", "\316\221\317\201\317\207\316\265\316\257\316\277", 0, QApplication::UnicodeUTF8));
         menu_2->setTitle(QApplication::translate("MainWindow", "\316\225\317\200\316\265\316\276\316\265\317\201\316\263\316\261\317\203\316\257\316\261", 0, QApplication::UnicodeUTF8));
