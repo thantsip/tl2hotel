@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     customerManagement.cpp \
     customer.cpp \
     admin.cpp \
-    about.cpp
+    about.cpp \
+    guimanagment.cpp
 
 HEADERS  += mainwindow.h \
     user.h \
@@ -39,7 +40,9 @@ HEADERS  += mainwindow.h \
     customerManagement.h \
     customer.h \
     admin.h \
-    about.h
+    about.h \
+    filehandler.h \
+    guimanagment.h
 
 FORMS    += mainwindow.ui \
     about.ui
