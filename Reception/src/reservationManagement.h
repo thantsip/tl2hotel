@@ -17,6 +17,9 @@
 #include <sstream>
 #include <QtSql>
 
+#include <QDateTime>
+#include <string>
+
 #define roomcharge 55.5
 
 
@@ -49,6 +52,7 @@ public:
 
        bool checkInData(Room room,Customer customer);
        double roomCheckout(int RoomNumber);
+       vector<Room> searchRoomByDate(QString dateFrom , QString dateTo ) ;
 
 };
 
