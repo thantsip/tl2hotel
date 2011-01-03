@@ -256,3 +256,133 @@ double ReservationManagement::roomCheckout(int RoomNumber)
 
 }
 
+/**
+ *
+ *@param day,month,year passing the day the month and the year to QDate objects
+ *@param dateString is the object holding the full date text e.g. "10/2/2010"
+ *@param dayString is the object holding only the day e.g."10" (10/2/2010)
+ *@param monthString is the object holding only the month e.g."5" (10/5/2010)
+ *@param yearString is the object holding only the year e.g."2010" (3/6/2010)
+ *@param position_1 and position_2 holding the integer value of position found the "/" character
+ *@param dateF and dateT are the objects that hold the parameters given in function call
+ *@param query is the object doing the query and get values from database
+ *@param dateFdb , dateTdb objects holding dates from the database
+ *@return A container with the rooms which are free between two dates given. ( roomContainer )
+ */
+vector<Room> ReservationManagement::searchRoomByDate(QString dateFrom , QString dateTo )
+{
+    int day ;
+    int month ;
+    int year ;
+
+    string dateString ;
+    string dayString ;
+    string monthString;
+    string yearString ;
+    string slash = "/" ;
+    int position_1 ;
+    int position_2 ;
+
+    QDate dateF ;
+    QDate dateT ;
+
+    vector<Room> roomContainer ;
+
+    /*
+     * Here dateF will hold the whole "date from" , given from functionm call
+     */
+    dateString =  dateFrom.toStdString()  ;
+    position_1 = dateString.find(slash) ;
+    position_2 = dateString.find(slash,position_1+1) ;
+    dayString = dateString.substr(0,position_1) ;
+    monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
+    yearString = dateString.substr(position_2+1,dateString.length() ) ;
+    day = atoi(dayString.c_str());
+    month = atoi(monthString.c_str());
+    year = atoi(yearString.c_str());
+    dateF.setYMD(year,month,day) ;
+
+    /*
+     * Here dateT will hold the whole "date to" , given from function call
+     */
+    dateString =  dateTo.toStdString()  ;
+    position_1 = dateString.find(slash) ;
+    position_2 = dateString.find(slash,position_1+1) ;
+    dayString = dateString.substr(0,position_1) ;
+    monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
+    yearString = dateString.substr(position_2+1,dateString.length() ) ;
+    day = atoi(dayString.c_str());
+    month = atoi(monthString.c_str());
+    year = atoi(yearString.c_str());
+    dateT.setYMD(year,month,day) ;
+
+    /*
+     * Selecting all data from RoomsReservation
+     */
+    QSqlQuery query;
+    query = sqlMechanism.myQuery();
+    query.prepare("select DateFrom,DateTo,fkRoomid from RoomsReservation") ;
+    query.exec() ;
+
+    QDate dateFdb ;
+    QDate dateTdb ;
+
+    /*
+     * While we have data downloading from database , we check if the dates given in function call
+     * are outside the scope of reserved rooms , meaning that the given values must be smaller than
+     * the range of reservation OR the given values must be bigger
+     *
+     *    |---RESERVED---| x    x     OK Room is free betweeen x-x values
+     *    x    x  |---RESERVED---|    OK Room is free betweeen x-x values
+     *    x      |x---RESERVED---|    Error Room is not free between x-x values
+     *          |x---RESERVED---x|    Error Room is not free between x-x values
+     *    |---RESERVED---x|      x    Error Room is not free between x-x values
+     *
+     */
+    while( query.next() )
+    {
+        dateString =  query.value(0).toString().toStdString()  ;
+        position_1 = dateString.find(slash) ;
+        position_2 = dateString.find(slash,position_1+1) ;
+        dayString = dateString.substr(0,position_1) ;
+        monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
+        yearString = dateString.substr(position_2+1,dateString.length() ) ;
+        day = atoi(dayString.c_str());
+        month = atoi(monthString.c_str());
+        year = atoi(yearString.c_str());
+
+        dateFdb.setYMD(year,month,day) ;
+
+        dateString =  query.value(1).toString().toStdString()  ;
+        position_1 = dateString.find(slash) ;
+        position_2 = dateString.find(slash,position_1+1) ;
+        dayString = dateString.substr(0,position_1) ;
+        monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
+        yearString = dateString.substr(position_2+1,dateString.length() ) ;
+        day = atoi(dayString.c_str());
+        month = atoi(monthString.c_str());
+        year = atoi(yearString.c_str());
+
+        dateTdb.setYMD(year,month,day) ;
+
+        if ( ( (dateF < dateFdb) && (dateT < dateTdb) )  || ( (dateF > dateFdb) && (dateT > dateTdb) ) )
+        {
+            QSqlQuery rmQuery ;
+            rmQuery = sqlMechanism.myQuery();
+            rmQuery.prepare("select RoomFloor,Capacity from Rooms where RoomNumber= :roomNum") ;
+            rmQuery.bindValue(":roomNum",query.value(2).toInt());
+            rmQuery.exec() ;
+            rmQuery.next() ;
+
+            Room rm ;
+            rm.setRoomNumber( query.value(2).toInt() ) ;
+            rm.setRoomFloor( rmQuery.value(0).toInt() ) ;
+            rm.setCapacity( rmQuery.value(1).toInt() ) ;
+            roomContainer.push_back(rm) ;
+        }
+    }
+
+     return roomContainer ;
+}
+
+
