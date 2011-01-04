@@ -10,8 +10,10 @@
 #include "reservationManagement.h"
 #include "about.h"
 
-#include "guimanagment.h"
-
+static const QString Title                 = QObject::tr("Hotel Manager");
+static const QString EmptyRes              = QObject::tr("Please fill out customer ID and room number");
+static const QString DateBeforeCurrentDate = QObject::tr("Check In date must be after current date");
+static const QString CheckOutBeforeCheckIn = QObject::tr("Check Out date must be after Check In date");
 static const QString NotAllCustomerData    = QObject::tr("Please fill out all customer data");
 static const QString NoCustomerID          = QObject::tr("Please fill out Customer ID");
 static const QString NotAllRoomData        = QObject::tr("Please fill out all Room data");
@@ -39,6 +41,10 @@ private:
     ReservationManagement ResM;
 
 private slots:
+    void on_DeleteAllRooms_clicked();
+    void on_Re_clicked();
+    void on_MassiveRoomEditSave_clicked();
+    void on_RefreshRoom_clicked();
     void on_CheckOut_clicked();
     void on_CreateMassiveRoom_clicked();
     void on_CreateMassiveRoomTable_clicked();
