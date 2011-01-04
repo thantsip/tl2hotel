@@ -25,6 +25,16 @@ MainWindow::MainWindow(QWidget *parent) :
                                                            << tr("Room Floor")
                                                            << tr("Capacity")
                                                            << tr("Extras"));
+    ui->MassiveRoomEditTable->setColumnCount(4);
+    ui->MassiveRoomEditTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
+    ui->MassiveRoomDeleteTable->setColumnCount(4);
+    ui->MassiveRoomDeleteTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
 }
 
 MainWindow::~MainWindow()
@@ -100,8 +110,18 @@ void MainWindow::CustomerTableView()
 
 void MainWindow::RoomTableView()
 {
-   GuiManagment mng ;
-   mng.RoomtableView( ui->RoomTable );
+    int i;
+    vector<Room> Room;
+    Room = RM.fetchAllRooms();
+    ui->RoomTable->setRowCount(Room.size());
+
+    for (i=0;i<(int)Room.size();i++)
+    {
+        ui->RoomTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+        ui->RoomTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+        ui->RoomTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+        //ui->RoomTable->setItem(i,3,new QTableWidgetItem( QString("%1").arg((Room[i].getExtras() ) )));
+    }
 }
 
 void MainWindow::on_Clean_triggered()
@@ -189,9 +209,41 @@ void MainWindow::on_CleanTab_triggered()
 
 void MainWindow::on_NewReservation_clicked()
 {
-   GuiManagment mng ;
-   mng.CreateNewReservation(ui->CustomerIdReservation , ui->RoomNumberReservation ,ui->CheckInDate ,ui->CheckOutDate);
-   showRoomGrid();
+    if("" == ui->CustomerIdReservation->text() || "" == ui->RoomNumberReservation->text())
+    {
+        QMessageBox::about(0,Title,EmptyRes);
+        ui->CustomerIdReservation->setFocus();
+    }
+    else
+    {
+        if(ui->CheckInDate->date() < QDate::currentDate())
+        {
+            QMessageBox::about(0,Title,DateBeforeCurrentDate);
+            ui->CheckInDate->setDate(QDate(QDate::currentDate()));
+        }
+        else if(ui->CheckOutDate->date() < ui->CheckInDate->date())
+        {
+            QMessageBox::about(0,Title,CheckOutBeforeCheckIn);
+            ui->CheckOutDate->setDate(ui->CheckInDate->date());
+        }
+        else
+        {
+            Room room;
+            Customer customer;
+
+            customer.setId(ui->CustomerIdReservation->text());
+            room.setRoomNumber(ui->RoomNumberReservation->text().toInt());
+
+            ResM.roomReservation(ui->CheckInDate->text(),ui->CheckOutDate->text(),room,customer);
+
+            ui->CheckInDate->setDate(QDate(QDate::currentDate()));
+            ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
+            ui->CustomerIdReservation->setText("");
+            ui->RoomNumberReservation->setText("");
+            ui->CustomerIdReservation->setFocus();
+            showRoomGrid();
+        }
+    }
 }
 
 void MainWindow::on_InsertCustomer_clicked()
@@ -393,8 +445,50 @@ void MainWindow::on_SaveRoom_clicked()
 
 void MainWindow::showRoomGrid()
 {
-    GuiManagment mng ;
-    mng.ShowRoomGrid(ui->Grid , this );
+
+    vector<Room> Room;
+    QString RoomNumTitle,RoomFloor;
+
+
+    Room = RM.fetchAllRooms();
+
+    int RoomSize=Room.size();
+    int i=0,j=0;
+    int num=0,RoomNum=0;
+
+    while(num!=RoomSize)
+    {
+        QLabel * RoomLabel = new QLabel(this);
+        RoomLabel->setGeometry(0,0,310,180);
+        RoomLabel->setFrameShape(QFrame::Box);
+        RoomLabel->setFrameShadow(QFrame::Sunken);
+        RoomLabel->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        RoomLabel->setFont(QFont( "Comic Sans MS", 8, QFont::Bold ));
+        //-----------------------------------------------------------
+        RoomNumTitle.setNum(Room[RoomNum].getRoomNumber());
+        RoomFloor.setNum(Room[RoomNum].getRoomFloor());
+        RoomLabel->setObjectName(RoomNumTitle);
+        RoomLabel->setText("Num:"+RoomNumTitle+"\n Floor:"+RoomFloor);
+        //-----------------------------------------------------------
+        if(RM.getStatus(Room[RoomNum].getRoomNumber())==true)
+            RoomLabel->setStyleSheet("color: white; background-color:green;");
+        else
+            RoomLabel->setStyleSheet("color: white; background-color:red;");
+        //-----------------------------------------------------------
+        RoomLabel->installEventFilter(this);
+        ui->Grid->addWidget(RoomLabel,i,j);
+        num++;
+        if(j<5)
+        {
+            j++;
+        }
+        else
+        {
+            j=0;
+            i++;
+        }
+        RoomNum++;
+    }
 }
 
 void MainWindow::on_Tabs2_selected(QString )
@@ -415,8 +509,38 @@ void MainWindow::on_Tabs2_selected(QString )
 
 void MainWindow::on_InstantEdit_textChanged(QString )
 {
-    GuiManagment mng ;
-    mng.CustomerTableView(ui->InstantTableView,ui->InstantEdit);
+    int i;
+
+    if(ui->InstantEdit->text()!="")
+    {
+        vector<Customer> searchCustomers;
+
+        searchCustomers = CM.searchCustomerByValue(ui->InstantEdit->text());
+
+        ui->InstantTableView->setRowCount(searchCustomers.size());
+        ui->InstantTableView->setColumnCount(4);
+        ui->InstantTableView->setHorizontalHeaderLabels(QStringList() << tr("ID")
+                                                                      << tr("Name")
+                                                                      << tr("SurName")
+                                                                      << tr("Group ID"));
+
+        for (i=0;i<(int)searchCustomers.size();i++)
+        {
+            ui->InstantTableView->setItem(i,0,new QTableWidgetItem(searchCustomers[i].getId()));
+            ui->InstantTableView->setItem(i,1,new QTableWidgetItem(searchCustomers[i].getName()));
+            ui->InstantTableView->setItem(i,2,new QTableWidgetItem(searchCustomers[i].getSurname()));
+            ui->InstantTableView->setItem(i,3,new QTableWidgetItem(QString("%1").arg(searchCustomers[i].getGroupId())));
+        }
+    }
+    else
+    {
+        ui->InstantTableView->setRowCount(0);
+        ui->InstantTableView->setColumnCount(4);
+        ui->InstantTableView->setHorizontalHeaderLabels(QStringList() << tr("ID")
+                                                                      << tr("Name")
+                                                                      << tr("SurName")
+                                                                      << tr("Group ID"));
+    }
 }
 
 void MainWindow::on_InstantTableView_cellClicked(int row, int column)
@@ -426,10 +550,9 @@ void MainWindow::on_InstantTableView_cellClicked(int row, int column)
 
 void MainWindow::on_About_triggered()
 {
-    About ab;
+   About ab;
 
-   // ab.show();
-    ab.showNormal();
+   ab.show();
 }
 
 void MainWindow::on_CreateMassiveRoomTable_clicked()
@@ -477,3 +600,86 @@ void MainWindow::on_CheckOut_clicked()
     ui->CheckOutNum->setText("");
     showRoomGrid();
 }
+
+void MainWindow::on_RefreshRoom_clicked()
+{
+    int i;
+    vector<Room> Room;
+    Room = RM.fetchAllRooms();
+
+    ui->MassiveRoomEditTable->setColumnCount(4);
+    ui->MassiveRoomEditTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
+
+    ui->MassiveRoomEditTable->setRowCount(Room.size());
+
+    for (i=0;i<(int)Room.size();i++)
+    {
+        ui->MassiveRoomEditTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+        ui->MassiveRoomEditTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+        ui->MassiveRoomEditTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+    }
+}
+
+void MainWindow::on_MassiveRoomEditSave_clicked()
+{
+    int i;
+
+    for(i=0;i<ui->MassiveRoomEditTable->rowCount();i++)
+    {
+        Room room;
+        room.setCapacity(ui->MassiveRoomEditTable->item(i,2)->text().toInt());
+        room.setRoomFloor(ui->MassiveRoomEditTable->item(i,1)->text().toInt());
+        room.setRoomNumber(ui->MassiveRoomEditTable->item(i,0)->text().toInt());
+        RM.editRoom(room);
+    }
+    showRoomGrid();
+    RoomTableView();
+    QMessageBox::about(0,Title,"Done!");
+    ui->MassiveRoomEditTable->setColumnCount(0);
+    ui->MassiveRoomEditTable->setRowCount(0);
+}
+
+void MainWindow::on_Re_clicked()
+{
+    int i;
+    vector<Room> Room;
+    Room = RM.fetchAllRooms();
+
+    ui->MassiveRoomDeleteTable->setColumnCount(4);
+    ui->MassiveRoomDeleteTable->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
+
+    ui->MassiveRoomDeleteTable->setRowCount(Room.size());
+
+    for (i=0;i<(int)Room.size();i++)
+    {
+        ui->MassiveRoomDeleteTable->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+        ui->MassiveRoomDeleteTable->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+        ui->MassiveRoomDeleteTable->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+    }
+}
+
+void MainWindow::on_DeleteAllRooms_clicked()
+{
+    int i;
+
+    for(i=0;i<ui->MassiveRoomDeleteTable->rowCount();i++)
+    {
+        Room room;
+        room.setCapacity(ui->MassiveRoomDeleteTable->item(i,2)->text().toInt());
+        room.setRoomFloor(ui->MassiveRoomDeleteTable->item(i,1)->text().toInt());
+        room.setRoomNumber(ui->MassiveRoomDeleteTable->item(i,0)->text().toInt());
+        RM.deleteRoom(room);
+    }
+    showRoomGrid();
+    RoomTableView();
+    QMessageBox::about(0,Title,"Done!");
+    ui->MassiveRoomDeleteTable->setColumnCount(0);
+    ui->MassiveRoomDeleteTable->setRowCount(0);
+}
+
