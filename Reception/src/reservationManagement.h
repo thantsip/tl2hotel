@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QString>
 #include <QChar>
+#include <QDate>
+#include <QStringList>
 #include <QSqlQuery>
 #include <QVariant>
 #include <iostream>
@@ -16,11 +18,8 @@
 #include <stdio.h>
 #include <sstream>
 #include <QtSql>
+#include <vector>
 
-#include <QDateTime>
-#include <string>
-
-#define roomcharge 55.5
 
 
 class ReservationManagement
@@ -32,6 +31,7 @@ private:
     int reservationId;
     QString dateFrom;
     QString dateTo;
+    vector<double> checkOutSum;
 public:
 
        ReservationManagement();
@@ -52,7 +52,6 @@ public:
 
        bool checkInData(Room room,Customer customer);
        double roomCheckout(int RoomNumber);
-       vector<Room> searchRoomByDate(QString dateFrom , QString dateTo ) ;
 
 };
 

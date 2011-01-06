@@ -148,14 +148,27 @@ bool ReservationManagement::checkInData(Room room, Customer customer)
 
 /**
  *checks out the selected reservation and calculates the charge for the room
- *@param roomId is an integer variable
+ *@param room is a Room object
+ *@param date1 is a QString object
+ *@param date1 is a QString object
+ *@param SplitDate1 is a QStringList object
+ *@param SplitDate2 is a QStringList object
+ *@param check is a boolean
+ *@param daysToPay is a integer variable
+ *@param resId is a integer variable
+ *@param price is a double variable
+ *@param query is a QSqlQuery object
+ *@param checkIn is a QDate object
+ *@param checkOut is a QDate object
  *@return the totAmount charge the customer has to pay
  */
 double ReservationManagement::roomCheckout(int RoomNumber)
 {
             Room room;
-            QDateTime checkIn;
-            QDateTime checkOut;
+            QString date1;
+            QString date2;
+            QStringList SplitDate1;
+            QStringList SplitDate2;
             bool check = false;
             int daysToPay = 0;
             int resId = 0;
@@ -167,82 +180,109 @@ double ReservationManagement::roomCheckout(int RoomNumber)
             /*
              *select the capacity of the room that is about to Check Out
              */
-            query.prepare("select Capacity from Rooms where RoomNumber = :rNum");
+            query.prepare("SELECT Capacity FROM Rooms WHERE RoomNumber= :rNum");
             query.bindValue(":rNum",RoomNumber);
-            query.exec();
 
-			if(query.next())
-			 {
-
-				room.setCapacity(query.value(0).toInt());
-				check = true;
+                if(!query.exec())
+                        {
+                            QMessageBox::information(0,"Search Error","There is no room with that number");
+                            return -1;
 			}
 
-		   else
-			{
-				QMessageBox::information(0,"Search Error","There is no room with that number");
-				return -1;
-			}
-           
+                while(query.next())
+                   {
+                       room.setCapacity(query.value(0).toInt());
+                       check = true;
+
+                   }
+                if(!check)
+                {
+                    QMessageBox::information(0,"edo","edo");
+                    return -1;
+                }
             /*
              *select the price of a room with the current capacity
              */
             if(check)
              {
 
-                query.prepare("select Price from Prices where RoomCapacity = :cap");
+                query.prepare("SELECT Price FROM Prices WHERE RoomCapacity= :cap");
                 query.bindValue(":cap",room.getCapacity());
-                query.exec();
 
-                if(query.next())
-                {
-                    price = query.value(0).toDouble();
-                    check = true;
-                }
-                else
+                if(!query.exec())
                 {
                     QMessageBox::information(0,"Search Error","There is no price for that capacity");
                     check = false;
                     return -1;
+
+                }
+                while(query.next())
+                {
+                    price = query.value(0).toDouble();
+                    check = true;
                 }
             }
+                else
+                    return -1;
+
 
             /*
              *select DateFrom, DateTo and reservation id of the current reservation
              */
             if(check)
             {
-                query.prepare("select DateFrom,DateTo,prIdReservation from RoomsReservation where fkRoomId = :rNum");
+                query.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
                 query.bindValue(":rNum",RoomNumber);
-                query.exec();
 
-                if(query.next())
-                {
-
-                    checkIn = query.value(0).toDateTime();
-                    checkOut = query.value(1).toDateTime();
-                    resId = query.value(2).toInt();
-                    check  = true;
-                }
-
-                else
+                if(!query.exec())
                 {
                     QMessageBox::information(0,"Search Error","There is no reservation for that room");
                     check = false;
                     return -1;
                 }
-             }
+                while(query.next())
+                {
+                    date1 = query.value(1).toString();
+                    date2 = query.value(2).toString();
+                    resId = query.value(0).toInt();
+                    SplitDate1=date1.split("/");
+                    SplitDate2=date2.split("/");
+                    check  = true;
+
+                }
+            }
+            else
+                    return -1;
+
              if(check)
              {
              /*
               *calculate the final price
               */
+                QString year1 = SplitDate1.at(2);
+                QString day1 = SplitDate1.at(0);
+                QString month1 = SplitDate1.at(1);
+
+                QString year2 = SplitDate2.at(2);
+                QString day2 = SplitDate2.at(0);
+                QString month2 = SplitDate2.at(1);
+                /*
+                 *add the dates into QDate objects
+                 */
+                QDate checkIn(year1.toInt(),month1.toInt(),day1.toInt());
+                QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
+
                 daysToPay = checkIn.daysTo(checkOut);
                 totAmount = daysToPay * price;
                 /*
+                 *save the totAmount in a vector
+                 */
+                checkOutSum.push_back(totAmount);
+
+                /*
                  *delete the current reservation from the database
                  */
-                query.prepare("delete from RoomsReservation where prIdReservation =:resId");
+                query.prepare("DELETE FROM RoomsReservation WHERE prIdReservation= :resId");
                 query.bindValue(":resId",resId);
                 query.exec();
 
@@ -255,134 +295,4 @@ double ReservationManagement::roomCheckout(int RoomNumber)
              }
 
 }
-
-/**
- *
- *@param day,month,year passing the day the month and the year to QDate objects
- *@param dateString is the object holding the full date text e.g. "10/2/2010"
- *@param dayString is the object holding only the day e.g."10" (10/2/2010)
- *@param monthString is the object holding only the month e.g."5" (10/5/2010)
- *@param yearString is the object holding only the year e.g."2010" (3/6/2010)
- *@param position_1 and position_2 holding the integer value of position found the "/" character
- *@param dateF and dateT are the objects that hold the parameters given in function call
- *@param query is the object doing the query and get values from database
- *@param dateFdb , dateTdb objects holding dates from the database
- *@return A container with the rooms which are free between two dates given. ( roomContainer )
- */
-vector<Room> ReservationManagement::searchRoomByDate(QString dateFrom , QString dateTo )
-{
-    int day ;
-    int month ;
-    int year ;
-
-    string dateString ;
-    string dayString ;
-    string monthString;
-    string yearString ;
-    string slash = "/" ;
-    int position_1 ;
-    int position_2 ;
-
-    QDate dateF ;
-    QDate dateT ;
-
-    vector<Room> roomContainer ;
-
-    /*
-     * Here dateF will hold the whole "date from" , given from functionm call
-     */
-    dateString =  dateFrom.toStdString()  ;
-    position_1 = dateString.find(slash) ;
-    position_2 = dateString.find(slash,position_1+1) ;
-    dayString = dateString.substr(0,position_1) ;
-    monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
-    yearString = dateString.substr(position_2+1,dateString.length() ) ;
-    day = atoi(dayString.c_str());
-    month = atoi(monthString.c_str());
-    year = atoi(yearString.c_str());
-    dateF.setYMD(year,month,day) ;
-
-    /*
-     * Here dateT will hold the whole "date to" , given from function call
-     */
-    dateString =  dateTo.toStdString()  ;
-    position_1 = dateString.find(slash) ;
-    position_2 = dateString.find(slash,position_1+1) ;
-    dayString = dateString.substr(0,position_1) ;
-    monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
-    yearString = dateString.substr(position_2+1,dateString.length() ) ;
-    day = atoi(dayString.c_str());
-    month = atoi(monthString.c_str());
-    year = atoi(yearString.c_str());
-    dateT.setYMD(year,month,day) ;
-
-    /*
-     * Selecting all data from RoomsReservation
-     */
-    QSqlQuery query;
-    query = sqlMechanism.myQuery();
-    query.prepare("select DateFrom,DateTo,fkRoomid from RoomsReservation") ;
-    query.exec() ;
-
-    QDate dateFdb ;
-    QDate dateTdb ;
-
-    /*
-     * While we have data downloading from database , we check if the dates given in function call
-     * are outside the scope of reserved rooms , meaning that the given values must be smaller than
-     * the range of reservation OR the given values must be bigger
-     *
-     *    |---RESERVED---| x    x     OK Room is free betweeen x-x values
-     *    x    x  |---RESERVED---|    OK Room is free betweeen x-x values
-     *    x      |x---RESERVED---|    Error Room is not free between x-x values
-     *          |x---RESERVED---x|    Error Room is not free between x-x values
-     *    |---RESERVED---x|      x    Error Room is not free between x-x values
-     *
-     */
-    while( query.next() )
-    {
-        dateString =  query.value(0).toString().toStdString()  ;
-        position_1 = dateString.find(slash) ;
-        position_2 = dateString.find(slash,position_1+1) ;
-        dayString = dateString.substr(0,position_1) ;
-        monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
-        yearString = dateString.substr(position_2+1,dateString.length() ) ;
-        day = atoi(dayString.c_str());
-        month = atoi(monthString.c_str());
-        year = atoi(yearString.c_str());
-
-        dateFdb.setYMD(year,month,day) ;
-
-        dateString =  query.value(1).toString().toStdString()  ;
-        position_1 = dateString.find(slash) ;
-        position_2 = dateString.find(slash,position_1+1) ;
-        dayString = dateString.substr(0,position_1) ;
-        monthString = dateString.substr(position_1+1 , position_2-position_1-1 ) ;
-        yearString = dateString.substr(position_2+1,dateString.length() ) ;
-        day = atoi(dayString.c_str());
-        month = atoi(monthString.c_str());
-        year = atoi(yearString.c_str());
-
-        dateTdb.setYMD(year,month,day) ;
-
-        if ( ( (dateF < dateFdb) && (dateT < dateTdb) )  || ( (dateF > dateFdb) && (dateT > dateTdb) ) )
-        {
-            QSqlQuery rmQuery ;
-            rmQuery = sqlMechanism.myQuery();
-            rmQuery.prepare("select RoomFloor,Capacity from Rooms where RoomNumber= :roomNum") ;
-            rmQuery.bindValue(":roomNum",query.value(2).toInt());
-            rmQuery.exec() ;
-            rmQuery.next() ;
-
-            Room rm ;
-            rm.setRoomNumber( query.value(2).toInt() ) ;
-            rm.setRoomFloor( rmQuery.value(0).toInt() ) ;
-            rm.setCapacity( rmQuery.value(1).toInt() ) ;
-            roomContainer.push_back(rm) ;
-        }
-    }
-
-     return roomContainer ;
-}
-
 
