@@ -237,3 +237,11 @@
 	main (.cpp)
 	about (.h & .cpp & .ui)
 	my week report
+=======
+6/1/11 17:15 Iordanidis Alexandros <alexander.iordanidis@gmail.com>
+
+	*added
+		reservationManagement (.cpp &.h)
+	*added
+		week report
+=======
