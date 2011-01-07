@@ -35,4 +35,19 @@ void TReceptionist::testFund ()
   QVERIFY (r.getFund () == gFund);
 }
 
+/** Receptionist Check In Data Test Method
+ *  @brief This method tests the "checkInData" method of the "Receptionist" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TReceptionist::testCheckInData ()
+{
+  QString empty ("");
+
+  User u (empty, empty, empty, empty, empty);
+
+  Receptionist r;
+
+  QVERIFY (r.checkInData (u) == false);
+}
+
 QTEST_MAIN (TReceptionist)
