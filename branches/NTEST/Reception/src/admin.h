@@ -19,7 +19,7 @@ public:
     void createUser(User user);
     void editUser(User user);
     void deleteUser(User user);
-    bool CheckInData(User user);
+    bool checkInData(User user);
 
 
     ~Admin();

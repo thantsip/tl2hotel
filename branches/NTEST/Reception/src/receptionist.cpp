@@ -102,7 +102,7 @@ double Receptionist::getFund()
   *@param ret is a boolean
   *@return the statement whether the data is correct or not, true: correct, false: incorrect
   */
-bool Receptionist::CheckInData(User user){
+bool Receptionist::checkInData(User user){
 
     QString cName = user.getName();
     QString cSurname = user.getSurname();
