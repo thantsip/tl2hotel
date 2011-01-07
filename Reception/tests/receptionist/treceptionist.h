@@ -34,6 +34,12 @@ class TReceptionist : public QObject
      *  @author Efstathios Xatzikiriakidis
      */
     void testFund ();
+
+    /** Receptionist Check In Data Test Method
+     *  @brief This method tests the "checkInData" method of the "Receptionist" class.
+     *  @author Efstathios Xatzikiriakidis
+     */
+    void testCheckInData ();
 };
 
 #endif // T_RECEPTIONIST_H
