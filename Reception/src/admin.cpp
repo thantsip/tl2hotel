@@ -88,7 +88,7 @@ void Admin::deleteUser(User user)
   *@param ret is a boolean
   *@return the statement whether the data is correct or not, true: correct, false: incorrect
   */
-bool Admin::CheckInData(User user){
+bool Admin::checkInData(User user){
 
     QString cName = user.getName();
     QString cSurname = user.getSurname();
