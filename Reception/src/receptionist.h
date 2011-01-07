@@ -17,7 +17,7 @@ public:
     void setFund(double dFund);
     double getFund();
 
-    bool CheckInData(User user);
+    bool checkInData(User user);
 
     ~Receptionist();
 };
