@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     customerManagement.cpp \
     customer.cpp \
     admin.cpp \
-    about.cpp
+    about.cpp \
+    pricemanagement.cpp \
+    usermanagement.cpp
 
 HEADERS  += mainwindow.h \
     user.h \
@@ -39,7 +41,9 @@ HEADERS  += mainwindow.h \
     customerManagement.h \
     customer.h \
     admin.h \
-    about.h
+    about.h \
+    pricemanagement.h \
+    usermanagement.h
 
 FORMS    += mainwindow.ui \
     about.ui

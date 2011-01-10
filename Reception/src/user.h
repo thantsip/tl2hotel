@@ -39,6 +39,7 @@ public:
     void setRole(QString role);
 
 
+
     QString getName();
 
     QString getSurname();

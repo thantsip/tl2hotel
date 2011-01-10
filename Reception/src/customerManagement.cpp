@@ -33,6 +33,7 @@ void CustomerManagement::newCustomer(Customer customer)
     while(fetchquery.next())
     {
         QMessageBox::information(0,"Input Data Error","This ID exists");
+        return;
     }
 
     if(CustomerManagement::checkInData(customer))
