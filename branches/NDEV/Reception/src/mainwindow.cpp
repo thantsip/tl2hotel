@@ -5,11 +5,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    Grid=0;
+    scroll = 0;
+    layout = 0;
     ui->setupUi(this);
     ui->CheckInDate->setDate(QDate(QDate::currentDate()));
     ui->CheckOutDate->setDate(QDate(QDate::currentDate()));
     ui->CustomerIdReservation->setFocus();
-    showRoomGrid();
+
     ui->InstantTableView->setColumnCount(4);
     ui->InstantTableView->setHorizontalHeaderLabels(QStringList() << tr("ID")
                                                                   << tr("Name")
@@ -35,6 +38,25 @@ MainWindow::MainWindow(QWidget *parent) :
                                                            << tr("Room Floor")
                                                            << tr("Capacity")
                                                            << tr("Extras"));
+
+    ui->RoomTablePrice->setColumnCount(2);
+    ui->RoomTablePrice->setHorizontalHeaderLabels(QStringList() << tr("Room Capacity")
+                                                           << tr("Room Price"));
+
+    ui->UserTable->setColumnCount(4);
+    ui->UserTable->setHorizontalHeaderLabels(QStringList() << tr("Name")
+                                                           << tr("SurName")
+                                                           << tr("UserName")
+                                                           << tr("Role"));
+    ui->SearchRoomTableView->setColumnCount(4);
+    ui->SearchRoomTableView->setHorizontalHeaderLabels(QStringList() << tr("Room Number")
+                                                           << tr("Room Floor")
+                                                           << tr("Capacity")
+                                                           << tr("Extras"));
+    PricesTableView();
+    showRoomGrid();
+    UserTableView();
+    CustomerTableView();
 }
 
 MainWindow::~MainWindow()
@@ -108,6 +130,23 @@ void MainWindow::CustomerTableView()
     }
 }
 
+void MainWindow::UserTableView()
+{
+    int i;
+    vector<User> Users;
+
+    Users = UM.fetchAllUsers();
+    ui->UserTable->setRowCount(Users.size());
+
+    for (i=0;i<(int)Users.size();i++)
+    {
+        ui->UserTable->setItem(i,0,new QTableWidgetItem(Users[i].getName()));
+        ui->UserTable->setItem(i,1,new QTableWidgetItem(Users[i].getSurname()));
+        ui->UserTable->setItem(i,2,new QTableWidgetItem(Users[i].getUsername()));
+        ui->UserTable->setItem(i,3,new QTableWidgetItem(Users[i].getRole()));
+    }
+}
+
 void MainWindow::RoomTableView()
 {
     int i;
@@ -159,12 +198,12 @@ void MainWindow::on_Tabs_selected(QString )
     {
         ui->CustomerIdReservation->setFocus();
     }
-    if(1==ui->Tabs->currentIndex())
+    if(2==ui->Tabs->currentIndex())
     {
         ui->CustomerID->setFocus();
         CustomerTableView();
     }
-    if(2==ui->Tabs->currentIndex())
+    if(3==ui->Tabs->currentIndex())
     {
         ui->RoomNumber->setFocus();
         RoomTableView();
@@ -445,10 +484,24 @@ void MainWindow::on_SaveRoom_clicked()
 
 void MainWindow::showRoomGrid()
 {
+    if(0!=Grid || 0!=scroll || 0!=layout)
+    {
+        delete Grid;
+        delete scroll;
+        delete layout;
+    }
+    layout = new QVBoxLayout();
+    scroll = new QScrollArea(this);
+    Grid = new QGridLayout(this);
 
+    Grid->setHorizontalSpacing(6);
+    Grid->setVerticalSpacing(6);
+    scroll->setLayout(Grid);
+    layout->addWidget(scroll);
+
+    ui->Tabs2->widget(0)->setLayout(layout);
     vector<Room> Room;
     QString RoomNumTitle,RoomFloor;
-
 
     Room = RM.fetchAllRooms();
 
@@ -476,7 +529,7 @@ void MainWindow::showRoomGrid()
             RoomLabel->setStyleSheet("color: white; background-color:red;");
         //-----------------------------------------------------------
         RoomLabel->installEventFilter(this);
-        ui->Grid->addWidget(RoomLabel,i,j);
+        Grid->addWidget(RoomLabel,i,j);
         num++;
         if(j<5)
         {
@@ -495,10 +548,7 @@ void MainWindow::on_Tabs2_selected(QString )
 {
     if(1==ui->Tabs2->currentIndex())
     {
-        ui->BedCapacity->setText("");
-        ui->RoomFloorFind->setText("");
-        ui->FreeRoomWhatEver->setChecked(true);
-        ui->BedCapacity->setFocus();
+
     }
     if(2==ui->Tabs2->currentIndex())
     {
@@ -576,31 +626,52 @@ void MainWindow::on_CreateMassiveRoomTable_clicked()
 
 void MainWindow::on_CreateMassiveRoom_clicked()
 {
-    int i;
+    double flag=0;
+    int i,j;
 
-    for(i=0;i<(int)ui->MassiveRoomTableNum->text().toInt();i++)
+    for(i = 0; i < ui-> MassiveRoomTableNum->text().toInt(); i++)
     {
-        Room room;
-        room.setCapacity(ui->MassiveRoomTable->item(i,2)->text().toInt());
-        room.setRoomFloor(ui->MassiveRoomTable->item(i,1)->text().toInt());
-        room.setRoomNumber(ui->MassiveRoomTable->item(i,0)->text().toInt());
-        RM.newRoom(room);
+        for(j = 0; j < 3; j++)
+        {
+          QTableWidgetItem *item = ui->MassiveRoomTable->item (i, j);
+          if (0 == item)
+            flag = 1;
+        }
     }
-    showRoomGrid();
-    RoomTableView();
-    QMessageBox::about(0,Title,"Done!");
-    ui->MassiveRoomTable->setColumnCount(0);
-    ui->MassiveRoomTable->setRowCount(0);
-    ui->CreateMassiveRoom->setEnabled(false);
+
+    if(0==flag)
+    {
+        for(i=0;i<(int)ui->MassiveRoomTableNum->text().toInt();i++)
+        {
+            Room room;
+            room.setCapacity(ui->MassiveRoomTable->item(i,2)->text().toInt());
+            room.setRoomFloor(ui->MassiveRoomTable->item(i,1)->text().toInt());
+            room.setRoomNumber(ui->MassiveRoomTable->item(i,0)->text().toInt());
+            RM.newRoom(room);
+        }
+        showRoomGrid();
+        RoomTableView();
+        QMessageBox::about(0,Title,"Changes saved!!");
+        ui->MassiveRoomTable->setColumnCount(0);
+        ui->MassiveRoomTable->setRowCount(0);
+        ui->CreateMassiveRoom->setEnabled(false);
+    }
+    else
+    {
+       QMessageBox::about(0,Title,NotAllCustomerData);
+    }
 }
 
 void MainWindow::on_CheckOut_clicked()
 {
     double ch;
     ch = ResM.roomCheckout(ui->CheckOutNum->text().toInt());
-    ui->CheckOutNum->setText("");
-    QMessageBox::about(0,Title,QString("%1").arg(ch));
-    showRoomGrid();
+    if(-1 != ch)
+    {
+        ui->CheckOutNum->setText("");
+        QMessageBox::about(0,Title,QString("%1").arg(ch));
+        showRoomGrid();
+    }
 }
 
 void MainWindow::on_RefreshRoom_clicked()
@@ -639,7 +710,7 @@ void MainWindow::on_MassiveRoomEditSave_clicked()
     }
     showRoomGrid();
     RoomTableView();
-    QMessageBox::about(0,Title,"Done!");
+    QMessageBox::about(0,Title,"Changes saved!!");
     ui->MassiveRoomEditTable->setColumnCount(0);
     ui->MassiveRoomEditTable->setRowCount(0);
 }
@@ -680,8 +751,136 @@ void MainWindow::on_DeleteAllRooms_clicked()
     }
     showRoomGrid();
     RoomTableView();
-    QMessageBox::about(0,Title,"Done!");
+    QMessageBox::about(0,Title,"Changes saved!!");
     ui->MassiveRoomDeleteTable->setColumnCount(0);
     ui->MassiveRoomDeleteTable->setRowCount(0);
 }
 
+
+void MainWindow::on_InsertNewPrice_clicked()
+{
+    PM.newCharge(ui->NewCap->text(),ui->NewPrice->text());
+    PricesTableView();
+}
+
+void MainWindow::on_DeleteNewPrice_clicked()
+{
+    PM.deleteCharge(ui->DeleteCap->text());
+    PricesTableView();
+}
+
+void MainWindow::on_FindNewPrice_clicked()
+{
+    QMap<int, double> charges;
+    charges = PM.fetchAllCharges();
+    if(charges.contains(ui->EditCap->text().toInt()))
+    {
+        ui->EditPrice->setText(QString("%1").arg(charges[ui->EditCap->text().toInt()]));
+    }
+}
+
+void MainWindow::on_UpdateNewPrice_clicked()
+{
+    PM.editCharge(ui->EditCap->text(),ui->EditPrice->text());
+    PricesTableView();
+}
+
+void MainWindow::PricesTableView()
+{
+    int j = 0;
+
+    QMap<int, double> charges;
+    charges = PM.fetchAllCharges();
+    ui->RoomTablePrice->setRowCount(charges.size());
+    QMapIterator<int, double> i(charges);
+
+    while (i.hasNext())
+    {
+        i.next();
+
+        int key = i.key();
+        double price = i.value();
+
+        ui->RoomTablePrice->setItem(j, 0, new QTableWidgetItem(QString("%1").arg(key)));
+        ui->RoomTablePrice->setItem(j, 1, new QTableWidgetItem(QString("%1").arg(price)));
+
+        ++j;
+    }
+}
+
+void MainWindow::on_InsertUser_clicked()
+{
+    User user;
+
+    user.setName(ui->UserRealName->text());
+    user.setSurname(ui->UserSurname->text());
+    user.setUsername(ui->Username->text());
+    user.setPassword(ui->UserPassword->text());
+    user.setRole(ui->Role->currentText());
+
+    UM.newUser(user);
+    UserTableView();
+}
+
+void MainWindow::on_DeleteUser_clicked()
+{
+    User user;
+
+    user.setUsername(ui->UsernameDelete->text());
+
+    UM.deleteUser(user);
+    UserTableView();
+}
+
+void MainWindow::on_FindUser_clicked()
+{
+    User user;
+
+    user = UM.fetchUser(ui->FindUsername->text());
+
+    ui->FindUserRealName->setText(user.getName());
+    ui->FindUserSurname->setText(user.getSurname());
+    ui->FindUserPassword->setText(user.getPassword());
+    UserTableView();
+}
+
+void MainWindow::on_SaveUser_clicked()
+{
+    User user;
+
+    user.setName(ui->FindUserRealName->text());
+    user.setSurname(ui->FindUserSurname->text());
+    user.setPassword(ui->FindUserPassword->text());
+    user.setUsername(ui->FindUsername->text());
+
+    UM.editUser(user);
+    UserTableView();
+}
+
+void MainWindow::on_Search_clicked()
+{
+    vector<Room> Room;
+
+    if(ui->comboBox->currentIndex()==0)
+    {
+        Room = RM.searchRoomByFloor(ui->SearchRoom->text().toInt());
+        ui->SearchRoomTableView->setRowCount(Room.size());
+        for (int i=0;i<Room.size();i++)
+        {
+            ui->SearchRoomTableView->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+            ui->SearchRoomTableView->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+            ui->SearchRoomTableView->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+        }
+    }
+    if(ui->comboBox->currentIndex()==1)
+    {
+        Room = RM.searchRoomByCapacity(ui->SearchRoom->text().toInt());
+        ui->SearchRoomTableView->setRowCount(Room.size());
+        for (int i=0;i<Room.size();i++)
+        {
+            ui->SearchRoomTableView->setItem(i,0,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomNumber()) ));
+            ui->SearchRoomTableView->setItem(i,1,new QTableWidgetItem( QString("%1").arg(Room[i].getRoomFloor()) ));
+            ui->SearchRoomTableView->setItem(i,2,new QTableWidgetItem( QString("%1").arg(Room[i].getCapacity()) ));
+        }
+    }
+}

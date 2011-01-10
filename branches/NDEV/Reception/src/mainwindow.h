@@ -9,6 +9,12 @@
 #include "roomManagement.h"
 #include "reservationManagement.h"
 #include "about.h"
+#include "pricemanagement.h"
+#include "usermanagement.h"
+#include "user.h"
+#include <QGridLayout>
+#include <QScrollArea>
+
 
 static const QString Title                 = QObject::tr("Hotel Manager");
 static const QString EmptyRes              = QObject::tr("Please fill out customer ID and room number");
@@ -39,8 +45,22 @@ private:
     CustomerManagement CM;
     RoomManagement RM;
     ReservationManagement ResM;
+    PriceManagement PM;
+    UserManagement UM;
+    QGridLayout * Grid;
+    QScrollArea *scroll;
+    QVBoxLayout *layout;
 
 private slots:
+    void on_Search_clicked();
+    void on_SaveUser_clicked();
+    void on_FindUser_clicked();
+    void on_DeleteUser_clicked();
+    void on_InsertUser_clicked();
+    void on_UpdateNewPrice_clicked();
+    void on_FindNewPrice_clicked();
+    void on_DeleteNewPrice_clicked();
+    void on_InsertNewPrice_clicked();
     void on_DeleteAllRooms_clicked();
     void on_Re_clicked();
     void on_MassiveRoomEditSave_clicked();
@@ -69,6 +89,8 @@ private slots:
     void showRoomGrid();
     void CustomerTableView();
     void RoomTableView();
+    void PricesTableView();
+    void UserTableView();
 };
 
 #endif // MAINWINDOW_H

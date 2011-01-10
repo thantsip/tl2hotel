@@ -35,7 +35,9 @@ Customer::Customer(QString i,QString n,QString sn,int ig)
 /*
  *destructor
  */
-Customer::~Customer(){}
+Customer::~Customer()
+{
+}
 
 
 /*

@@ -183,21 +183,20 @@ double ReservationManagement::roomCheckout(int RoomNumber)
             query.prepare("SELECT Capacity FROM Rooms WHERE RoomNumber= :rNum");
             query.bindValue(":rNum",RoomNumber);
 
-                if(!query.exec())
-                        {
-                            QMessageBox::information(0,"Search Error","There is no room with that number");
-                            return -1;
-			}
+            if(!query.exec())
+                    {
+                        QMessageBox::information(0,"Search Error","There is no room with that number");
+                        return -1;
+                    }
 
                 while(query.next())
                    {
                        room.setCapacity(query.value(0).toInt());
                        check = true;
-
                    }
                 if(!check)
                 {
-                    QMessageBox::information(0,"edo","edo");
+                    QMessageBox::information(0,"Search Error","There is no room with that number");
                     return -1;
                 }
             /*
@@ -205,23 +204,22 @@ double ReservationManagement::roomCheckout(int RoomNumber)
              */
             if(check)
              {
-
                 query.prepare("SELECT Price FROM Prices WHERE RoomCapacity= :cap");
                 query.bindValue(":cap",room.getCapacity());
+                query.exec();
 
-                if(!query.exec())
-                {
-                    QMessageBox::information(0,"Search Error","There is no price for that capacity");
-                    check = false;
-                    return -1;
-
-                }
                 while(query.next())
                 {
                     price = query.value(0).toDouble();
                     check = true;
                 }
-            }
+                if(0==price)
+                {
+                    QMessageBox::information(0,"Search Error","There is no price for that capacity");
+                    check = false;
+                    return -1;
+                }
+              }
                 else
                     return -1;
 
@@ -273,6 +271,12 @@ double ReservationManagement::roomCheckout(int RoomNumber)
                 QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
 
                 daysToPay = checkIn.daysTo(checkOut);
+
+                if(0 == daysToPay)
+                {
+                    daysToPay = 1;
+                }
+
                 totAmount = daysToPay * price;
                 /*
                  *save the totAmount in a vector

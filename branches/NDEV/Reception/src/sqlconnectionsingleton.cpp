@@ -173,7 +173,7 @@ bool SqlConnection::dbCreateInstance()
     progress.setValue(++step);
     if(ret)
     {
-    ret = query.exec("create table Prices (RoomCapacity INTEGER,"
+    ret = query.exec("create table Prices (RoomCapacity INTEGER PRIMARY KEY,"
                                            "Price DOUBLE)");
     }
 
