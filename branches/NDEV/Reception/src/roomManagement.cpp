@@ -29,28 +29,29 @@ RoomManagement::~RoomManagement()
   */
 void RoomManagement::newRoom(Room room)
 {
-        QSqlQuery fetchquery;
-        fetchquery = sqlMechanism.myQuery();
-        fetchquery.prepare("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
-        fetchquery.bindValue(":rNum",room.getRoomNumber());
-        fetchquery.exec();
+    QSqlQuery fetchquery;
+    fetchquery = sqlMechanism.myQuery();
+    fetchquery.prepare("SELECT * FROM Rooms WHERE RoomNumber= :rNum");
+    fetchquery.bindValue(":rNum",room.getRoomNumber());
+    fetchquery.exec();
 
-        while(fetchquery.next())
-        {
-            QMessageBox::information(0,"Input Data Error","This Number exists");
-        }
+    while(fetchquery.next())
+    {
+        QMessageBox::information(0,"Input Data Error","This Number exists");
+        return;
+    }
 
     if(RoomManagement::checkInData(room))
         {
-            QSqlQuery query;
-            query = sqlMechanism.myQuery();
-            query.prepare("insert into Rooms (RoomNumber,RoomFloor,Capacity,Extras)"
-                                           "values(:rNum, :rFloor, :capacity, :extras)");
-           query.bindValue(":rNum",room.getRoomNumber());
-           query.bindValue(":rFloor",room.getRoomFloor());
-           query.bindValue(":capacity",room.getCapacity());
-           query.bindValue(":extras","");
-           query.exec();
+        QSqlQuery query;
+        query = sqlMechanism.myQuery();
+        query.prepare("insert into Rooms (RoomNumber,RoomFloor,Capacity,Extras)"
+                                       "values(:rNum, :rFloor, :capacity, :extras)");
+       query.bindValue(":rNum",room.getRoomNumber());
+       query.bindValue(":rFloor",room.getRoomFloor());
+       query.bindValue(":capacity",room.getCapacity());
+       query.bindValue(":extras","");
+       query.exec();
         }
 }
 
@@ -246,9 +247,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
          while(fetchquery.next())
           {
 
-               room.setRoomNumber(fetchquery.value(1).toInt());
-               room.setRoomFloor( fetchquery.value(2).toInt());
-               room.setCapacity(fetchquery.value(3).toInt());
+               room.setRoomNumber(fetchquery.value(0).toInt());
+               room.setRoomFloor( fetchquery.value(1).toInt());
+               room.setCapacity(fetchquery.value(2).toInt());
                roomVector.push_back( room );
 
           }
@@ -282,9 +283,9 @@ Room RoomManagement::fetchRoom(int roomnumber)
          while(fetchquery.next())
           {
 
-               room.setRoomNumber(fetchquery.value(1).toInt());
-               room.setRoomFloor( fetchquery.value(2).toInt());
-               room.setCapacity(fetchquery.value(3).toInt());
+               room.setRoomNumber(fetchquery.value(0).toInt());
+               room.setRoomFloor( fetchquery.value(1).toInt());
+               room.setCapacity(fetchquery.value(2).toInt());
 
                froomVector.push_back( room );
 

@@ -16,8 +16,6 @@
 #include <string>
 #include <time.h>
 #include <stdio.h>
-#include <sstream>
-#include <QtSql>
 #include <vector>
 
 
