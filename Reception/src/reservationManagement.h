@@ -46,7 +46,7 @@ public:
        void setDateTo(QString dateTo1);
 
 
-       void roomReservation(QString DateFrom,QString DateTo,Room room,Customer customer);
+       void roomReservation(QDate DateFrom,QDate DateTo,Room room,Customer customer);
 
        bool checkInData(Room room,Customer customer);
        double roomCheckout(int RoomNumber);

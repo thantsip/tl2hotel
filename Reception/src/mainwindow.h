@@ -52,6 +52,7 @@ private:
     QVBoxLayout *layout;
 
 private slots:
+    void on_comboBox_currentIndexChanged(QString );
     void on_Search_clicked();
     void on_SaveUser_clicked();
     void on_FindUser_clicked();
