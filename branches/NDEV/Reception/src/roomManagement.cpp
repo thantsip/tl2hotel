@@ -200,26 +200,49 @@ Room RoomManagement::fetchRoom(int roomnumber)
   {
       Room room;
 
+      vector<Room> freeVector;
+
+     QSqlQuery fetchquery;
+
+     fetchquery = sqlMechanism.myQuery();
+     fetchquery.exec("SELECT * FROM Rooms WHERE RoomNumber NOT IN (SELECT fkRoomId FROM RoomsReservation)");
+
+     while(fetchquery.next())
+     {
+          room.setRoomNumber(fetchquery.value(0).toInt());
+          room.setRoomFloor(fetchquery.value(1).toInt());
+          room.setCapacity(fetchquery.value(2).toInt());
+
+          freeVector.push_back( room );
+     }
+
+     return freeVector;
+ }
+
+
+  vector<Room> RoomManagement::fetchReservedRooms()
+  {
+      Room room;
+
       vector<Room> froomVector;
 
      QSqlQuery fetchquery;
 
-     //!To erotima de doulevei sosta!
      fetchquery = sqlMechanism.myQuery();
-     fetchquery.exec("SELECT * FROM Rooms WHERE RoomNumber NOT IN (SELECT DISTINCT fkRoomId FROM RoomsReservation);");
+     fetchquery.exec("SELECT * FROM Rooms WHERE RoomNumber IN (SELECT fkRoomId FROM RoomsReservation)");
 
      while(fetchquery.next())
      {
-          room.setRoomNumber(fetchquery.value(1).toInt());
-          room.setRoomFloor(fetchquery.value(2).toInt());
-          room.setCapacity(fetchquery.value(3).toInt());
+          room.setRoomNumber(fetchquery.value(0).toInt());
+          room.setRoomFloor(fetchquery.value(1).toInt());
+          room.setCapacity(fetchquery.value(2).toInt());
 
           froomVector.push_back( room );
      }
 
      return froomVector;
-
  }
+
 
      /**
        *searches Room by Capacity
@@ -350,23 +373,119 @@ bool RoomManagement::checkInData(Room room)
 
 /**
   *returns whether the room is free or not
-  *@param freeQuery is an sql query
+  *@param query is an sql query
   */
-bool RoomManagement::getStatus(int roomNumber)
+bool RoomManagement::getStatus(int roomNumber, QDate dateFrom, QDate dateTo)
 {
-   QSqlQuery freeQuery;
-   freeQuery.exec("SELECT * FROM RoomsReservation WHERE fkRoomId='"+QString("%1").arg(roomNumber)+"'");
-   while(freeQuery.next())
-    {
-       if(freeQuery.isActive())
-        {
-            return false;
-        }
-        else
-        {
+    QString date1;
+    QString date2;
+    QStringList SplitDate1;
+    QStringList SplitDate2;
+
+
+   QSqlQuery query;
+
+   query.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+   query.bindValue(":rNum",roomNumber);
+
+   if(!query.exec())
+   {
+       QMessageBox::information(0,"error","Execution Failed");
+
+       return false;
+
+   }
+
+   while(query.next())
+   {
+       date1 = query.value(1).toString();
+       date2 = query.value(2).toString();
+
+       SplitDate1=date1.split("/");
+       SplitDate2=date2.split("/");
+
+       QString year1 = SplitDate1.at(2);
+       QString day1 = SplitDate1.at(0);
+       QString month1 = SplitDate1.at(1);
+
+       QString year2 = SplitDate2.at(2);
+       QString day2 = SplitDate2.at(0);
+       QString month2 = SplitDate2.at(1);
+
+       QDate checkIn(year1.toInt(),month1.toInt(),day1.toInt());
+       QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
+
+
+
+        if((dateFrom >= checkIn && dateFrom <= checkOut)||
+           (dateTo >=checkIn && dateTo <=checkOut)||
+           (dateFrom <=checkIn && dateTo >=checkOut))
+       {
             return true;
+       }
+
+    }
+
+      return false;
+
+
+}
+vector<Room> RoomManagement::searchByDate(QDate dateFrom, QDate dateTo)
+{
+    QSqlQuery query;
+    QString date1;
+    QString date2;
+    QStringList SplitDate1;
+    QStringList SplitDate2;
+    bool free;
+    vector<Room> rooms;
+    vector<Room> freerooms;
+
+    query = sqlMechanism.myQuery();
+
+    freerooms = this->fetchFreeRooms();
+    rooms = this->fetchReservedRooms();
+
+    for(unsigned int i=0;i<rooms.size();i++)
+    {
+        free = true;
+        query.prepare("SELECT * FROM RoomsReservation WHERE fkRoomId= :rNum");
+        query.bindValue(":rNum" ,rooms[i].getRoomNumber() );
+        query.exec();
+
+        while(query.next())
+        {
+           date1 = query.value(1).toString();
+           date2 = query.value(2).toString();
+
+           SplitDate1=date1.split("/");
+           SplitDate2=date2.split("/");
+
+           QString year1 = SplitDate1.at(2);
+           QString day1 = SplitDate1.at(0);
+           QString month1 = SplitDate1.at(1);
+
+           QString year2 = SplitDate2.at(2);
+           QString day2 = SplitDate2.at(0);
+           QString month2 = SplitDate2.at(1);
+
+           QDate checkIn(year1.toInt(),month1.toInt(),day1.toInt());
+           QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
+
+           if((dateFrom >= checkIn && dateFrom <= checkOut)||
+               (dateTo >=checkIn && dateTo <=checkOut)||
+               (dateFrom <=checkIn && dateTo >=checkOut))
+                {
+                free = false;
+                break;
+                }
+        }
+        if(free)
+        {
+            freerooms.push_back(rooms[i]);
         }
 
     }
-  return true;
+
+     return freerooms;
 }

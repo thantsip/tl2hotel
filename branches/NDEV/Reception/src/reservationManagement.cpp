@@ -76,13 +76,13 @@ void ReservationManagement::setDateTo(QString dateTo1 )
   *@param room is a room class item
   *@param customer is a customer class item
 */  
-void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room room,Customer customer)
+void ReservationManagement::roomReservation(QDate DateFrom,QDate DateTo,Room room,Customer customer)
 {
     QMessageBox msgBox;
     RoomManagement RM;
 
     //if room is not free in this period
-   if(!RM.getStatus(room.getRoomNumber()))
+   if(RM.getStatus(room.getRoomNumber(), DateFrom, DateTo))
     {
         msgBox.setText("Reservation not made.\nRoom is not free at the moment.");
         msgBox.exec();
@@ -96,8 +96,8 @@ void ReservationManagement::roomReservation(QString DateFrom,QString DateTo,Room
             query.prepare("insert into RoomsReservation (DateFrom,DateTo,fkCustomerId,fkRoomId)"
                                      "values(:datefrom, :dateto, :custid, :roomid)");
 
-           query.bindValue(":datefrom", DateFrom);
-           query.bindValue(":dateto", DateTo);
+           query.bindValue(":datefrom",DateFrom.toString(QString("d/M/yyyy")));
+           query.bindValue(":dateto", DateTo.toString(QString("d/M/yyyy")));
            query.bindValue(":custid", customer.getId());
            query.bindValue(":roomid", room.getRoomNumber());
            query.exec();
@@ -240,63 +240,68 @@ double ReservationManagement::roomCheckout(int RoomNumber)
                 }
                 while(query.next())
                 {
+
                     date1 = query.value(1).toString();
                     date2 = query.value(2).toString();
                     resId = query.value(0).toInt();
                     SplitDate1=date1.split("/");
                     SplitDate2=date2.split("/");
-                    check  = true;
+
+
+                    QString year1 = SplitDate1.at(2);
+                    QString day1 = SplitDate1.at(0);
+                    QString month1 = SplitDate1.at(1);
+
+                    QString year2 = SplitDate2.at(2);
+                    QString day2 = SplitDate2.at(0);
+                    QString month2 = SplitDate2.at(1);
+
+                    SplitDate1.clear();
+                    SplitDate2.clear();
+                    /*
+                     *add the dates into QDate objects
+                     */
+
+                    QDate checkIn(year1.toInt(),month1.toInt(),day1.toInt());
+                    QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
+
+                    if(QDate::currentDate()>= checkIn && QDate::currentDate()<=checkOut)
+                    {
+
+                        daysToPay = checkIn.daysTo(checkOut);
+
+
+
+                        if(0 == daysToPay)
+                        {
+                            daysToPay = 1;
+                        }
+
+                        totAmount = daysToPay * price;
+                        /*
+                        *save the totAmount in a vector
+                        */
+                        checkOutSum.push_back(totAmount);
+
+                        /*
+                         *delete the current reservation from the database
+                        */
+                        query.prepare("DELETE FROM RoomsReservation WHERE prIdReservation= :resId");
+                        query.bindValue(":resId",resId);
+                        query.exec();
+
+                        return totAmount;
+                    }
+                    else
+                        QMessageBox::information(0,"information","Check out not possible, try cancelation");
 
                 }
             }
             else
-                    return -1;
+                QMessageBox::information(0,"Error","Operation Failed");
+                return -1;
 
-             if(check)
-             {
-             /*
-              *calculate the final price
-              */
-                QString year1 = SplitDate1.at(2);
-                QString day1 = SplitDate1.at(0);
-                QString month1 = SplitDate1.at(1);
 
-                QString year2 = SplitDate2.at(2);
-                QString day2 = SplitDate2.at(0);
-                QString month2 = SplitDate2.at(1);
-                /*
-                 *add the dates into QDate objects
-                 */
-                QDate checkIn(year1.toInt(),month1.toInt(),day1.toInt());
-                QDate checkOut(year2.toInt(),month2.toInt(),day2.toInt());
-
-                daysToPay = checkIn.daysTo(checkOut);
-
-                if(0 == daysToPay)
-                {
-                    daysToPay = 1;
-                }
-
-                totAmount = daysToPay * price;
-                /*
-                 *save the totAmount in a vector
-                 */
-                checkOutSum.push_back(totAmount);
-
-                /*
-                 *delete the current reservation from the database
-                 */
-                query.prepare("DELETE FROM RoomsReservation WHERE prIdReservation= :resId");
-                query.bindValue(":resId",resId);
-                query.exec();
-
-                return totAmount;
-             }
-             else
-             {
-                 QMessageBox::information(0,"Error","Operation Failed");
-                 return -1;
-             }
 
 }
 
