@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>805</width>
-    <height>616</height>
+    <width>794</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -31,7 +31,7 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>781</width>
+      <width>771</width>
       <height>571</height>
      </rect>
     </property>
@@ -150,7 +150,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -170,18 +170,18 @@
           <x>10</x>
           <y>10</y>
           <width>431</width>
-          <height>77</height>
+          <height>96</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_8">
-         <item row="1" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_30">
            <property name="text">
             <string>Κριτήριο:</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1" colspan="2">
+         <item row="2" column="1" colspan="5">
           <widget class="QComboBox" name="comboBox">
            <item>
             <property name="text">
@@ -191,6 +191,21 @@
            <item>
             <property name="text">
              <string>Κρεβάτια</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ημερομινία</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Δωμάτια χωρίς κράτηση</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Δωμάτια με κράτηση</string>
             </property>
            </item>
           </widget>
@@ -205,10 +220,44 @@
          <item row="0" column="1">
           <widget class="QLineEdit" name="SearchRoom"/>
          </item>
-         <item row="2" column="0" colspan="3">
+         <item row="3" column="0" colspan="6">
           <widget class="QPushButton" name="Search">
            <property name="text">
             <string>Αναζήτηση</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QDateEdit" name="SearchRoomFrom">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QDateEdit" name="SearchRoomTo">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>Απο</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QLabel" name="label_49">
+           <property name="text">
+            <string>Εως</string>
            </property>
           </widget>
          </item>
@@ -218,9 +267,9 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>90</y>
+          <y>110</y>
           <width>431</width>
-          <height>311</height>
+          <height>291</height>
          </rect>
         </property>
         <property name="widgetResizable">
@@ -232,7 +281,7 @@
            <x>0</x>
            <y>0</y>
            <width>429</width>
-           <height>309</height>
+           <height>289</height>
           </rect>
          </property>
          <widget class="QTableWidget" name="SearchRoomTableView">
@@ -241,7 +290,7 @@
             <x>10</x>
             <y>10</y>
             <width>411</width>
-            <height>291</height>
+            <height>271</height>
            </rect>
           </property>
          </widget>
@@ -1073,8 +1122,8 @@ background-color: rgb(255, 255, 255);</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>751</width>
-         <height>450</height>
+         <width>100</width>
+         <height>30</height>
         </rect>
        </property>
        <attribute name="label">
@@ -1248,6 +1297,14 @@ background-color: rgb(255, 255, 255);</string>
        </widget>
       </widget>
       <widget class="QWidget" name="page_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>100</width>
+         <height>30</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Διαχείριση Χρηστών</string>
        </attribute>
@@ -1526,7 +1583,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>805</width>
+     <width>794</width>
      <height>20</height>
     </rect>
    </property>
