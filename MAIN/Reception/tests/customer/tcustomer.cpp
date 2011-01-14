@@ -1,49 +1,77 @@
+/** @file tcustomer.cpp
+ *  @brief Customer Unit Test Implementation
+ *  @author Efstathios Xatzikiriakidis
+ *
+ *  This is the unit test for the "Customer" class.
+ */
+
 #include "tcustomer.h"
 
-QString tId ("AX1111");
-QString tSurname ("Malkovich");
-QString tName ("Peter");
-int tGroup = 1;
+QString gId      = QString ("AX1111");    /**< Customer ID value (test data). */
+QString gSurname = QString ("Malkovich"); /**< Customer surname value (test data). */
+QString gName    = QString ("Peter");     /**< Customer name value (test data). */
+int     gGroup   = 1;                     /**< Customer group ID value (test data). */
 
-void TCustomer::testConstructor () {
-  Customer c (tId, tName, tSurname, tGroup);
+/** Customer Constructor Test Method
+ *  @brief This method tests the constructor of the "Customer" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomer::testConstructor ()
+{
+  Customer c (gId, gName, gSurname, gGroup);
 
-  QVERIFY (c.getId ()      == tId      &&
-           c.getName ()    == tName    &&
-           c.getSurname () == tSurname &&
-           c.getGroupId () == tGroup);
+  QVERIFY (c.getId ()      == gId      &&
+           c.getName ()    == gName    &&
+           c.getSurname () == gSurname &&
+           c.getGroupId () == gGroup);
 }
 
-void TCustomer::testId () {
+/** Customer ID Test Method
+ *  @brief This method tests the ID set/get methods of the "Customer" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomer::testId ()
+{
   Customer c;
+  c.setId (gId);
 
-  c.setId (tId);
-
-  QVERIFY (c.getId () == tId);
+  QVERIFY (c.getId () == gId);
 }
 
-void TCustomer::testName () {
+/** Customer Name Test Method
+ *  @brief This method tests the Name set/get methods of the "Customer" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomer::testName ()
+{
   Customer c;
+  c.setName (gName);
 
-  c.setName (tName);
-
-  QVERIFY (c.getName () == tName);
+  QVERIFY (c.getName () == gName);
 }
 
-void TCustomer::testSurname () {
+/** Customer Surname Test Method
+ *  @brief This method tests the Surname set/get methods of the "Customer" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomer::testSurname ()
+{
   Customer c;
+  c.setSurname (gSurname);
 
-  c.setSurname (tSurname);
-
-  QVERIFY (c.getSurname () == tSurname);
+  QVERIFY (c.getSurname () == gSurname);
 }
 
-void TCustomer::testGroupId () {
+/** Customer Group Id Test Method
+ *  @brief This method tests the Group ID set/get methods of the "Customer" class.
+ *  @author Efstathios Xatzikiriakidis
+ */
+void TCustomer::testGroupId ()
+{
   Customer c;
+  c.setGroupId (gGroup);
 
-  c.setGroupId (tGroup);
-
-  QVERIFY (c.getGroupId () == tGroup);
+  QVERIFY (c.getGroupId () == gGroup);
 }
 
 QTEST_MAIN (TCustomer)
