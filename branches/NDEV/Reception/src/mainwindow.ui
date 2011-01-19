@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>609</height>
+    <width>788</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,6 +18,9 @@
   </property>
   <property name="windowTitle">
    <string>Reception</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -32,7 +35,7 @@
       <x>10</x>
       <y>0</y>
       <width>771</width>
-      <height>571</height>
+      <height>561</height>
      </rect>
     </property>
     <property name="inputMethodHints">
@@ -60,8 +63,8 @@
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>60</y>
+        <x>10</x>
+        <y>10</y>
         <width>211</width>
         <height>161</height>
        </rect>
@@ -143,14 +146,14 @@
      <widget class="QTabWidget" name="Tabs2">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>60</y>
-        <width>451</width>
-        <height>431</height>
+        <x>240</x>
+        <y>10</y>
+        <width>521</width>
+        <height>511</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="movable">
        <bool>true</bool>
@@ -169,7 +172,7 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>431</width>
+          <width>501</width>
           <height>96</height>
          </rect>
         </property>
@@ -195,7 +198,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Ημερομινία</string>
+             <string>Ημερομηνία</string>
             </property>
            </item>
            <item>
@@ -268,8 +271,8 @@
          <rect>
           <x>10</x>
           <y>110</y>
-          <width>431</width>
-          <height>291</height>
+          <width>501</width>
+          <height>371</height>
          </rect>
         </property>
         <property name="widgetResizable">
@@ -280,8 +283,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>429</width>
-           <height>289</height>
+           <width>499</width>
+           <height>369</height>
           </rect>
          </property>
          <widget class="QTableWidget" name="SearchRoomTableView">
@@ -289,9 +292,12 @@
            <rect>
             <x>10</x>
             <y>10</y>
-            <width>411</width>
-            <height>271</height>
+            <width>481</width>
+            <height>351</height>
            </rect>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed</set>
           </property>
          </widget>
         </widget>
@@ -306,7 +312,7 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>431</width>
+          <width>501</width>
           <height>31</height>
          </rect>
         </property>
@@ -328,8 +334,8 @@
          <rect>
           <x>10</x>
           <y>50</y>
-          <width>431</width>
-          <height>351</height>
+          <width>501</width>
+          <height>431</height>
          </rect>
         </property>
         <property name="editTriggers">
@@ -347,10 +353,10 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>230</y>
+        <x>10</x>
+        <y>180</y>
         <width>211</width>
-        <height>261</height>
+        <height>341</height>
        </rect>
       </property>
       <property name="font">
@@ -371,7 +377,7 @@
          <x>10</x>
          <y>20</y>
          <width>191</width>
-         <height>231</height>
+         <height>311</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_10">
@@ -464,9 +470,9 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QWidget" name="gridLayoutWidget_14">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>160</width>
+        <x>280</x>
+        <y>10</y>
+        <width>211</width>
         <height>71</height>
        </rect>
       </property>
@@ -500,6 +506,49 @@ background-color: rgb(255, 255, 255);</string>
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="gridLayoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>110</y>
+        <width>211</width>
+        <height>37</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_17">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_50">
+         <property name="text">
+          <string>Τιμή:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="price">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(225, 224, 255);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>90</y>
+        <width>211</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -508,8 +557,8 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>30</y>
+        <x>40</x>
+        <y>10</y>
         <width>201</width>
         <height>156</height>
        </rect>
@@ -590,7 +639,7 @@ background-color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>280</x>
-        <y>30</y>
+        <y>10</y>
         <width>201</width>
         <height>81</height>
        </rect>
@@ -640,8 +689,8 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QWidget" name="gridLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>30</y>
+        <x>520</x>
+        <y>10</y>
         <width>211</width>
         <height>191</height>
        </rect>
@@ -728,10 +777,10 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QTableWidget" name="CustomerTable">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>240</y>
-        <width>671</width>
-        <height>281</height>
+        <x>10</x>
+        <y>220</y>
+        <width>741</width>
+        <height>301</height>
        </rect>
       </property>
       <property name="editTriggers">
@@ -1194,7 +1243,7 @@ background-color: rgb(255, 255, 255);</string>
           <x>20</x>
           <y>160</y>
           <width>701</width>
-          <height>261</height>
+          <height>271</height>
          </rect>
         </property>
         <property name="editTriggers">
@@ -1311,9 +1360,9 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QTableWidget" name="UserTable">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>40</x>
           <y>200</y>
-          <width>671</width>
+          <width>661</width>
           <height>241</height>
          </rect>
         </property>
@@ -1583,8 +1632,8 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
-     <height>20</height>
+     <width>788</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -1650,6 +1699,88 @@ background-color: rgb(255, 255, 255);</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>CheckInDate</tabstop>
+  <tabstop>CheckOutDate</tabstop>
+  <tabstop>CustomerIdReservation</tabstop>
+  <tabstop>RoomNumberReservation</tabstop>
+  <tabstop>NewReservation</tabstop>
+  <tabstop>Tabs</tabstop>
+  <tabstop>Tabs2</tabstop>
+  <tabstop>CustomerID</tabstop>
+  <tabstop>CustomerName</tabstop>
+  <tabstop>CustomerSurname</tabstop>
+  <tabstop>CustomerGroupId</tabstop>
+  <tabstop>InsertCustomer</tabstop>
+  <tabstop>CustomerIDDelete</tabstop>
+  <tabstop>DeleteCustomer</tabstop>
+  <tabstop>FindID</tabstop>
+  <tabstop>FindCustomer</tabstop>
+  <tabstop>FindName</tabstop>
+  <tabstop>FindSurname</tabstop>
+  <tabstop>FindGroupID</tabstop>
+  <tabstop>SaveCustomer</tabstop>
+  <tabstop>CustomerTable</tabstop>
+  <tabstop>RoomNumber</tabstop>
+  <tabstop>RoomFloor</tabstop>
+  <tabstop>RoomCapacity</tabstop>
+  <tabstop>InsertRoom</tabstop>
+  <tabstop>DeleteRoomNumber</tabstop>
+  <tabstop>DeleteRoom</tabstop>
+  <tabstop>FindRoomNumber</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>FindRoomFloor</tabstop>
+  <tabstop>FindRoomCapacity</tabstop>
+  <tabstop>SaveRoom</tabstop>
+  <tabstop>RoomTable</tabstop>
+  <tabstop>NewCap</tabstop>
+  <tabstop>NewPrice</tabstop>
+  <tabstop>InsertNewPrice</tabstop>
+  <tabstop>DeleteCap</tabstop>
+  <tabstop>DeleteNewPrice</tabstop>
+  <tabstop>EditCap</tabstop>
+  <tabstop>FindNewPrice</tabstop>
+  <tabstop>EditPrice</tabstop>
+  <tabstop>UpdateNewPrice</tabstop>
+  <tabstop>RoomTablePrice</tabstop>
+  <tabstop>UserRealName</tabstop>
+  <tabstop>UserSurname</tabstop>
+  <tabstop>Username</tabstop>
+  <tabstop>UserPassword</tabstop>
+  <tabstop>Role</tabstop>
+  <tabstop>InsertUser</tabstop>
+  <tabstop>UsernameDelete</tabstop>
+  <tabstop>DeleteUser</tabstop>
+  <tabstop>FindUsername</tabstop>
+  <tabstop>FindUser</tabstop>
+  <tabstop>FindUserRealName</tabstop>
+  <tabstop>FindUserSurname</tabstop>
+  <tabstop>FindUserPassword</tabstop>
+  <tabstop>SaveUser</tabstop>
+  <tabstop>UserTable</tabstop>
+  <tabstop>CheckOut</tabstop>
+  <tabstop>SearchRoomTo</tabstop>
+  <tabstop>Search</tabstop>
+  <tabstop>InstantTableView</tabstop>
+  <tabstop>CheckOutNum</tabstop>
+  <tabstop>SearchRoom</tabstop>
+  <tabstop>InstantEdit</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>MassiveRoomTableNum</tabstop>
+  <tabstop>SearchRoomTableView</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>CreateMassiveRoom</tabstop>
+  <tabstop>CreateMassiveRoomTable</tabstop>
+  <tabstop>MassiveRoomTable</tabstop>
+  <tabstop>RefreshRoom2</tabstop>
+  <tabstop>Re</tabstop>
+  <tabstop>MassiveRoomDeleteTable</tabstop>
+  <tabstop>RefreshRoom</tabstop>
+  <tabstop>SearchRoomFrom</tabstop>
+  <tabstop>DeleteAllRooms</tabstop>
+  <tabstop>MassiveRoomEditTable</tabstop>
+  <tabstop>MassiveRoomEditSave</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
