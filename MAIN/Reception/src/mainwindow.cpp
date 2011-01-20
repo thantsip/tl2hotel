@@ -194,6 +194,26 @@ void MainWindow::on_Clean_triggered()
     ui->FindRoomFloor->setText("");
     ui->FindRoomNumber->setText("");
     ui->RoomNumber->setFocus();
+    ui->SearchRoom->setText("");
+    ui->InstantEdit->setText("");
+    ui->CheckOutNum->setText("");
+    ui->MassiveRoomTableNum->setText("");
+    ui->NewCap->setText("");
+    ui->NewPrice->setText("");
+    ui->EditCap->acceptDrops();
+    ui->EditPrice->setText("");
+    ui->DeleteCap->setText("");
+    ui->Username->setText("");
+    ui->UserRealName->setText("");
+    ui->UserSurname->setText("");
+    ui->UsernameDelete->setText("");
+    ui->FindUser->setText("");
+    ui->FindUsername->setText("");
+    ui->FindUserPassword->setText("");
+    ui->FindUserRealName->setText("");
+    ui->FindUserSurname->setText("");
+
+
 }
 
 void MainWindow::on_Tabs_selected(QString )
@@ -223,8 +243,14 @@ void MainWindow::on_CleanTab_triggered()
         ui->CustomerIdReservation->setText("");
         ui->RoomNumberReservation->setText("");
         ui->CustomerIdReservation->setFocus();
+        ui->InstantEdit->setText("");
+        ui->SearchRoom->setText("");
     }
     if(1==ui->Tabs->currentIndex())
+    {
+        ui->CheckOutNum->setText("");
+    }
+    if(2==ui->Tabs->currentIndex())
     {
         ui->CustomerName->setText("");
         ui->CustomerSurname->setText("");
@@ -236,8 +262,9 @@ void MainWindow::on_CleanTab_triggered()
         ui->FindName->setText("");
         ui->FindSurname->setText("");
         ui->CustomerID->setFocus();
+
     }
-    if(2==ui->Tabs->currentIndex())
+    if(3==ui->Tabs->currentIndex())
     {
         ui->RoomCapacity->setText("");
         ui->RoomFloor->setText("");
@@ -247,6 +274,22 @@ void MainWindow::on_CleanTab_triggered()
         ui->FindRoomFloor->setText("");
         ui->FindRoomNumber->setText("");
         ui->RoomNumber->setFocus();
+
+        ui->MassiveRoomTableNum->setText("");
+        ui->NewCap->setText("");
+        ui->NewPrice->setText("");
+        ui->EditCap->acceptDrops();
+        ui->EditPrice->setText("");
+        ui->DeleteCap->setText("");
+        ui->Username->setText("");
+        ui->UserRealName->setText("");
+        ui->UserSurname->setText("");
+        ui->UsernameDelete->setText("");
+        ui->FindUser->setText("");
+        ui->FindUsername->setText("");
+        ui->FindUserPassword->setText("");
+        ui->FindUserRealName->setText("");
+        ui->FindUserSurname->setText("");
     }
 }
 
@@ -656,6 +699,7 @@ void MainWindow::on_CreateMassiveRoom_clicked()
         showRoomGrid();
         RoomTableView();
         QMessageBox::about(0,Title,"Changes saved!!");
+        ui->MassiveRoomTableNum->setText("");
         ui->MassiveRoomTable->setColumnCount(0);
         ui->MassiveRoomTable->setRowCount(0);
         ui->CreateMassiveRoom->setEnabled(false);
@@ -673,7 +717,7 @@ void MainWindow::on_CheckOut_clicked()
     if(-1 != ch)
     {
         ui->CheckOutNum->setText("");
-        QMessageBox::about(0,Title,QString("%1").arg(ch));
+        ui->price->setText(QString("%1").arg(ch)+" Euros");
         showRoomGrid();
     }
 }
