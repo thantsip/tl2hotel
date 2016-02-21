@@ -1,0 +1,1 @@
+This project is being carried out by students of Technological Educational Institute of Serres - Department of Informatics & Communications (http://www.teiser.gr/icd). Our goal is to carry out a hotel reception management platform. Source code will be written in CPlusPlus.
